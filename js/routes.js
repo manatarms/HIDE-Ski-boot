@@ -1,5 +1,5 @@
 // ROUTES
-skiApp.config(function ($routeProvider) {
+skiApp.config(['$routeProvider',function ($routeProvider) {
    
     $routeProvider
     
@@ -14,4 +14,4 @@ skiApp.config(function ($routeProvider) {
     })
     
     
-});
+}]);

@@ -1,4 +1,9 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+$highlightColor : rgba(15,13,35,0.7);
+/*$backgroundColor : #FD9654;*/
+$backgroundColor : rgba(253,150,84,0.6);
+$wholePageColor: #FFF;
+$fontColor: #574246;
 
 html {
     color: #222;
@@ -58,10 +63,11 @@ textarea {
 
 body {
     font: 16px/26px Helvetica, Helvetica Neue, Arial;
+    background: $wholePageColor;
 }
 
 .wrapper {
-    width: 90%;
+    width: 100%;
     margin: 0 5%;
 }
 
@@ -70,22 +76,22 @@ body {
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    border-bottom: 5px solid $highlightColor;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    border-top: 5px solid $highlightColor;
 }
 
 .header-container,
 .footer-container,
 .main aside {
-    background: #f16529;
+    background: $backgroundColor;
 }
 
 .title {
-    color: white;
+    color: $fontColor;
 }
 
 /* ==============
@@ -106,14 +112,12 @@ nav a {
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-
-    color: white;
-    background: #e44d26;
+    color: $fontColor;
 }
 
 nav a:hover,
 nav a:visited {
-    color: white;
+    color: $fontColor;
 }
 
 nav a:hover {
@@ -132,13 +136,9 @@ nav a:hover {
     font-size: 2em;
 }
 
-.main aside {
-    color: white;
-    padding: 0px 5% 10px;
-}
 
 .footer-container footer {
-    color: white;
+    color: $fontColor;
     padding: 20px 0;
 }
 
@@ -149,12 +149,6 @@ nav a:hover {
 .ie7 .title {
     padding-top: 20px;
 }
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
 
 
 
