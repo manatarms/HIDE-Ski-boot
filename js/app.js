@@ -1,3 +1,3 @@
 // MODULE
-var skiApp = angular.module('skiApp', ['ngRoute', 'ngResource']);
+var skiApp = angular.module('skiApp', ['ngRoute', 'ngResource','highcharts-ng']);
 
