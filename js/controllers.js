@@ -1,14 +1,29 @@
 // CONTROLLERS
-skiApp.controller('homeController', ['$scope','$sce', function($scope,$sce) {
+skiApp.controller('homeController', ['$scope', '$sce', function($scope, $sce) {
 
-	$scope.videoConfig = {
-					sources: [
-						{src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.mp4"), type: "video/mp4"},
-						{src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.webm"), type: "video/webm"},
-						{src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.ogg"), type: "video/ogg"}
-					],
-					theme: "../css/videogular.css"
-				};
+    $scope.name = "John Doe";
+    $scope.date = "1/2/2003";
+    $scope.time = "01.02.03";
+    $scope.runNo = "1";
+
+    $scope.videoConfig = {
+        preload: "none",
+
+        sources: [
+            { src: $sce.trustAsResourceUrl("../assets/jump.mp4"), type: "video/mp4" },
+            { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.webm"), type: "video/webm" },
+            { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.ogg"), type: "video/ogg" }
+        ],
+        theme: {
+            url: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
+        },
+        plugins: {
+            controls: {
+                autoHide: true,
+                autoHideTime: 5000
+            }
+        }
+    };
 
 
     $scope.chartConfig = {
@@ -30,11 +45,15 @@ skiApp.controller('homeController', ['$scope','$sce', function($scope,$sce) {
 
         //Series object (optional) - a list of series using normal Highcharts series options.
         series: [{
-            data: [10, 15, 12, 8, 7]
-        }],
+                    name: 'Left',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.4, 19.5, 19.8, 19.3, 18.3, 13.9, 9.6]
+                }, {
+                    name: 'Right',
+                    data: [7.5, 6.2, 9.1, 14.7, 18.1, 19.3, 19.3, 19.1, 18.7, 13.3, 9.4]
+                }],
         //Title configuration (optional)
         title: {
-            text: 'Hello'
+            text: false
         },
         //Boolean to control showing loading status on chart (optional)
         //Could be a string if you want to show specific loading text.
@@ -43,8 +62,13 @@ skiApp.controller('homeController', ['$scope','$sce', function($scope,$sce) {
         //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
         xAxis: {
             currentMin: 0,
+            currentMax: 11,
+            title: { text: 'Time (s)' }
+        },
+        yAxis: {
+            currentMin: 0,
             currentMax: 20,
-            title: { text: 'values' }
+            title: { text: 'Force (N)' }
         },
 
         //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.

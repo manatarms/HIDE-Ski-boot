@@ -172,7 +172,8 @@ gulp.task('default', ['browser-sync', 'sass', 'css:build'], function() {
 gulp.task('copy', function() {
   gulp.src(['./*.png','./*.xml','./*.ico','./*.txt'])
   .pipe(gulp.dest('./dist'));
- 
+ gulp.src(['./assets/*'])
+  .pipe(gulp.dest('./dist/assets/'));
 });
 
 gulp.task('build', function(callback) {

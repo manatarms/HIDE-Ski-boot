@@ -1,29 +1,37 @@
-<h1>Home</h1>
-<div class="row">
-    <div class="large-12 columns ">
-        <highchart id="chart1" config="chartConfig"></highchart>
+<div class="row run-details">
+    <div class="large-4 columns">
+       <h4>Name: {{name}} </h4>
+    </div>   
+    <div class="large-4 columns">   
+       <h4>Date: {{date}}, {{time}} </h4>
+    </div>
+    <div class="large-4 columns">   
+       <h4>Run #: {{runNo}} </h4>
     </div>
 </div>
-
-<div class="row">
-    <div class="large-12 columns videogular-container">
-       <videogular vg-theme="videoConfig.theme">
-       	<vg-media vg-src="videoConfig.sources">
-       	</vg-media>
-
-       	<vg-controls>
-       					<vg-play-pause-button></vg-play-pause-button>
-       					<vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
-       					<vg-scrub-bar>
-       						<vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-       					</vg-scrub-bar>
-       					<vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
-       					<vg-volume>
-       						<vg-mute-button></vg-mute-button>
-       						<vg-volume-bar></vg-volume-bar>
-       					</vg-volume>
-       					<vg-fullscreen-button></vg-fullscreen-button>
-       				</vg-controls>
-       </videogular>
+<div class="row body-row">
+    <div class="videogular-container small-12 medium-6 large-6 columns">
+        <videogular vg-theme="videoConfig.theme.url">
+            <vg-media vg-src="videoConfig.sources" vg-tracks="videoConfig.tracks">
+            </vg-media>
+            <vg-controls vg-autohide="videoConfig.plugins.controls.autoHide" vg-autohide-time="videoConfig.plugins.controls.autoHideTime">
+                <vg-play-pause-button></vg-play-pause-button>
+                <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                </vg-scrub-bar>
+                <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+                <vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                <vg-volume>
+                    <vg-mute-button></vg-mute-button>
+                    <vg-volume-bar></vg-volume-bar>
+                </vg-volume>
+                <vg-playback-button></vg-playback-button>
+                <vg-fullscreen-button></vg-fullscreen-button>
+            </vg-controls>
+        </videogular>
+    </div>
+    <div class="small-12 medium-6 large-6 columns">
+        <highchart id="chart1" config="chartConfig"></highchart>
     </div>
 </div>
