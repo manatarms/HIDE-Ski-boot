@@ -1,37 +1,60 @@
-<div class="row run-details">
+<div class="row fullwidth run-details">
     <div class="large-4 columns">
-       <h4>Name: {{name}} </h4>
-    </div>   
-    <div class="large-4 columns">   
-       <h4>Date: {{date}}, {{time}} </h4>
+        <h4>Name: {{name}} </h4>
     </div>
-    <div class="large-4 columns">   
-       <h4>Run #: {{runNo}} </h4>
+    <div class="large-4 columns">
+        <h4>Date: {{date}}, {{time}} </h4>
     </div>
-</div>
-<div class="row body-row">
-    <div class="videogular-container small-12 medium-6 large-6 columns">
-        <videogular vg-theme="videoConfig.theme.url">
-            <vg-media vg-src="videoConfig.sources" vg-tracks="videoConfig.tracks">
-            </vg-media>
-            <vg-controls vg-autohide="videoConfig.plugins.controls.autoHide" vg-autohide-time="videoConfig.plugins.controls.autoHideTime">
-                <vg-play-pause-button></vg-play-pause-button>
-                <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
-                <vg-scrub-bar>
-                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-                </vg-scrub-bar>
-                <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
-                <vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>
-                <vg-volume>
-                    <vg-mute-button></vg-mute-button>
-                    <vg-volume-bar></vg-volume-bar>
-                </vg-volume>
-                <vg-playback-button></vg-playback-button>
-                <vg-fullscreen-button></vg-fullscreen-button>
-            </vg-controls>
-        </videogular>
-    </div>
-    <div class="small-12 medium-6 large-6 columns">
-        <highchart id="chart1" config="chartConfig"></highchart>
+    <div class="large-4 columns">
+        <h4>Run #: {{runNo}} </h4>
     </div>
 </div>
+<div class="row fullwidth body-row">
+    <div class="row video-row">
+        <div class="videogular-container small-12 medium-6 large-6 columns">
+            <videogular vg-theme="videoConfig.theme.url">
+                <vg-media vg-src="videoConfig.sources" vg-tracks="videoConfig.tracks">
+                </vg-media>
+                <vg-controls vg-autohide="videoConfig.plugins.controls.autoHide" vg-autohide-time="videoConfig.plugins.controls.autoHideTime">
+                    <vg-play-pause-button></vg-play-pause-button>
+                    <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-scrub-bar>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    </vg-scrub-bar>
+                    <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-volume>
+                        <vg-mute-button></vg-mute-button>
+                        <vg-volume-bar></vg-volume-bar>
+                    </vg-volume>
+                    <vg-playback-button></vg-playback-button>
+                    <vg-fullscreen-button></vg-fullscreen-button>
+                </vg-controls>
+            </videogular>
+        </div><!--End video container-->
+         <div class="foot-container small-12 medium-6 large-6 columns">
+         <!--foot placeholder--><img src="img/foot.png" alt="foot" width="500">
+         </div>
+    </div><!--End video row -->
+    <div class="row graph-row">
+        <div class="small-12 medium-12 large-12 columns">
+            <highchart id="chart1" config="chartConfig"></highchart>
+            <div class="row">
+                <div class="columns large-3">
+                    <ng-csv-import class="import" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
+                    </ng-csv-import>
+                </div>
+            </div>
+        </div>
+    </div><!--End graph row -->
+</div><!--End body row -->
+
+<!-- Visualize data -->
+<!-- <div ng-if="csv.content" class="block left">
+    <h2>CSV</h2>
+    <div class="content"><pre>{{ csv.content }}</pre></div>
+  </div> -->
+<!-- 
+ <div class="block left"  ng-if="csv.result">
+    <div class="content" source="toPrettyJSON(csv.result, 2)"></div>
+  </div> -->

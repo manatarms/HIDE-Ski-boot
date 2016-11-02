@@ -1,10 +1,24 @@
 // CONTROLLERS
-skiApp.controller('homeController', ['$scope', '$sce', function($scope, $sce) {
+skiApp.controller('homeController', ['$scope', '$sce', '$parse', function($scope, $sce) {
 
+    //Details
     $scope.name = "John Doe";
     $scope.date = "1/2/2003";
     $scope.time = "01.02.03";
     $scope.runNo = "1";
+
+    //VIDEO variables
+    var controller = this;
+    // controller.API = null;
+    // alert(API);
+    //TODO Fix videogular API calls
+    controller.vgPlayerReady = function(API) {
+        controller.API = API;
+        alert(API);
+    };
+    $scope.setTime = function(time) {
+        $scope.$API.seekTime(50, true);
+    }
 
     $scope.videoConfig = {
         preload: "none",
@@ -25,32 +39,87 @@ skiApp.controller('homeController', ['$scope', '$sce', function($scope, $sce) {
         }
     };
 
+    //CSV imports
+    $scope.csv = {
+        content: null,
+        header: false,
+        headerVisible: true,
+        separator: ',',
+        separatorVisible: false,
+        result: null,
+        encoding: 'ISO-8859-1',
+        encodingVisible: false,
+        uploadButtonLabel: "upload a csv file"
+    };
 
+    $scope.toggleLoading = function() {
+        this.chartConfig.loading = !this.chartConfig.loading
+    }
+
+    //CHART VARIABLES
     $scope.chartConfig = {
 
         options: {
             //This is the Main Highcharts chart config. Any Highchart options are valid here.
             //will be overriden by values specified below.
             chart: {
-                type: 'line'
+                type: 'line',
+                zoomType: 'x'
+
             },
             tooltip: {
                 style: {
                     padding: 10,
                     fontWeight: 'bold'
                 }
+            },
+            plotOptions: {
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function(event) {
+                                //console.log('Category: '+ this.category +', value: '+ this.y);
+                            }
+                        }
+                    }
+
+                }
             }
         },
-        //The below properties are watched separately for changes.
 
         //Series object (optional) - a list of series using normal Highcharts series options.
         series: [{
-                    name: 'Left',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.4, 19.5, 19.8, 19.3, 18.3, 13.9, 9.6]
-                }, {
-                    name: 'Right',
-                    data: [7.5, 6.2, 9.1, 14.7, 18.1, 19.3, 19.3, 19.1, 18.7, 13.3, 9.4]
-                }],
+                name: 's0',
+                data: []
+
+            }, {
+                name: 's1',
+                data: []
+            }, {
+                name: 's2',
+                data: []
+            }, {
+                name: 's3',
+                data: []
+            }, {
+                name: 's4',
+                data: []
+            }, {
+                name: 's5',
+                data: []
+            }, {
+                name: 's6',
+                data: []
+            }, {
+                name: 's7',
+                data: []
+            }
+
+
+
+        ],
+
         //Title configuration (optional)
         title: {
             text: false
@@ -61,13 +130,10 @@ skiApp.controller('homeController', ['$scope', '$sce', function($scope, $sce) {
         //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
         //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
         xAxis: {
-            currentMin: 0,
-            currentMax: 11,
+            categories: [],
             title: { text: 'Time (s)' }
         },
         yAxis: {
-            currentMin: 0,
-            currentMax: 20,
             title: { text: 'Force (N)' }
         },
 
@@ -78,21 +144,112 @@ skiApp.controller('homeController', ['$scope', '$sce', function($scope, $sce) {
             //width: 400,
             //height: 300
         },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: false
-            }
 
-        },
+        loading: false,
 
         //function (optional)
         func: function(chart) {
             //setup some logic for the chart
         }
     };
+
+    $scope.$watch('csv.content', function() {
+        //console.log(JSON.stringify($scope.csv.result[0]));
+        //console.log($scope.chartConfig.series[0].data);
+        //$scope.chartConfig.series[0].data = $scope.csv.result;
+        // console.log($scope.csv.content);
+
+        if ($scope.csv.content !== null) {
+            $scope.toggleLoading();
+            var lines = $scope.csv.content.split('\n');
+            //Optimize with local variable and push entire series array
+            var series = [
+
+            ];
+
+            $.each(lines, function(lineNo, line) {
+                var items = line.split(',');
+                // console.log(items);
+                // header line containes categories
+
+                // console.log(JSON.stringify($scope.chartConfig.series));
+                if (lineNo == 0) {
+                    $.each(items, function(itemNo, item) {
+                        if (itemNo > 0) {
+                            //Incase we use titles
+                            //$scope.chartConfig.xAxis.categories.push(item);
+                        }
+                    });
+                } else {
+
+                    $.each(items, function(itemNo, item) {
+                        switch (itemNo) {
+                            case 0:
+                                $scope.chartConfig.xAxis.categories.push(parseFloat(item));
+                                break;
+                            case 1:
+                                //series[0].data.push(parseFloat(item));
+                                $scope.chartConfig.series[0].data.push(parseFloat(item));
+                                // console.log($scope.chartConfig.series[0].data);
+                                break;
+                            case 2:
+                                $scope.chartConfig.series[1].data.push(parseFloat(item));
+                                break;
+                            case 3:
+                                $scope.chartConfig.series[2].data.push(parseFloat(item));
+                                break;
+                            case 4:
+                                $scope.chartConfig.series[3].data.push(parseFloat(item));
+                                break;
+                            case 5:
+                                $scope.chartConfig.series[4].data.push(parseFloat(item));
+                                break;
+                            case 6:
+                                $scope.chartConfig.series[5].data.push(parseFloat(item));
+                                break;
+                            case 7:
+                                $scope.chartConfig.series[6].data.push(parseFloat(item));
+                                break;
+
+                            default:
+
+                        }
+                    });
+                    //Test setting seek
+                    //$scope.$API.seekTime(22);    
+
+                    // TODO Push a giant array and optimize later
+                    //$scope.chartConfig.series[0].data.push(series);
+                    $scope.toggleLoading();
+                }
+
+
+                // the rest of the lines contain data with their name in the first 
+                // position
+                // else {
+                //     var series = {
+                //         data: []
+                //     };
+                //     $.each(items, function(itemNo, item) {
+                //         if (itemNo == 0) {
+                //             series.name = item;
+                //         } else {
+                //             series.data.push(parseFloat(item));
+                //         }
+                //     });
+
+                //    chartConfig.series.push(series);
+
+                // }
+
+            });
+        }
+
+
+
+    });
+
+
 }]);
 
 skiApp.controller('aboutController', ['$scope', function($scope) {
