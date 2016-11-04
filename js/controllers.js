@@ -274,5 +274,198 @@ skiApp.controller('aboutController', ['$scope', function($scope) {
 
 }]);
 
+skiApp.controller('plotlyController', ['$scope','$timeout', function($scope,$timeout) {
+    function makeplot() {
+        Plotly.d3.csv("./assets/DAQtestDataSlow.csv", function(data){ processData(data) } );
 
+    };
+        
+        function processData(allRows) {
+
+            console.log(allRows);
+            var x = [], y = [], standard_deviation = [];
+
+            for (var i=0; i<allRows.length; i++) {
+                row = allRows[i];
+                //console.log(row['S0']);
+                y.push( row['S0'] );
+                y.push( row['S1'] );
+                y.push( row['S2'] );
+                y.push( row['S3'] );
+                y.push( row['S4'] );
+                y.push( row['S5'] );
+                y.push( row['S6'] );
+                x.push(row['time']);
+                
+            }
+            console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+            makePlotly( x, y, standard_deviation );
+        }
+
+function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("forceGraphDiv");
+    console.log(x);
+    console.log(y);
+    var traces = [{
+        x: x, 
+        y: y
+    }];
+
+    Plotly.newPlot('forceGraphDiv', traces, 
+        {title: 'Plotting CSV data from AJAX call'});
+};
+ makeplot();
+    $scope.csv = {
+        content: null,
+        header: false,
+        headerVisible: true,
+        separator: ',',
+        separatorVisible: false,
+        result: null,
+        encoding: 'ISO-8859-1',
+        encodingVisible: false,
+        uploadButtonLabel: "upload a csv file"
+    };
+
+    $scope.data =[{
+                name: 's0',
+                y: []
+
+            }, {
+                name: 's1',
+                y: []
+            }, {
+                name: 's2',
+                y: []
+            }, {
+                name: 's3',
+                y: []
+            }, {
+                name: 's4',
+                y: []
+            }, {
+                name: 's5',
+                y: []
+            }, {
+                name: 's6',
+                y: []
+            }, {
+                name: 's7',
+                y: []
+            }
+
+
+        ]
+      //  Plotly.newPlot('forceGraphDiv', $scope.data);
+        
+    //$scope.layout = {height: 600, width: 1000, title: 'foobar'};
+    //$scope.options = {showLink: false, displayLogo: false};
+    //TODO make this watch a service
+    $scope.$watch('csv.content', function() {
+        //console.log(JSON.stringify($scope.csv.result[0]));
+        //console.log($scope.chartConfig.series[0].data);
+        //$scope.chartConfig.series[0].data = $scope.csv.result;
+        // console.log($scope.csv.content);
+
+        if ($scope.csv.content !== null) {
+          //  $scope.toggleLoading();
+            var lines = $scope.csv.content.split('\n');
+            //Optimize with local variable and push entire series array
+            var series = [
+
+            ];
+
+            $.each(lines, function(lineNo, line) {
+                var items = line.split(',');
+                // console.log(items);
+                // header line containes categories
+
+                // console.log(JSON.stringify($scope.chartConfig.series));
+                if (lineNo == 0) {
+                    $.each(items, function(itemNo, item) {
+                        if (itemNo > 0) {
+                            //Incase we use titles
+                            //$scope.chartConfig.xAxis.categories.push(item);
+                        }
+                    });
+                } else {
+
+                    $.each(items, function(itemNo, item) {
+                        switch (itemNo) {
+                            case 0:
+                                //$scope.chartConfig.xAxis.categories.push(parseFloat(item));
+                                break;
+                            case 1:
+                                //series[0].data.push(parseFloat(item));
+                                $scope.data[0].y.push(parseFloat(item));
+                                //console.log($scope.data[0]);
+                                break;
+                            case 2:
+                            $scope.data[1].y.push(parseFloat(item));
+                                //$scope.chartConfig.series[1].data.push(parseFloat(item));
+                                break;
+                            case 3:
+                            $scope.data[2].y.push(parseFloat(item));
+                                //$scope.chartConfig.series[2].data.push(parseFloat(item));
+                                break;
+                            case 4:
+                            $scope.data[3].y.push(parseFloat(item));
+                                //$scope.chartConfig.series[3].data.push(parseFloat(item));
+                                break;
+                            case 5:
+                            $scope.data[4].y.push(parseFloat(item));
+                                //$scope.chartConfig.series[4].data.push(parseFloat(item));
+                                break;
+                            case 6:
+                            $scope.data[5].y.push(parseFloat(item));
+                                //$scope.chartConfig.series[5].data.push(parseFloat(item));
+                                break;
+                            case 7:
+                            $scope.data[6].y.push(parseFloat(item));
+                                //$scope.chartConfig.series[6].data.push(parseFloat(item));
+                                break;
+
+                            default:
+
+                        }
+                    });
+                    var update = {
+                        opacity: 0.4
+                    };
+                    // Plotly.restyle(graphDiv, update);
+                   // Plotly.restyle(forceGraphDiv,update);
+                
+                    //Plotly.redraw('plotly.graph');
+                    //Test setting seek
+                    //$scope.$API.seekTime(22);    
+
+                    // TODO Push a giant array and optimize later
+                    //$scope.chartConfig.series[0].data.push(series);
+                   // $scope.toggleLoading();
+                }
+
+
+                // the rest of the lines contain data with their name in the first 
+                // position
+                // else {
+                //     var series = {
+                //         data: []
+                //     };
+                //     $.each(items, function(itemNo, item) {
+                //         if (itemNo == 0) {
+                //             series.name = item;
+                //         } else {
+                //             series.data.push(parseFloat(item));
+                //         }
+                //     });
+
+                //    chartConfig.series.push(series);
+
+                // }
+
+            });
+        }
+    });
+
+}]);
 

@@ -36,7 +36,7 @@
          <!--foot placeholder--><img src="img/foot.png" alt="foot" width="500">
          </div>
     </div><!--End video row -->
-    <div ng-controller="graphController" class="row graph-row">
+    <div ng-controller="plotlyController" class="row graph-row">
         <div class="small-12 medium-12 large-12 columns">
             <highchart id="chart1" config="chartConfig"></highchart>
             <div class="row">
@@ -48,7 +48,9 @@
         </div>
     </div><!--End graph row -->
 </div><!--End body row -->
-
+<div class="row" ng-controller="plotlyController">
+  <div id="forceGraphDiv"></div>
+</div>
 <!-- Visualize data -->
 <!-- <div ng-if="csv.content" class="block left">
     <h2>CSV</h2>
