@@ -371,3 +371,24 @@ nav a:hover {
    margin-right: auto;
    max-width: initial;
 }
+
+/*Setting Foundation defaults*/
+.button-group {
+    list-style: none;
+    margin: 0;
+}
+
+.button-group > li {
+    float: left;
+    display: inline-block;
+    margin: 0 -2px;
+}
+
+.button-group > li:first-child button, .button-group > li:first-child .button {
+    border-left: 0;
+}
+
+.button-group > li > button, .button-group > li .button {
+    border-left: 1px solid;
+    border-color: rgba(255, 255, 255, 0.5);
+}

@@ -3,11 +3,12 @@ skiApp.service('sharedGraphDataProperties', function () {
         var property ='';
 
         return {
-            getProperty: function () {
-                return property;
+            getTimeSyncVariable: function () {
+                return TimeSyncVariable;
             },
-            setProperty: function(value) {
-                property = value;
+            setTimeSyncVariable: function(value) {
+                TimeSyncVariable = value;
                             }
  };
  });
+
