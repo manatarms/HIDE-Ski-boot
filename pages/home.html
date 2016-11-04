@@ -34,13 +34,14 @@
         </div>
         <!--End video container-->
         <div ng-controller="footController" class="foot-container small-12 medium-6 large-6 columns">
+             <highchart id="footChart" config="footChartConfig"></highchart>
             <!--foot placeholder--><img src="img/foot.png" alt="foot" width="500">
         </div>
     </div>
     <!--End video row -->
     <div ng-controller="graphController" class="row graph-row">
         <div class="small-12 medium-12 large-12 columns">
-            <highchart id="chart1" config="chartConfig"></highchart>
+            <highchart id="forceChart" config="chartConfig"></highchart>
             <div class="row">
                 <div class="columns large-3">
                     <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">

@@ -314,6 +314,120 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout','shared
 
 }]); //End watch
 
+
+skiApp.controller('footController', ['$scope', function($scope) {
+    $scope.footChartConfig = {
+
+        options: {
+            //This is the Main Highcharts chart config. Any Highchart options are valid here.
+            //will be overriden by values specified below.
+            chart: {
+                type: 'bubble',
+                zoomType: 'xy'
+
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true,
+                valueSuffix: ' units'
+
+            },
+            plotOptions: {
+                series: {
+                    cursor: 'pointer',
+
+                    point: {
+                        events: {
+                            click: function(event) {
+                                //alert('Category: '+ this.category +', value: '+ this.y);
+                                $scope.timeSyncVariable = this.category;
+                                sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
+                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable,0.001]);
+                            }
+                        }
+                    }
+
+                }
+            }
+        },
+
+        //Series object (optional) - a list of series using normal Highcharts series options.
+        series: [{
+                name: 's0',
+                data: []
+
+            }, {
+                name: 's1',
+                data: []
+            }, {
+                name: 's2',
+                data: []
+            }, {
+                name: 's3',
+                data: []
+            }, {
+                name: 's4',
+                data: []
+            }, {
+                name: 's5',
+                data: []
+            }, {
+                name: 's6',
+                data: []
+            }, {
+                name: 's7',
+                data: []
+            },
+            {
+            //Animation line
+            data: [[0,$scope.minY],[0,$scope.maxY]]
+            }
+
+
+
+        ],
+
+        //Title configuration (optional)
+        title: {
+            text: false
+        },
+        //Boolean to control showing loading status on chart (optional)
+        //Could be a string if you want to show specific loading text.
+        loading: false,
+        //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
+        //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
+        xAxis: {
+            categories: [],
+            title: { text: 'Time (s)' }
+        },
+        yAxis: {
+            title: { text: 'Force (N)' }
+        },
+
+        //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.
+        useHighStocks: false,
+        //size (optional) if left out the chart will default to size of the div or something sensible.
+        size: {
+            //width: 400,
+            //height: 300
+        },
+
+        loading: false,
+
+        //function (optional)
+        func: function(chart) {
+            //setup some logic for the chart
+            //get a local reference for chart
+            $scope.footchartObj = chart;
+        }
+    };
+
+
+
+}]);
+
+
+
 skiApp.controller('aboutController', ['$scope', function($scope) {
 
 
