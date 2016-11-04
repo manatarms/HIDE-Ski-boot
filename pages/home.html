@@ -10,7 +10,7 @@
     </div>
 </div>
 <div class="row fullwidth body-row">
-    <div class="row video-row">
+    <div ng-controller="videoController" class="row video-row" >
         <div class="videogular-container small-12 medium-6 large-6 columns">
             <videogular vg-theme="videoConfig.theme.url">
                 <vg-media vg-src="videoConfig.sources" vg-tracks="videoConfig.tracks">
@@ -32,11 +32,11 @@
                 </vg-controls>
             </videogular>
         </div><!--End video container-->
-         <div class="foot-container small-12 medium-6 large-6 columns">
+         <div ng-controller="footController" class="foot-container small-12 medium-6 large-6 columns">
          <!--foot placeholder--><img src="img/foot.png" alt="foot" width="500">
          </div>
     </div><!--End video row -->
-    <div class="row graph-row">
+    <div ng-controller="graphController" class="row graph-row">
         <div class="small-12 medium-12 large-12 columns">
             <highchart id="chart1" config="chartConfig"></highchart>
             <div class="row">

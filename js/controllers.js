@@ -1,5 +1,5 @@
 // CONTROLLERS
-skiApp.controller('homeController', ['$scope', '$sce', '$parse', function($scope, $sce) {
+skiApp.controller('homeController', ['$scope', '$sce', function($scope) {
 
     //Details
     $scope.name = "John Doe";
@@ -7,6 +7,16 @@ skiApp.controller('homeController', ['$scope', '$sce', '$parse', function($scope
     $scope.time = "01.02.03";
     $scope.runNo = "1";
 
+   
+
+    
+
+
+
+}]);
+
+
+skiApp.controller('videoController',['$scope','$sce',function($scope, $sce){
     //VIDEO variables
     var controller = this;
     // controller.API = null;
@@ -39,6 +49,14 @@ skiApp.controller('homeController', ['$scope', '$sce', '$parse', function($scope
         }
     };
 
+}]);
+
+skiApp.controller('footController',['$scope',function($scope){
+
+
+}]);
+
+skiApp.controller('graphController',['$scope',function($scope){
     //CSV imports
     $scope.csv = {
         content: null,
@@ -153,6 +171,8 @@ skiApp.controller('homeController', ['$scope', '$sce', '$parse', function($scope
         }
     };
 
+
+    //TODO make this watch a service
     $scope.$watch('csv.content', function() {
         //console.log(JSON.stringify($scope.csv.result[0]));
         //console.log($scope.chartConfig.series[0].data);
@@ -244,16 +264,15 @@ skiApp.controller('homeController', ['$scope', '$sce', '$parse', function($scope
 
             });
         }
-
-
-
     });
 
-
-}]);
+}]); //End watch
 
 skiApp.controller('aboutController', ['$scope', function($scope) {
 
 
 
 }]);
+
+
+
