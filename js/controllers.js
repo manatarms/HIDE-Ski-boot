@@ -16,18 +16,17 @@ skiApp.controller('homeController', ['$scope', '$sce', function($scope) {
 }]);
 
 
-skiApp.controller('videoController',['$scope','$sce',function($scope, $sce){
+skiApp.controller('videoController',['$scope','$sce','sharedGraphDataProperties',function($scope, $sce,sharedGraphDataProperties){
     //VIDEO variables
     var controller = this;
-    // controller.API = null;
-    // alert(API);
-    //TODO Fix videogular API calls
-    controller.vgPlayerReady = function(API) {
-        controller.API = API;
-        alert(API);
+    $scope.API = null;
+    
+    controller.onPlayerReady = function(API) {
+        $scope.API = API;
+        
     };
     $scope.setTime = function(time) {
-        $scope.$API.seekTime(50, true);
+        $scope.API.seekTime(50, true);
     }
 
     $scope.videoConfig = {
@@ -49,6 +48,11 @@ skiApp.controller('videoController',['$scope','$sce',function($scope, $sce){
         }
     };
 
+    $scope.$on('graphPointClicked',function(event,args){
+        
+        $scope.API.seekTime(args*0.001, false);
+    });
+
 }]);
 
 skiApp.controller('footController',['$scope',function($scope){
@@ -56,7 +60,7 @@ skiApp.controller('footController',['$scope',function($scope){
 
 }]);
 
-skiApp.controller('graphController',['$scope',function($scope){
+skiApp.controller('graphController',['$rootScope','$scope','sharedGraphDataProperties',function($rootScope,$scope,sharedGraphDataProperties){
     //CSV imports
     $scope.csv = {
         content: null,
@@ -97,8 +101,9 @@ skiApp.controller('graphController',['$scope',function($scope){
                     point: {
                         events: {
                             click: function(event) {
-                                //console.log('Category: '+ this.category +', value: '+ this.y);
-                            }
+                              //alert('Category: '+ this.category +', value: '+ this.y);
+                               sharedGraphDataProperties.setProperty(this.category);
+                               $rootScope.$broadcast('graphPointClicked',this.category);                            }
                         }
                     }
 

@@ -10,9 +10,9 @@
     </div>
 </div>
 <div class="row fullwidth body-row">
-    <div ng-controller="videoController" class="row video-row" >
+    <div ng-controller="videoController as controller" class="row video-row" >
         <div class="videogular-container small-12 medium-6 large-6 columns">
-            <videogular vg-theme="videoConfig.theme.url">
+            <videogular vg-theme="videoConfig.theme.url" vg-player-ready="controller.onPlayerReady($API)"> 
                 <vg-media vg-src="videoConfig.sources" vg-tracks="videoConfig.tracks">
                 </vg-media>
                 <vg-controls vg-autohide="videoConfig.plugins.controls.autoHide" vg-autohide-time="videoConfig.plugins.controls.autoHideTime">
