@@ -51,7 +51,7 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     $scope.$on('graphPointClicked', function(event, args) {
         //$scope.API.seekTime(args * 0.001, false);
         //Value * conversion
-        $scope.API.seekTime(args[0]*args[1], false);
+        $scope.API.seekTime(args[0] * args[1], false);
     });
 
 }]);
@@ -61,7 +61,7 @@ skiApp.controller('footController', ['$scope', function($scope) {
 
 }]);
 
-skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout','sharedGraphDataProperties', function($rootScope, $scope, $timeout,sharedGraphDataProperties) {
+skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', function($rootScope, $scope, $timeout, sharedGraphDataProperties) {
     //CSV imports
     $scope.csv = {
         content: null,
@@ -80,9 +80,10 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout','shared
     }
 
 
-     
+
     //CHART VARIABLES
-    $scope.maxY = 0; $scope.minY = 2000;
+    $scope.maxY = 0;
+    $scope.minY = 2000;
     $scope.chartConfig = {
 
         options: {
@@ -108,8 +109,9 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout','shared
                             click: function(event) {
                                 //alert('Category: '+ this.category +', value: '+ this.y);
                                 $scope.timeSyncVariable = this.category;
+                                console.log(this);
                                 sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable,0.001]);
+                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 0.001]);
                             }
                         }
                     }
@@ -144,10 +146,12 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout','shared
             }, {
                 name: 's7',
                 data: []
-            },
-            {
-            //Animation line
-            data: [[0,$scope.minY],[0,$scope.maxY]]
+            }, {
+                //Animation line
+                data: [
+                    [0, $scope.minY],
+                    [0, $scope.maxY]
+                ]
             }
 
 
@@ -262,47 +266,53 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout','shared
                 }
 
                 //Animated line thing
-                
-                $scope.moveLine = function(){
-                    
-                    //TODO Change static value to get dynamic max X value
-                      //console.log($scope.chartObj.series[8].data[0].x);
-                      if ($scope.chartObj.series[0].data[0] == 18985){
-                         x = 0;
-                       }else{
-                         x = $scope.chartObj.series[8].data[0].x + 1;
-                         $scope.timeSyncVariable = x;
-                         
-                        sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                        $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable,1]);
-                         // console.log($scope.timeSyncVariable);
-                       }
-                       $scope.chartObj.series[8].setData([[x,$scope.minY],[x,$scope.maxY]]);
-                     $scope.timeOutId= $timeout($scope.moveLine,1000);
-                   }
 
-                   
-                $scope.stopLine = function(){
+                $scope.moveLine = function() {
+
+                    //TODO Change static value to get dynamic max X value
+                    //console.log($scope.chartObj.series[8].data[0].x);
+                    if ($scope.chartObj.series[0].data[0] == 18985) {
+                        x = 0;
+                    } else {
+                        x = $scope.chartObj.series[8].data[0].x + 1;
+                        $scope.timeSyncVariable = x;
+
+                        sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
+                        $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 1]);
+                        // console.log($scope.timeSyncVariable);
+                    }
+                    $scope.chartObj.series[8].setData([
+                        [x, $scope.minY],
+                        [x, $scope.maxY]
+                    ]);
+                    $scope.timeOutId = $timeout($scope.moveLine, 1000);
+                }
+
+
+                $scope.stopLine = function() {
                     $timeout.cancel($scope.timeOutId);
                 }
 
-                $scope.resetLine = function(){
-                    $scope.stopLine();
-                    $scope.chartObj.series[8].setData([[0,$scope.minY],[0,$scope.maxY]]);
-                }
-                // the rest of the lines contain data with their name in the first 
-                // position
-                // else {
-                //     var series = {
-                //         data: []
-                //     };
-                //     $.each(items, function(itemNo, item) {
-                //         if (itemNo == 0) {
-                //             series.name = item;
-                //         } else {
-                //             series.data.push(parseFloat(item));
-                //         }
-                //     });
+                $scope.resetLine = function() {
+                        $scope.stopLine();
+                        $scope.chartObj.series[8].setData([
+                            [0, $scope.minY],
+                            [0, $scope.maxY]
+                        ]);
+                    }
+                    // the rest of the lines contain data with their name in the first 
+                    // position
+                    // else {
+                    //     var series = {
+                    //         data: []
+                    //     };
+                    //     $.each(items, function(itemNo, item) {
+                    //         if (itemNo == 0) {
+                    //             series.name = item;
+                    //         } else {
+                    //             series.data.push(parseFloat(item));
+                    //         }
+                    //     });
 
                 //    chartConfig.series.push(series);
 
@@ -315,7 +325,12 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout','shared
 }]); //End watch
 
 
-skiApp.controller('footController', ['$scope', function($scope) {
+skiApp.controller('footController', ['$scope','$timeout', function($scope,$timeout) {
+    $scope.sensorSize = 100;
+    $scope.s0ReferenceX = 100;
+    $scope.s0ReferenceY = 100;
+
+
     $scope.footChartConfig = {
 
         options: {
@@ -323,7 +338,9 @@ skiApp.controller('footController', ['$scope', function($scope) {
             //will be overriden by values specified below.
             chart: {
                 type: 'bubble',
-                zoomType: 'xy'
+                zoomType: 'xy',
+                plotBorderWidth: 1
+               
 
             },
             tooltip: {
@@ -335,14 +352,16 @@ skiApp.controller('footController', ['$scope', function($scope) {
             plotOptions: {
                 series: {
                     cursor: 'pointer',
-
+                    dataLabels: {
+                        enabled: true,
+                    },
                     point: {
                         events: {
                             click: function(event) {
                                 //alert('Category: '+ this.category +', value: '+ this.y);
                                 $scope.timeSyncVariable = this.category;
                                 sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable,0.001]);
+                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 0.001]);
                             }
                         }
                     }
@@ -352,41 +371,85 @@ skiApp.controller('footController', ['$scope', function($scope) {
         },
 
         //Series object (optional) - a list of series using normal Highcharts series options.
+
         series: [{
-                name: 's0',
-                data: []
+            name: 's0',
+            data: [{
+                x: $scope.s0ReferenceX,
+                y: $scope.s0ReferenceY,
+                z: $scope.sensorSize
+            }],
+            color: "red"
 
-            }, {
-                name: 's1',
-                data: []
-            }, {
-                name: 's2',
-                data: []
-            }, {
-                name: 's3',
-                data: []
-            }, {
-                name: 's4',
-                data: []
-            }, {
-                name: 's5',
-                data: []
-            }, {
-                name: 's6',
-                data: []
-            }, {
-                name: 's7',
-                data: []
-            },
-            {
-            //Animation line
-            data: [[0,$scope.minY],[0,$scope.maxY]]
-            }
-
-
-
-        ],
-
+        }, {
+            name: 's1',
+            data: [{
+                x: $scope.s0ReferenceX + 12,
+                y: $scope.s0ReferenceY - 25,
+                z: $scope.sensorSize
+            }]
+        }, {
+            name: 's2',
+            data: [{
+                x: $scope.s0ReferenceX + 1,
+                y: $scope.s0ReferenceY - 150,
+                z: $scope.sensorSize
+            }]
+        }, {
+            name: 's3',
+            data: [{
+                x: $scope.s0ReferenceX + 12,
+                y: $scope.s0ReferenceY - 180,
+                z: $scope.sensorSize
+            }]
+        }, {
+            name: 's4',
+            data: [{
+                x: $scope.s0ReferenceX + 2.5,
+                y: $scope.s0ReferenceY - 275,
+                z: $scope.sensorSize
+            }]
+        }, {
+            name: 's5',
+            data: [{
+                x: $scope.s0ReferenceX + 12,
+                y: $scope.s0ReferenceY - 330,
+                z: $scope.sensorSize
+            }]
+        }, {
+            name: 's6',
+            data: [{
+                x: $scope.s0ReferenceX + 6,
+                y: $scope.s0ReferenceY - 500,
+                z: $scope.sensorSize
+            }]
+        }, {
+            name: 's7',
+            data: [{
+                x: $scope.s0ReferenceX + 6,
+                y: $scope.s0ReferenceY - 670,
+                z: $scope.sensorSize
+            }]
+        }],
+        // series: [{
+        //             data: [
+        //                 { x: 95, y: 95, z: 500, name: 's0', country: 'Belgium' },
+        //                 { x: 86.5, y: 102.9, z: 14.7, name: 's1', country: 'Germany' },
+        //                 { x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland' },
+        //                 { x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands' },
+        //                 { x: 80.3, y: 86.1, z: 11.8, name: 'SE', country: 'Sweden' },
+        //                 { x: 78.4, y: 70.1, z: 16.6, name: 'ES', country: 'Spain' },
+        //                 { x: 74.2, y: 68.5, z: 14.5, name: 'FR', country: 'France' },
+        //                 { x: 73.5, y: 83.1, z: 10, name: 'NO', country: 'Norway' },
+        //                 { x: 71, y: 93.2, z: 24.7, name: 'UK', country: 'United Kingdom' },
+        //                 { x: 69.2, y: 57.6, z: 10.4, name: 'IT', country: 'Italy' },
+        //                 { x: 68.6, y: 20, z: 16, name: 'RU', country: 'Russia' },
+        //                 { x: 65.5, y: 126.4, z: 35.3, name: 'US', country: 'United States' },
+        //                 { x: 65.4, y: 50.8, z: 28.5, name: 'HU', country: 'Hungary' },
+        //                 { x: 63.4, y: 51.8, z: 15.4, name: 'PT', country: 'Portugal' },
+        //                 { x: 64, y: 82.9, z: 31.3, name: 'NZ', country: 'New Zealand' }
+        //             ]
+        //         }],
         //Title configuration (optional)
         title: {
             text: false
@@ -398,10 +461,28 @@ skiApp.controller('footController', ['$scope', function($scope) {
         //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
         xAxis: {
             categories: [],
-            title: { text: 'Time (s)' }
+            title: { text: 'Time (s)' },
+
+            labels: {
+                //TURN THIS OFF WHEN NOT DEBUGGING
+                enabled: false
+            },
+            min: 0,
+            max: 140,
+            tickInterval: 1,
+
         },
         yAxis: {
-            title: { text: 'Force (N)' }
+            gridLineWidth: 0,
+            minorGridLineWidth: 0,
+            title: { text: 'Force (N)' },
+            labels: {
+                //TURN THIS OFF WHEN NOT DEBUGGING
+                enabled: false
+            },
+            min: -670,
+            // max: 600,
+            tickInterval: 1
         },
 
         //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.
@@ -423,8 +504,22 @@ skiApp.controller('footController', ['$scope', function($scope) {
     };
 
 
+ $scope.$on('graphPointClicked', function(event, args) {
+        $scope.footChartConfig.series[0].data[0].z = 2000;
+        console.log($scope.sensorSize);
+       // $timeout(changeDate, 500);
+      //  $scope.footchartObj.redraw();
+        //$scope.sensorSize = Math.random() * (500 - 10) + 10;
+    });
+ //JUST A TEST FUNCTION
+ // function changeDate (){
+ //    $scope.footChartConfig.series[0].data[0].z = Math.random() * (500 - 10) + 10;
+ //         $timeout(changeDate, 500);
+ // }
 
 }]);
+
+
 
 
 
