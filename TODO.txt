@@ -1,0 +1,2 @@
+Video offset slider
+Move current position bar on click -> start playing from that point
