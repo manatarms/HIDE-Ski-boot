@@ -9,10 +9,6 @@ skiApp.controller('homeController', ['$scope', '$sce', function($scope) {
 
 
 
-
-
-
-
 }]);
 
 
@@ -38,7 +34,7 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
             { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.ogg"), type: "video/ogg" }
         ],
         theme: {
-            url: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
+            url: "../css/vendor/videogular.css"
         },
         plugins: {
             controls: {
@@ -56,10 +52,6 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
 
 }]);
 
-skiApp.controller('footController', ['$scope', function($scope) {
-
-
-}]);
 
 skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', function($rootScope, $scope, $timeout, sharedGraphDataProperties) {
     //CSV imports
@@ -183,8 +175,6 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
             //height: 300
         },
 
-        loading: false,
-
         //function (optional)
         func: function(chart) {
             //setup some logic for the chart
@@ -192,6 +182,7 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
             $scope.chartObj = chart;
         }
     };
+
 
 
     //TODO make this watch a service
@@ -325,8 +316,8 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 }]); //End watch
 
 
-skiApp.controller('footController', ['$scope','$timeout', function($scope,$timeout) {
-    $scope.sensorSize = 100;
+skiApp.controller('footController', ['$scope','$timeout','colorRangeService', function($scope,$timeout,colorRangeService) {
+    $scope.sensorSize = 0;
     $scope.s0ReferenceX = 100;
     $scope.s0ReferenceY = 100;
 
@@ -339,7 +330,8 @@ skiApp.controller('footController', ['$scope','$timeout', function($scope,$timeo
             chart: {
                 type: 'bubble',
                 zoomType: 'xy',
-                plotBorderWidth: 1
+                plotBorderWidth: 1,
+                backgroundColor: 'rgba(0,0,0,0)'
                
 
             },
@@ -358,10 +350,10 @@ skiApp.controller('footController', ['$scope','$timeout', function($scope,$timeo
                     point: {
                         events: {
                             click: function(event) {
-                                //alert('Category: '+ this.category +', value: '+ this.y);
-                                $scope.timeSyncVariable = this.category;
-                                sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 0.001]);
+                                //Do we need to do anything with a click
+                                // $scope.timeSyncVariable = this.category;
+                                // sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
+                                // $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 0.001]);
                             }
                         }
                     }
@@ -379,7 +371,7 @@ skiApp.controller('footController', ['$scope','$timeout', function($scope,$timeo
                 y: $scope.s0ReferenceY,
                 z: $scope.sensorSize
             }],
-            color: "red"
+            color: "transparent"
 
         }, {
             name: 's1',
@@ -387,69 +379,57 @@ skiApp.controller('footController', ['$scope','$timeout', function($scope,$timeo
                 x: $scope.s0ReferenceX + 12,
                 y: $scope.s0ReferenceY - 25,
                 z: $scope.sensorSize
-            }]
+            }],
+            color: "transparent"
         }, {
             name: 's2',
             data: [{
                 x: $scope.s0ReferenceX + 1,
                 y: $scope.s0ReferenceY - 150,
                 z: $scope.sensorSize
-            }]
+            }],
+            color: "transparent"
         }, {
             name: 's3',
             data: [{
                 x: $scope.s0ReferenceX + 12,
                 y: $scope.s0ReferenceY - 180,
                 z: $scope.sensorSize
-            }]
+            }],
+            color: "transparent"
         }, {
             name: 's4',
             data: [{
                 x: $scope.s0ReferenceX + 2.5,
                 y: $scope.s0ReferenceY - 275,
                 z: $scope.sensorSize
-            }]
+            }],
+            color: "transparent"
         }, {
             name: 's5',
             data: [{
                 x: $scope.s0ReferenceX + 12,
                 y: $scope.s0ReferenceY - 330,
                 z: $scope.sensorSize
-            }]
+            }],
+            color: "transparent"
         }, {
             name: 's6',
             data: [{
                 x: $scope.s0ReferenceX + 6,
                 y: $scope.s0ReferenceY - 500,
                 z: $scope.sensorSize
-            }]
+            }],
+            color: "transparent"
         }, {
             name: 's7',
             data: [{
                 x: $scope.s0ReferenceX + 6,
                 y: $scope.s0ReferenceY - 670,
                 z: $scope.sensorSize
-            }]
+            }],
+            color: "transparent"
         }],
-        // series: [{
-        //             data: [
-        //                 { x: 95, y: 95, z: 500, name: 's0', country: 'Belgium' },
-        //                 { x: 86.5, y: 102.9, z: 14.7, name: 's1', country: 'Germany' },
-        //                 { x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland' },
-        //                 { x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands' },
-        //                 { x: 80.3, y: 86.1, z: 11.8, name: 'SE', country: 'Sweden' },
-        //                 { x: 78.4, y: 70.1, z: 16.6, name: 'ES', country: 'Spain' },
-        //                 { x: 74.2, y: 68.5, z: 14.5, name: 'FR', country: 'France' },
-        //                 { x: 73.5, y: 83.1, z: 10, name: 'NO', country: 'Norway' },
-        //                 { x: 71, y: 93.2, z: 24.7, name: 'UK', country: 'United Kingdom' },
-        //                 { x: 69.2, y: 57.6, z: 10.4, name: 'IT', country: 'Italy' },
-        //                 { x: 68.6, y: 20, z: 16, name: 'RU', country: 'Russia' },
-        //                 { x: 65.5, y: 126.4, z: 35.3, name: 'US', country: 'United States' },
-        //                 { x: 65.4, y: 50.8, z: 28.5, name: 'HU', country: 'Hungary' },
-        //                 { x: 63.4, y: 51.8, z: 15.4, name: 'PT', country: 'Portugal' },
-        //                 { x: 64, y: 82.9, z: 31.3, name: 'NZ', country: 'New Zealand' }
-        //             ]
-        //         }],
         //Title configuration (optional)
         title: {
             text: false
@@ -489,33 +469,54 @@ skiApp.controller('footController', ['$scope','$timeout', function($scope,$timeo
         useHighStocks: false,
         //size (optional) if left out the chart will default to size of the div or something sensible.
         size: {
-            //width: 400,
-            //height: 300
+            // width: 100%,
+            height: 450
         },
-
-        loading: false,
 
         //function (optional)
         func: function(chart) {
             //setup some logic for the chart
             //get a local reference for chart
-            $scope.footchartObj = chart;
+           
+            $scope.footChartObj = chart;
         }
-    };
-
-
+    }
+    
+     
  $scope.$on('graphPointClicked', function(event, args) {
-        $scope.footChartConfig.series[0].data[0].z = 2000;
-        console.log($scope.sensorSize);
+        //$scope.footChartConfig.series[0].data[0].z = 2000;
+        //sconsole.log($scope.sensorSize);
        // $timeout(changeDate, 500);
       //  $scope.footchartObj.redraw();
         //$scope.sensorSize = Math.random() * (500 - 10) + 10;
+        $scope.changeData();
     });
  //JUST A TEST FUNCTION
- // function changeDate (){
- //    $scope.footChartConfig.series[0].data[0].z = Math.random() * (500 - 10) + 10;
- //         $timeout(changeDate, 500);
- // }
+
+
+ $scope.changeData =function (){
+    $scope.footChartConfig.series[0].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    $scope.footChartConfig.series[1].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    $scope.footChartConfig.series[2].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    $scope.footChartConfig.series[3].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    $scope.footChartConfig.series[4].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    $scope.footChartConfig.series[5].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    $scope.footChartConfig.series[6].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    $scope.footChartConfig.series[7].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
+    
+ 
+    $scope.footChartConfig.series[0].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    $scope.footChartConfig.series[1].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    $scope.footChartConfig.series[2].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    $scope.footChartConfig.series[3].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    $scope.footChartConfig.series[4].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    $scope.footChartConfig.series[5].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    $scope.footChartConfig.series[6].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    $scope.footChartConfig.series[7].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
+    
+        
+ }
+// $scope.changeData();
 
 }]);
 

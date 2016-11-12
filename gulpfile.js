@@ -174,6 +174,8 @@ gulp.task('copy', function() {
   .pipe(gulp.dest('./dist'));
  gulp.src(['./assets/*'])
   .pipe(gulp.dest('./dist/assets/'));
+  gulp.src(['./css/vendor/*'])
+  .pipe(gulp.dest('./css/vendor/'));
 });
 
 gulp.task('build', function(callback) {

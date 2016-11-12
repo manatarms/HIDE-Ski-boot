@@ -10,9 +10,9 @@
     </div>
 </div>
 <div class="row fullwidth body-row">
-    <div ng-controller="videoController as controller" class="row video-row">
-        <div class="videogular-container small-12 medium-6 large-6 columns">
-            <videogular vg-theme="videoConfig.theme.url" vg-player-ready="controller.onPlayerReady($API)">
+    <div ng-controller="videoController as controller"  class="row video-row">
+        <div class="videogular-container small-12 medium-6 large-6 columns" >
+            <videogular vg-theme="videoConfig.theme.url" vg-player-ready="controller.onPlayerReady($API)" >
                 <vg-media vg-src="videoConfig.sources" vg-tracks="videoConfig.tracks">
                 </vg-media>
                 <vg-controls vg-autohide="videoConfig.plugins.controls.autoHide" vg-autohide-time="videoConfig.plugins.controls.autoHideTime">
@@ -35,7 +35,8 @@
         <!--End video container-->
         <div ng-controller="footController" class="foot-container small-12 medium-6 large-6 columns">
              <highchart id="footChart" config="footChartConfig"></highchart>
-            <!--foot placeholder--><img src="img/foot.png" alt="foot" width="500">
+            <!--foot placeholder-->
+            <!-- <img src="img/foot.png" alt="foot" width="500"> -->
         </div>
     </div>
     <!--End video row -->
