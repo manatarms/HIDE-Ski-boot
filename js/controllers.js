@@ -19,7 +19,6 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
 
     controller.onPlayerReady = function(API) {
         $scope.API = API;
-
     };
     $scope.setTime = function(time) {
         $scope.API.seekTime(50, true);
@@ -29,9 +28,7 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         preload: "none",
 
         sources: [
-            { src: $sce.trustAsResourceUrl("../assets/jump.mp4"), type: "video/mp4" },
-            { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.webm"), type: "video/webm" },
-            { src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.ogg"), type: "video/ogg" }
+            { src: $sce.trustAsResourceUrl("../assets/jump.mp4"), type: "video/mp4" }
         ],
         theme: {
             url: "../css/vendor/videogular.css"
@@ -44,10 +41,26 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         }
     };
 
-    $scope.$on('graphPointClicked', function(event, args) {
+    $scope.videoSliderChanged = function(){
+    	console.log("here");
+    	 $scope.API.seekTime($scope.videoSlider.value, false); 
+    }
+    
+    $scope.videoSlider = {
+      value: 0,
+      options: {
+        floor: 0,
+        ceil: 450,
+      	onChange: $scope.videoSliderChanged
+      }
+    };
+
+
+
+    $scope.$on('graphPointMoved', function(event, args) {
         //$scope.API.seekTime(args * 0.001, false);
-        //Value * conversion
-        $scope.API.seekTime(args[0] * args[1], false);
+        //Time Value * conversion
+        $scope.API.seekTime(args[0] * args[1] + $scope.videoSlider.value, false); 
     });
 
 }]);
@@ -74,8 +87,10 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 
 
     //CHART VARIABLES
-    $scope.maxY = 0;
-    $scope.minY = 2000;
+    $scope.minY = 0;
+    $scope.maxYRedLine = 2000;
+    $scope.maxXEntireGraph = 20000;
+    $scope.MaxValueSet = false;
     $scope.chartConfig = {
 
         options: {
@@ -100,10 +115,29 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
                         events: {
                             click: function(event) {
                                 //alert('Category: '+ this.category +', value: '+ this.y);
+                                //local variable for current
+                                var currentClickedX = this.x;
                                 $scope.timeSyncVariable = this.category;
-                                console.log(this);
                                 sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 0.001]);
+                                // console.log($scope.chartConfig.series[7].data[currentClickedX]);
+                                //ARGS value * conversion 
+                                $scope.sensorValues = {
+                                    "s0": $scope.chartConfig.series[0].data[currentClickedX],
+                                    "s1": $scope.chartConfig.series[1].data[currentClickedX],
+                                    "s2": $scope.chartConfig.series[2].data[currentClickedX],
+                                    "s3": $scope.chartConfig.series[3].data[currentClickedX],
+                                    "s4": $scope.chartConfig.series[4].data[currentClickedX],
+                                    "s5": $scope.chartConfig.series[5].data[currentClickedX],
+                                    "s6": $scope.chartConfig.series[6].data[currentClickedX],
+                                    "s7": $scope.chartConfig.series[7].data[currentClickedX],
+                                    "yMax" : $scope.yMax
+                                }
+                                //Set the red line to clicked value
+                                $scope.chartObj.series[8].setData([
+                                    [currentClickedX, $scope.minY],
+                                    [currentClickedX, $scope.maxYRedLine]
+                                ]);
+                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 0.001,$scope.sensorValues]);
                             }
                         }
                     }
@@ -140,9 +174,10 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
                 data: []
             }, {
                 //Animation line
+                name: 'Current',
                 data: [
                     [0, $scope.minY],
-                    [0, $scope.maxY]
+                    [0, $scope.maxYRedLine]
                 ]
             }
 
@@ -161,7 +196,7 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
         //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
         xAxis: {
             categories: [],
-            title: { text: 'Time (s)' }
+            title: { text: 'Time (ms)' }
         },
         yAxis: {
             title: { text: 'Force (N)' }
@@ -194,6 +229,8 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 
         if ($scope.csv.content !== null) {
             $scope.toggleLoading();
+            //Reset max values for new plot
+            $scope.MaxValueSet = false;
             var lines = $scope.csv.content.split('\n');
             //Optimize with local variable and push entire series array
             var series = [
@@ -243,8 +280,11 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
                             case 7:
                                 $scope.chartConfig.series[6].data.push(parseFloat(item));
                                 break;
-
+                            case 8:
+                                $scope.chartConfig.series[7].data.push(parseFloat(item));
+                                break;
                             default:
+                            	break;
 
                         }
                     });
@@ -257,24 +297,44 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
                 }
 
                 //Animated line thing
-
                 $scope.moveLine = function() {
 
                     //TODO Change static value to get dynamic max X value
                     //console.log($scope.chartObj.series[8].data[0].x);
-                    if ($scope.chartObj.series[0].data[0] == 18985) {
+                    if ($scope.chartObj.series[0].data[0] > $scope.maxXEntireGraph) {
                         x = 0;
                     } else {
                         x = $scope.chartObj.series[8].data[0].x + 1;
                         $scope.timeSyncVariable = x;
 
                         sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                        $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 1]);
+
+                        //ARGS value * conversion, Object that contains values
+                        if (!$scope.MaxValueSet) {
+                        	//Set all max values for graph points
+                        	$scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+                        	$scope.maxXEntireGraph =$scope.chartObj.xAxis[0].categories[$scope.chartObj.xAxis[0].max];
+                        	$scope.MaxValueSet = true;
+                        	//set Max value for vertical red line
+                        }
+                        $scope.sensorValues = {
+                            "s0": $scope.chartConfig.series[0].data[x],
+                            "s1": $scope.chartConfig.series[1].data[x],
+                            "s2": $scope.chartConfig.series[2].data[x],
+                            "s3": $scope.chartConfig.series[3].data[x],
+                            "s4": $scope.chartConfig.series[4].data[x],
+                            "s5": $scope.chartConfig.series[5].data[x],
+                            "s6": $scope.chartConfig.series[6].data[x],
+                            "s7": $scope.chartConfig.series[7].data[x],
+                            "yMax" : $scope.yMax
+                        }
+
+                        $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                         // console.log($scope.timeSyncVariable);
                     }
                     $scope.chartObj.series[8].setData([
                         [x, $scope.minY],
-                        [x, $scope.maxY]
+                        [x, $scope.maxYRedLine]
                     ]);
                     $scope.timeOutId = $timeout($scope.moveLine, 1000);
                 }
@@ -286,9 +346,21 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 
                 $scope.resetLine = function() {
                         $scope.stopLine();
+                         $scope.sensorValues = {
+                            "s0": 0,
+                            "s1": 0,
+                            "s2": 0,
+                            "s3": 0,
+                            "s4": 0,
+                            "s5": 0,
+                            "s6": 0,
+                            "s7": 0,
+                            "yMax" : $scope.yMax
+                        }
+                        $rootScope.$broadcast('graphPointMoved', [0, 1, $scope.sensorValues]);
                         $scope.chartObj.series[8].setData([
                             [0, $scope.minY],
-                            [0, $scope.maxY]
+                            [0, $scope.maxYRedLine]
                         ]);
                     }
                     // the rest of the lines contain data with their name in the first 
@@ -316,11 +388,11 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 }]); //End watch
 
 
-skiApp.controller('footController', ['$scope','$timeout','colorRangeService', function($scope,$timeout,colorRangeService) {
+skiApp.controller('footController', ['$scope', '$timeout', 'colorRangeService', function($scope, $timeout, colorRangeService) {
     $scope.sensorSize = 0;
     $scope.s0ReferenceX = 100;
     $scope.s0ReferenceY = 100;
-
+    $scope.MaxValueSet = false;
 
     $scope.footChartConfig = {
 
@@ -332,7 +404,7 @@ skiApp.controller('footController', ['$scope','$timeout','colorRangeService', fu
                 zoomType: 'xy',
                 plotBorderWidth: 1,
                 backgroundColor: 'rgba(0,0,0,0)'
-               
+
 
             },
             tooltip: {
@@ -477,46 +549,33 @@ skiApp.controller('footController', ['$scope','$timeout','colorRangeService', fu
         func: function(chart) {
             //setup some logic for the chart
             //get a local reference for chart
-           
+
             $scope.footChartObj = chart;
         }
     }
-    
-     
- $scope.$on('graphPointClicked', function(event, args) {
+
+
+    $scope.$on('graphPointMoved', function(event, args) {
         //$scope.footChartConfig.series[0].data[0].z = 2000;
         //sconsole.log($scope.sensorSize);
-       // $timeout(changeDate, 500);
-      //  $scope.footchartObj.redraw();
+        // $timeout(changeDate, 500);
+        //  $scope.footchartObj.redraw();
         //$scope.sensorSize = Math.random() * (500 - 10) + 10;
-        $scope.changeData();
-    });
- //JUST A TEST FUNCTION
-
-
- $scope.changeData =function (){
-    $scope.footChartConfig.series[0].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    $scope.footChartConfig.series[1].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    $scope.footChartConfig.series[2].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    $scope.footChartConfig.series[3].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    $scope.footChartConfig.series[4].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    $scope.footChartConfig.series[5].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    $scope.footChartConfig.series[6].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    $scope.footChartConfig.series[7].data[0].z = Math.ceil(Math.random() * (500 - 10) + 10);
-    
- 
-    $scope.footChartConfig.series[0].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    $scope.footChartConfig.series[1].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    $scope.footChartConfig.series[2].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    $scope.footChartConfig.series[3].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    $scope.footChartConfig.series[4].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    $scope.footChartConfig.series[5].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    $scope.footChartConfig.series[6].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    $scope.footChartConfig.series[7].color =  colorRangeService.convertValueToRgb(Math.ceil(Math.random() * (100 - 1) + 1)); 
-    
+        if (!$scope.MaxValueSet) {
+        	$scope.yMax = args[2].yMax;
+        	$scope.MaxValueSet = true;
+        }
+        for(i=0;i<8;i++){
+        	//keeps these cariables local
+        	var sValue = 's'+i;
+        	var currentValue = args[2][sValue];
+        	var colorRange = Math.round((currentValue/$scope.yMax)*100);
+        	$scope.footChartConfig.series[i].data[0].z = currentValue;        	
+        	$scope.footChartConfig.series[i].color = colorRangeService.convertValueToRgb(colorRange);
         
- }
-// $scope.changeData();
+        }
+
+    });
 
 }]);
 

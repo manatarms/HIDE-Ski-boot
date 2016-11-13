@@ -1,4 +1,2 @@
 Video offset slider
-Move current position bar on click -> start playing from that point
 Make csv service
-Make foot graph use real values

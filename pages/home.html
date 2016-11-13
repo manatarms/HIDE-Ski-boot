@@ -31,7 +31,13 @@
                     <vg-fullscreen-button></vg-fullscreen-button>
                 </vg-controls>
             </videogular>
+        <div>
+           <rzslider class="rzslider"
+                    rz-slider-model="videoSlider.value"
+                    rz-slider-options="videoSlider.options"></rzslider>
         </div>
+        </div>
+
         <!--End video container-->
         <div ng-controller="footController" class="foot-container small-12 medium-6 large-6 columns">
              <highchart id="footChart" config="footChartConfig"></highchart>
@@ -53,6 +59,7 @@
                       <li><button ng-click="stopLine()" class="button">Pause</button></li>
                       <li><button ng-click="resetLine()" class="button">Reset</button></li>
                     </ul>
+                   
                 </div>
             </div>
         </div>
