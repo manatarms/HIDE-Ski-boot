@@ -1,4 +1,6 @@
 // SERVICES
+
+//Sharing variables
 skiApp.service('sharedGraphDataProperties', function() {
     var property = '';
 
@@ -12,6 +14,7 @@ skiApp.service('sharedGraphDataProperties', function() {
     };
 });
 
+//Color ranging service
 skiApp.service('colorRangeService', function() {
     var property = '';
 
@@ -53,6 +56,90 @@ skiApp.service('colorRangeService', function() {
     return {
         convertValueToRgb: function(value) {
             return numberToColorHsl(value);
+        }
+    };
+});
+
+
+//CSV handling service
+skiApp.service('csvService', function() {
+    function csvHander(content,chartConfig) {
+        if (content !== null) {
+            //$scope.toggleLoading();
+            //Reset max values for new plot
+            
+            var lines = content.split('\n');
+            //Optimize with local variable and push entire series array
+            var series = [
+
+            ];
+
+            $.each(lines, function(lineNo, line) {
+                var items = line.split(',');
+                // console.log(items);
+                // header line containes categories
+
+                // console.log(JSON.stringify($scope.chartConfig.series));
+                if (lineNo == 0) {
+                    $.each(items, function(itemNo, item) {
+                        if (itemNo > 0) {
+                            //Incase we use titles and main time value
+                            //$scope.chartConfig.xAxis.categories.push(item);
+                        }
+                    });
+                } else {
+
+                    $.each(items, function(itemNo, item) {
+                        switch (itemNo) {
+                            case 0:
+                                chartConfig.xAxis.categories.push(parseFloat(item));
+                                break;
+                            case 1:
+                                chartConfig.series[0].data.push(parseFloat(item));
+                                break;
+                            case 2:
+                                chartConfig.series[1].data.push(parseFloat(item));
+                                break;
+                            case 3:
+                                chartConfig.series[2].data.push(parseFloat(item));
+                                break;
+                            case 4:
+                                chartConfig.series[3].data.push(parseFloat(item));
+                                break;
+                            case 5:
+                                chartConfig.series[4].data.push(parseFloat(item));
+                                break;
+                            case 6:
+                                chartConfig.series[5].data.push(parseFloat(item));
+                                break;
+                            case 7:
+                                chartConfig.series[6].data.push(parseFloat(item));
+                                break;
+                            case 8:
+                                chartConfig.series[7].data.push(parseFloat(item));
+                                break;
+                            default:
+                                break;
+
+                        }
+                    });
+
+                    // TODO Push a giant array and optimize later
+                    //$scope.chartConfig.series[0].data.push(series);
+                    //$scope.toggleLoading();
+                }
+
+
+
+            }); //End forEach
+        }
+
+    }
+
+
+    return {
+        csvHander: function(content,chartConfig) {
+            return csvHander(content,chartConfig);
         }
     };
 });

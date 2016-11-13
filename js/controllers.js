@@ -41,18 +41,18 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         }
     };
 
-    $scope.videoSliderChanged = function(){
-    	console.log("here");
-    	 $scope.API.seekTime($scope.videoSlider.value, false); 
+    $scope.videoSliderChanged = function() {
+        console.log("here");
+        $scope.API.seekTime($scope.videoSlider.value, false);
     }
-    
+
     $scope.videoSlider = {
-      value: 0,
-      options: {
-        floor: 0,
-        ceil: 450,
-      	onChange: $scope.videoSliderChanged
-      }
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 450,
+            onChange: $scope.videoSliderChanged
+        }
     };
 
 
@@ -60,13 +60,13 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     $scope.$on('graphPointMoved', function(event, args) {
         //$scope.API.seekTime(args * 0.001, false);
         //Time Value * conversion
-        $scope.API.seekTime(args[0] * args[1] + $scope.videoSlider.value, false); 
+        $scope.API.seekTime(args[0] * args[1] + $scope.videoSlider.value, false);
     });
 
 }]);
 
 
-skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', function($rootScope, $scope, $timeout, sharedGraphDataProperties) {
+skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties','csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties,csvService) {
     //CSV imports
     $scope.csv = {
         content: null,
@@ -122,22 +122,22 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
                                 // console.log($scope.chartConfig.series[7].data[currentClickedX]);
                                 //ARGS value * conversion 
                                 $scope.sensorValues = {
-                                    "s0": $scope.chartConfig.series[0].data[currentClickedX],
-                                    "s1": $scope.chartConfig.series[1].data[currentClickedX],
-                                    "s2": $scope.chartConfig.series[2].data[currentClickedX],
-                                    "s3": $scope.chartConfig.series[3].data[currentClickedX],
-                                    "s4": $scope.chartConfig.series[4].data[currentClickedX],
-                                    "s5": $scope.chartConfig.series[5].data[currentClickedX],
-                                    "s6": $scope.chartConfig.series[6].data[currentClickedX],
-                                    "s7": $scope.chartConfig.series[7].data[currentClickedX],
-                                    "yMax" : $scope.yMax
-                                }
-                                //Set the red line to clicked value
+                                        "s0": $scope.chartConfig.series[0].data[currentClickedX],
+                                        "s1": $scope.chartConfig.series[1].data[currentClickedX],
+                                        "s2": $scope.chartConfig.series[2].data[currentClickedX],
+                                        "s3": $scope.chartConfig.series[3].data[currentClickedX],
+                                        "s4": $scope.chartConfig.series[4].data[currentClickedX],
+                                        "s5": $scope.chartConfig.series[5].data[currentClickedX],
+                                        "s6": $scope.chartConfig.series[6].data[currentClickedX],
+                                        "s7": $scope.chartConfig.series[7].data[currentClickedX],
+                                        "yMax": $scope.yMax
+                                    }
+                                    //Set the red line to clicked value
                                 $scope.chartObj.series[8].setData([
                                     [currentClickedX, $scope.minY],
                                     [currentClickedX, $scope.maxYRedLine]
                                 ]);
-                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 0.001,$scope.sensorValues]);
+                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 0.001, $scope.sensorValues]);
                             }
                         }
                     }
@@ -222,173 +222,81 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 
     //TODO make this watch a service
     $scope.$watch('csv.content', function() {
-        //console.log(JSON.stringify($scope.csv.result[0]));
-        //console.log($scope.chartConfig.series[0].data);
-        //$scope.chartConfig.series[0].data = $scope.csv.result;
-        // console.log($scope.csv.content);
+        $scope.MaxValueSet = false;
+        csvService.csvHander($scope.csv.content,$scope.chartConfig);
 
-        if ($scope.csv.content !== null) {
-            $scope.toggleLoading();
-            //Reset max values for new plot
-            $scope.MaxValueSet = false;
-            var lines = $scope.csv.content.split('\n');
-            //Optimize with local variable and push entire series array
-            var series = [
+    }); //End watch
 
-            ];
+    //Animated line thing
+    $scope.moveLine = function() {
 
-            $.each(lines, function(lineNo, line) {
-                var items = line.split(',');
-                // console.log(items);
-                // header line containes categories
+        //TODO Change static value to get dynamic max X value
+        //console.log($scope.chartObj.series[8].data[0].x);
+        if ($scope.chartObj.series[0].data[0] > $scope.maxXEntireGraph) {
+            x = 0;
+        } else {
+            x = $scope.chartObj.series[8].data[0].x + 1;
+            $scope.timeSyncVariable = x;
 
-                // console.log(JSON.stringify($scope.chartConfig.series));
-                if (lineNo == 0) {
-                    $.each(items, function(itemNo, item) {
-                        if (itemNo > 0) {
-                            //Incase we use titles
-                            //$scope.chartConfig.xAxis.categories.push(item);
-                        }
-                    });
-                } else {
+            sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
 
-                    $.each(items, function(itemNo, item) {
-                        switch (itemNo) {
-                            case 0:
-                                $scope.chartConfig.xAxis.categories.push(parseFloat(item));
-                                break;
-                            case 1:
-                                //series[0].data.push(parseFloat(item));
-                                $scope.chartConfig.series[0].data.push(parseFloat(item));
-                                // console.log($scope.chartConfig.series[0].data);
-                                break;
-                            case 2:
-                                $scope.chartConfig.series[1].data.push(parseFloat(item));
-                                break;
-                            case 3:
-                                $scope.chartConfig.series[2].data.push(parseFloat(item));
-                                break;
-                            case 4:
-                                $scope.chartConfig.series[3].data.push(parseFloat(item));
-                                break;
-                            case 5:
-                                $scope.chartConfig.series[4].data.push(parseFloat(item));
-                                break;
-                            case 6:
-                                $scope.chartConfig.series[5].data.push(parseFloat(item));
-                                break;
-                            case 7:
-                                $scope.chartConfig.series[6].data.push(parseFloat(item));
-                                break;
-                            case 8:
-                                $scope.chartConfig.series[7].data.push(parseFloat(item));
-                                break;
-                            default:
-                            	break;
+            //ARGS value * conversion, Object that contains values
+            if (!$scope.MaxValueSet) {
+                //Set all max values for graph points
+                $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+                $scope.maxXEntireGraph = $scope.chartObj.xAxis[0].categories[$scope.chartObj.xAxis[0].max];
+                $scope.MaxValueSet = true;
+                //set Max value for vertical red line
+            }
+            $scope.sensorValues = {
+                "s0": $scope.chartConfig.series[0].data[x],
+                "s1": $scope.chartConfig.series[1].data[x],
+                "s2": $scope.chartConfig.series[2].data[x],
+                "s3": $scope.chartConfig.series[3].data[x],
+                "s4": $scope.chartConfig.series[4].data[x],
+                "s5": $scope.chartConfig.series[5].data[x],
+                "s6": $scope.chartConfig.series[6].data[x],
+                "s7": $scope.chartConfig.series[7].data[x],
+                "yMax": $scope.yMax
+            }
 
-                        }
-                    });
-                    //Test setting seek
-                    //$scope.$API.seekTime(22);    
-
-                    // TODO Push a giant array and optimize later
-                    //$scope.chartConfig.series[0].data.push(series);
-                    $scope.toggleLoading();
-                }
-
-                //Animated line thing
-                $scope.moveLine = function() {
-
-                    //TODO Change static value to get dynamic max X value
-                    //console.log($scope.chartObj.series[8].data[0].x);
-                    if ($scope.chartObj.series[0].data[0] > $scope.maxXEntireGraph) {
-                        x = 0;
-                    } else {
-                        x = $scope.chartObj.series[8].data[0].x + 1;
-                        $scope.timeSyncVariable = x;
-
-                        sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-
-                        //ARGS value * conversion, Object that contains values
-                        if (!$scope.MaxValueSet) {
-                        	//Set all max values for graph points
-                        	$scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
-                        	$scope.maxXEntireGraph =$scope.chartObj.xAxis[0].categories[$scope.chartObj.xAxis[0].max];
-                        	$scope.MaxValueSet = true;
-                        	//set Max value for vertical red line
-                        }
-                        $scope.sensorValues = {
-                            "s0": $scope.chartConfig.series[0].data[x],
-                            "s1": $scope.chartConfig.series[1].data[x],
-                            "s2": $scope.chartConfig.series[2].data[x],
-                            "s3": $scope.chartConfig.series[3].data[x],
-                            "s4": $scope.chartConfig.series[4].data[x],
-                            "s5": $scope.chartConfig.series[5].data[x],
-                            "s6": $scope.chartConfig.series[6].data[x],
-                            "s7": $scope.chartConfig.series[7].data[x],
-                            "yMax" : $scope.yMax
-                        }
-
-                        $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
-                        // console.log($scope.timeSyncVariable);
-                    }
-                    $scope.chartObj.series[8].setData([
-                        [x, $scope.minY],
-                        [x, $scope.maxYRedLine]
-                    ]);
-                    $scope.timeOutId = $timeout($scope.moveLine, 1000);
-                }
-
-
-                $scope.stopLine = function() {
-                    $timeout.cancel($scope.timeOutId);
-                }
-
-                $scope.resetLine = function() {
-                        $scope.stopLine();
-                         $scope.sensorValues = {
-                            "s0": 0,
-                            "s1": 0,
-                            "s2": 0,
-                            "s3": 0,
-                            "s4": 0,
-                            "s5": 0,
-                            "s6": 0,
-                            "s7": 0,
-                            "yMax" : $scope.yMax
-                        }
-                        $rootScope.$broadcast('graphPointMoved', [0, 1, $scope.sensorValues]);
-                        $scope.chartObj.series[8].setData([
-                            [0, $scope.minY],
-                            [0, $scope.maxYRedLine]
-                        ]);
-                    }
-                    // the rest of the lines contain data with their name in the first 
-                    // position
-                    // else {
-                    //     var series = {
-                    //         data: []
-                    //     };
-                    //     $.each(items, function(itemNo, item) {
-                    //         if (itemNo == 0) {
-                    //             series.name = item;
-                    //         } else {
-                    //             series.data.push(parseFloat(item));
-                    //         }
-                    //     });
-
-                //    chartConfig.series.push(series);
-
-                // }
-
-            });
+            $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
+            // console.log($scope.timeSyncVariable);
         }
-    });
+        $scope.chartObj.series[8].setData([
+            [x, $scope.minY],
+            [x, $scope.maxYRedLine]
+        ]);
+        $scope.timeOutId = $timeout($scope.moveLine, 1000);
+    }
 
-}]); //End watch
+    $scope.stopLine = function() {
+        $timeout.cancel($scope.timeOutId);
+    }
+    $scope.resetLine = function() {
+        $scope.stopLine();
+        $scope.sensorValues = {
+            "s0": 0,
+            "s1": 0,
+            "s2": 0,
+            "s3": 0,
+            "s4": 0,
+            "s5": 0,
+            "s6": 0,
+            "s7": 0,
+            "yMax": $scope.yMax
+        }
+        $rootScope.$broadcast('graphPointMoved', [0, 1, $scope.sensorValues]);
+        $scope.chartObj.series[8].setData([
+            [0, $scope.minY],
+            [0, $scope.maxYRedLine]
+        ]);
+    }
+
+}]);
 
 
-skiApp.controller('footController', ['$scope', '$timeout', 'colorRangeService', function($scope, $timeout, colorRangeService) {
+skiApp.controller('footController', ['$scope', 'colorRangeService', function($scope,colorRangeService) {
     $scope.sensorSize = 0;
     $scope.s0ReferenceX = 100;
     $scope.s0ReferenceY = 100;
@@ -562,17 +470,17 @@ skiApp.controller('footController', ['$scope', '$timeout', 'colorRangeService', 
         //  $scope.footchartObj.redraw();
         //$scope.sensorSize = Math.random() * (500 - 10) + 10;
         if (!$scope.MaxValueSet) {
-        	$scope.yMax = args[2].yMax;
-        	$scope.MaxValueSet = true;
+            $scope.yMax = args[2].yMax;
+            $scope.MaxValueSet = true;
         }
-        for(i=0;i<8;i++){
-        	//keeps these cariables local
-        	var sValue = 's'+i;
-        	var currentValue = args[2][sValue];
-        	var colorRange = Math.round((currentValue/$scope.yMax)*100);
-        	$scope.footChartConfig.series[i].data[0].z = currentValue;        	
-        	$scope.footChartConfig.series[i].color = colorRangeService.convertValueToRgb(colorRange);
-        
+        for (i = 0; i < 8; i++) {
+            //keeps these cariables local
+            var sValue = 's' + i;
+            var currentValue = args[2][sValue];
+            var colorRange = Math.round((currentValue / $scope.yMax) * 100);
+            $scope.footChartConfig.series[i].data[0].z = currentValue;
+            $scope.footChartConfig.series[i].color = colorRangeService.convertValueToRgb(colorRange);
+
         }
 
     });
