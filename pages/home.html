@@ -51,14 +51,15 @@
             <highchart id="forceChart" config="chartConfig"></highchart>
             <div class="row">
                 <div class="columns large-3">
-                    <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
-                    </ng-csv-import>
+                    
                 
                     <ul class="button-group">
                       <li><button ng-click="moveLine()" class="button">Play</button></li>
                       <li><button ng-click="stopLine()" class="button">Pause</button></li>
                       <li><button ng-click="resetLine()" class="button">Reset</button></li>
                     </ul>
+                    <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
+                    </ng-csv-import>
                    
                 </div>
             </div>
