@@ -70,7 +70,7 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
                                     [currentClickedX, $scope.minY],
                                     [currentClickedX, $scope.maxYRedLine]
                                 ]);
-                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 0.001, $scope.sensorValues]);
+                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable/800, 1, $scope.sensorValues]);
                             }
                         }
                     }
@@ -168,8 +168,8 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
         if ($scope.chartObj.series[0].data[0] > $scope.maxXEntireGraph) {
             x = 0;
         } else {
-            x = $scope.chartObj.series[8].data[0].x + 1;
-            $scope.timeSyncVariable = x;
+            x = $scope.chartObj.series[8].data[0].x + 400;
+            $scope.timeSyncVariable = x/400;
 
             sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
 
