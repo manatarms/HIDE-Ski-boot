@@ -28,7 +28,7 @@ gulp.task('browser-sync', function() {
 
 // Minify JS
 gulp.task('minify-js',function(){
-	return gulp.src(['js/app.js','js/routes.js','js/services','js/controllers.js','./js/**/*.js'])
+	return gulp.src(['js/app.js','js/routes.js','js/services','js/controllers/*.js','./js/**/*.js'])
 	.pipe($.debug({title: 'Minify:'}))
 	.pipe($.concat('main.min.js'))
 	.pipe($.uglify())
@@ -106,7 +106,7 @@ require('events').EventEmitter.prototype._maxListeners = 100;
 gulp.task('css:build', function() {
   var s = $.size();
 
-  return gulp.src(['./css/**/*.css','!./css/**/*.min.css'])
+  return gulp.src(['./css/**/*.css','!./css/**/*.min.css','!./css/vendor/*.css'])
     .pipe($.debug({title: 'SCSS:'}))
     .pipe($.autoprefixer('last 3 version'))
     .pipe($.debug({title: 'PREFIX:'}))
@@ -174,8 +174,8 @@ gulp.task('copy', function() {
   .pipe(gulp.dest('./dist'));
  gulp.src(['./assets/*'])
   .pipe(gulp.dest('./dist/assets/'));
-  gulp.src(['./css/vendor/*'])
-  .pipe(gulp.dest('./css/vendor/'));
+  gulp.src(['./css/vendor/**/*','!./css/vendor/**/*.min.css'])
+  .pipe(gulp.dest('./dist/css/vendor/'));
 });
 
 gulp.task('build', function(callback) {
