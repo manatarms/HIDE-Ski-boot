@@ -30,7 +30,6 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     };
 
     $scope.videoSliderChanged = function() {
-        console.log("here");
         $scope.API.seekTime($scope.videoSlider.value, false);
     }
 
