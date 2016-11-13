@@ -21,7 +21,7 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 
     //CHART VARIABLES
     $scope.minY = 0;
-    $scope.maxYRedLine = 2000;
+    $scope.maxYRedLine = 0;
     $scope.maxXEntireGraph = 20000;
     $scope.MaxValueSet = false;
     $scope.chartConfig = {
