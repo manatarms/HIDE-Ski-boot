@@ -36,6 +36,7 @@
     "gulp-imagemin": "^2.2.1",
     "gulp-load-plugins": "^0.10.0",
     "gulp-notify": "^2.1.0",
+    "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.0",
     "gulp-rev": "^3.0.1",
     "gulp-sass": "^2.1.0",

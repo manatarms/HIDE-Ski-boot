@@ -110,12 +110,7 @@ gulp.task('css:build', function() {
     .pipe($.debug({title: 'SCSS:'}))
     .pipe($.autoprefixer('last 3 version'))
     .pipe($.debug({title: 'PREFIX:'}))
-    //TODO EXCLUDE important classes from build clearing
-    .pipe($.uncss({
-      html: ['./*.html', './pages/*.html']
-
-      
-    }))
+    .pipe($.purifycss(['./*.html', './pages/*.html','./js/**/*.js']))
     .pipe($.debug({title: 'UNCSS:'}))
     .pipe($.cleanCss({
       keepBreaks: false,
