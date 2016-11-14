@@ -4,6 +4,7 @@ Dynamic sizing for footgraph
 turn off zoom for footplot
 let video sync slider have negative values. 
 add second foot functionality
+Maintain states across router pages
 
 
 Longer term:
