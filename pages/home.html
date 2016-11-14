@@ -10,9 +10,9 @@
     </div>
 </div>
 <div class="row fullwidth body-row">
-    <div ng-controller="videoController as controller"  class="row video-row">
-        <div class="videogular-container small-12 medium-6 large-6 columns" >
-            <videogular vg-theme="videoConfig.theme.url" vg-player-ready="controller.onPlayerReady($API)" >
+    <div ng-controller="videoController as controller" class="row video-row">
+        <div class="videogular-container small-12 medium-6 large-6 columns">
+            <videogular vg-theme="videoConfig.theme.url" vg-player-ready="controller.onPlayerReady($API)">
                 <vg-media vg-src="videoConfig.sources" vg-tracks="videoConfig.tracks">
                 </vg-media>
                 <vg-controls vg-autohide="videoConfig.plugins.controls.autoHide" vg-autohide-time="videoConfig.plugins.controls.autoHideTime">
@@ -31,36 +31,62 @@
                     <vg-fullscreen-button></vg-fullscreen-button>
                 </vg-controls>
             </videogular>
-        <div>
-           <rzslider
-                    rz-slider-model="videoSlider.value"
-                    rz-slider-options="videoSlider.options"></rzslider>
+            <div>
+                <rzslider rz-slider-model="videoSlider.value" rz-slider-options="videoSlider.options"></rzslider>
+            </div>
         </div>
-        </div>
-
         <!--End video container-->
         <div ng-controller="footController" class="foot-container small-12 medium-6 large-6 columns">
-             <highchart id="footChart" config="footChartConfig"></highchart>
+            <highchart id="footChart" config="footChartConfig"></highchart>
             <!--foot placeholder-->
             <!-- <img src="img/foot.png" alt="foot" width="500"> -->
         </div>
     </div>
     <!--End video row -->
-    <div ng-controller="graphController" class="row graph-row">
-        <div class="small-12 medium-12 large-12 columns">
-            <highchart id="forceChart" config="chartConfig"></highchart>
-            <div class="row">
-                <div class="columns large-3">
-                    
-                
-                    <ul class="button-group">
-                      <li><button ng-click="moveLine()" class="button">Play</button></li>
-                      <li><button ng-click="stopLine()" class="button">Pause</button></li>
-                      <li><button ng-click="resetLine()" class="button">Reset</button></li>
-                    </ul>
-                    <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
-                    </ng-csv-import>
-                   
+    <!-- Left foot-->
+    <div class="row graph-row">
+        <div ng-controller="graphControllerLeft" class="graph-row">
+            <div class="small-12 medium-6 large-6 columns">
+                <highchart id="forceChart" config="chartConfig"></highchart>
+                <div class="row">
+                    <div class="columns large-3">
+                        <ul class="button-group">
+                            <li>
+                                <button ng-click="moveLine()" class="button">Play</button>
+                            </li>
+                            <li>
+                                <button ng-click="stopLine()" class="button">Pause</button>
+                            </li>
+                            <li>
+                                <button ng-click="resetLine()" class="button">Reset</button>
+                            </li>
+                        </ul>
+                        <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
+                        </ng-csv-import>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Right foot-->
+        <div ng-controller="graphControllerRight" class="graph-row">
+            <div class="small-12 medium-6 large-6 columns">
+                <highchart id="forceChart" config="chartConfig"></highchart>
+                <div class="row">
+                    <div class="columns large-3">
+                        <ul class="button-group">
+                            <li>
+                                <button ng-click="moveLine()" class="button">Play</button>
+                            </li>
+                            <li>
+                                <button ng-click="stopLine()" class="button">Pause</button>
+                            </li>
+                            <li>
+                                <button ng-click="resetLine()" class="button">Reset</button>
+                            </li>
+                        </ul>
+                        <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
+                        </ng-csv-import>
+                    </div>
                 </div>
             </div>
         </div>

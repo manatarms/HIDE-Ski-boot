@@ -12,7 +12,6 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', function($sc
             //will be overriden by values specified below.
             chart: {
                 type: 'bubble',
-                zoomType: 'xy',
                 plotBorderWidth: 1,
                 backgroundColor: 'rgba(0,0,0,0)'
 

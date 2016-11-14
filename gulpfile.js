@@ -159,7 +159,7 @@ gulp.task('default', ['browser-sync', 'sass', 'css:build'], function() {
     }
   });
   gulp.watch(['*.html', 'pages/*.html'], ['bs-reload']);
-  gulp.watch(['js/*.js'], ['bs-reload']);
+  gulp.watch(['js/**/*.js'], ['bs-reload']);
   gulp.watch('css/**/*.scss', ['sass', 'css:build']);
 });
 

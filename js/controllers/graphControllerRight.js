@@ -1,5 +1,5 @@
 
-skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties','csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties,csvService) {
+skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties','csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties,csvService) {
     //CSV imports
     $scope.csv = {
         content: null,
@@ -116,8 +116,8 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
 
 
 
-        ],
-
+        ], 
+ 
         //Title configuration (optional)
         title: {
             text: false
@@ -163,13 +163,14 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
     //Animated line thing
     $scope.moveLine = function() {
 
-        //TODO Change static value to get dynamic max X value
-        //console.log($scope.chartObj.series[8].data[0].x);
-        if ($scope.chartObj.series[0].data[0] > $scope.maxXEntireGraph) {
+        $scope.skipRate = 400;
+        $scope.xValueAtNextPoint = $scope.chartObj.series[8].data[0].x + $scope.skipRate;
+        //Check if value at that X point exits in graph
+        if (!$scope.chartObj.xAxis[0].categories[$scope.xValueAtNextPoint]) {
             x = 0;
         } else {
-            x = $scope.chartObj.series[8].data[0].x + 400;
-            $scope.timeSyncVariable = x/400;
+            x = $scope.xValueAtNextPoint;
+            $scope.timeSyncVariable = x/$scope.skipRate;
 
             sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
 
@@ -177,9 +178,10 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
             if (!$scope.MaxValueSet) {
                 //Set all max values for graph points
                 $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
-                $scope.maxXEntireGraph = $scope.chartObj.xAxis[0].categories[$scope.chartObj.xAxis[0].max];
-                $scope.MaxValueSet = true;
+                //Not using max graph value any more, instead checking for undefined variable in if
+                // $scope.maxXEntireGraph = $scope.chartObj.xAxis[0].categories[$scope.chartObj.xAxis[0].max];
                 //set Max value for vertical red line
+                $scope.MaxValueSet = true;
             }
             $scope.sensorValues = {
                 "s0": $scope.chartConfig.series[0].data[x],
@@ -191,10 +193,9 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
                 "s6": $scope.chartConfig.series[6].data[x],
                 "s7": $scope.chartConfig.series[7].data[x],
                 "yMax": $scope.yMax
-            }
+            } 
 
             $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
-            // console.log($scope.timeSyncVariable);
         }
         $scope.chartObj.series[8].setData([
             [x, $scope.minY],
@@ -202,7 +203,7 @@ skiApp.controller('graphController', ['$rootScope', '$scope', '$timeout', 'share
         ]);
         $scope.timeOutId = $timeout($scope.moveLine, 1000);
     }
-
+   
     $scope.stopLine = function() {
         $timeout.cancel($scope.timeOutId);
     }

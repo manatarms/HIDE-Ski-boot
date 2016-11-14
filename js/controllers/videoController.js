@@ -4,12 +4,18 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     //VIDEO variables
     var controller = this;
     $scope.API = null;
-
+    $scope.sliderSet = false;
     controller.onPlayerReady = function(API) {
         $scope.API = API;
     };
-    $scope.setTime = function(time) {
-        $scope.API.seekTime(50, true);
+
+    //TODO Setting slider can be improved but API is returning 0 outside this function call
+    $scope.setSliderValue = function() {
+        if($scope.API){
+        $scope.videoSlider.options.floor = -Math.ceil($scope.API.totalTime/1000);
+        $scope.videoSlider.options.ceil = Math.round($scope.API.totalTime/1000);
+        }
+        
     }
 
     $scope.videoConfig = {
@@ -30,13 +36,18 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     };
 
     $scope.videoSliderChanged = function() {
+        if(!$scope.sliderSet){
+        $scope.setSliderValue();
+        $scope.sliderSet = true;
+        }
         $scope.API.seekTime($scope.videoSlider.value, false);
+
     }
 
     $scope.videoSlider = {
         value: 0,
         options: {
-            floor: 0,
+            floor: -450,
             ceil: 450,
             onChange: $scope.videoSliderChanged
         }
