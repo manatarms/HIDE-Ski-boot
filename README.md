@@ -18,7 +18,7 @@ npm install
 npm install -g gulp
 ```
 
-5) Finally, to run type 
+5) Finally, to run, type 
 ```
 gulp
 ```
