@@ -3,9 +3,9 @@ Reset x to 0 on graph end playback
 Dynamic sizing for footgraph 
 turn off zoom for footplot
 let video sync slider have negative values. 
+add second foot functionality
 
 
 Longer term:
-add second foot
 animations/plotly
 Adding comments to CSV file for later recall
