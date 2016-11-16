@@ -134,7 +134,7 @@ skiApp.service('csvService', function() {
                     // TODO Push a giant array and optimize later
                     //$scope.chartConfig.series[0].data.push(series);
                     //$scope.toggleLoading();
-                }
+                }//End else
 
 
 
@@ -143,10 +143,23 @@ skiApp.service('csvService', function() {
 
     }
 
+    function setCsvContent(content){
+        this.savedCsv = content;
+    }
+
+    function getCsvContent(){
+        return this.savedCsv;
+    }
 
     return {
         csvHander: function(content, chartConfig) {
             return csvHander(content, chartConfig);
+        },
+        setCsvContent: function(content){
+            return setCsvContent(content);
+        },
+        getCsvContent: function(content){
+            return getCsvContent(content);
         }
     };
 });

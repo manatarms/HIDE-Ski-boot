@@ -165,7 +165,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
     $scope.$watch('csv.content', function() {
         $scope.MaxValueSet = false;
         csvService.csvHander($scope.csv.content,$scope.chartConfig);
-
+    
     }); //End watch
 
     //Animated line thing
