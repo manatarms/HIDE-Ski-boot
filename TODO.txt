@@ -5,6 +5,7 @@ Dynamic sizing for footgraph
 //DONE let video sync slider have negative values. 
 //add second foot functionality
 Maintain states across router pages
+//Clear button to reset all graphs
 
 
 Longer term:
