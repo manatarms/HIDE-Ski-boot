@@ -3,7 +3,7 @@ Video frame rate player!!!
 Dynamic sizing for footgraph 
 //DONE turn off zoom for footplot
 //DONE let video sync slider have negative values. 
-add second foot functionality
+//add second foot functionality
 Maintain states across router pages
 
 
