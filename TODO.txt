@@ -6,7 +6,7 @@ Dynamic sizing for footgraph
 //add second foot functionality
 Maintain states across router pages
 //Clear button to reset all graphs
-
+Video upload
 
 Longer term:
 animations/plotly
