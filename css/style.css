@@ -66,7 +66,9 @@ body {
   background: rgba(255, 255, 255, 0.6); }
 
 .title {
-  color: #333; }
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 0; }
 
 /* ==============
     MOBILE: Menu
@@ -78,8 +80,7 @@ nav ul {
 
 nav a {
   display: block;
-  margin-bottom: 10px;
-  padding: 15px 0;
+  margin: 3px 0 10px 0;
   text-align: center;
   text-decoration: none;
   font-weight: bold;
@@ -121,8 +122,7 @@ nav a:hover {
   nav a {
     float: left;
     width: 27%;
-    margin: 0 1.7%;
-    padding: 25px 2%;
+    margin: 3px 0 10px 0;
     margin-bottom: 0; }
   nav li:first-child a {
     margin-left: 0; }
@@ -321,6 +321,11 @@ span.prefix, label.prefix {
 .run-details {
   border-bottom: 1px #ccc solid;
   margin-bottom: 15px; }
+
+.menu-separator {
+  margin: 3px 0 10px 0;
+  margin-bottom: 0;
+  float: left; }
 
 /*VIDEO TIME SLIDER STYLES*/
 .rzslider {
