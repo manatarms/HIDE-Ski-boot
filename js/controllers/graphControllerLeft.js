@@ -206,6 +206,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
    
     $scope.stopLine = function() {
         $timeout.cancel($scope.timeOutId);
+        $rootScope.$broadcast('graphPointReset', [0, 1, $scope.sensorValues]);
     }
     $scope.resetLine = function() {
         $scope.stopLine();
@@ -220,7 +221,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
             "s7": 0,
             "yMax": $scope.yMax
         }
-        $rootScope.$broadcast('graphPointMoved', [0, 1, $scope.sensorValues]);
+        $rootScope.$broadcast('graphPointStop', [0, 1, $scope.sensorValues]);
         $scope.chartObj.series[8].setData([
             [0, $scope.minY],
             [0, $scope.maxYRedLine]

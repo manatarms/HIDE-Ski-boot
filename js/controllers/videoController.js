@@ -1,5 +1,3 @@
-
-
 skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperties', function($scope, $sce, sharedGraphDataProperties) {
     //VIDEO variables
     var controller = this;
@@ -11,11 +9,11 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
 
     //TODO Setting slider can be improved but API is returning 0 outside this function call
     $scope.setSliderValue = function() {
-        if($scope.API){
-        $scope.videoSlider.options.floor = -Math.ceil($scope.API.totalTime/1000);
-        $scope.videoSlider.options.ceil = Math.round($scope.API.totalTime/1000);
+        if ($scope.API) {
+            $scope.videoSlider.options.floor = -Math.ceil($scope.API.totalTime / 1000);
+            $scope.videoSlider.options.ceil = Math.round($scope.API.totalTime / 1000);
         }
-        
+
     }
 
     $scope.videoConfig = {
@@ -36,9 +34,9 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     };
 
     $scope.videoSliderChanged = function() {
-        if(!$scope.sliderSet){
-        $scope.setSliderValue();
-        $scope.sliderSet = true;
+        if (!$scope.sliderSet) {
+            $scope.setSliderValue();
+            $scope.sliderSet = true;
         }
         $scope.API.seekTime($scope.videoSlider.value, false);
 
@@ -56,10 +54,8 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
 
 
     $scope.$on('graphPointMoved', function(event, args) {
-        //$scope.API.seekTime(args * 0.001, false);
         //Time Value * conversion
         $scope.API.seekTime(args[0] * args[1] + $scope.videoSlider.value, false);
     });
 
 }]);
-

@@ -1,5 +1,4 @@
-
-skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties','csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties,csvService) {
+skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService) {
     //CSV imports
     $scope.csv = {
         content: null,
@@ -47,12 +46,10 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                     point: {
                         events: {
                             click: function(event) {
-                                //alert('Category: '+ this.category +', value: '+ this.y);
                                 //local variable for current
                                 var currentClickedX = this.x;
                                 $scope.timeSyncVariable = this.category;
                                 sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                                // console.log($scope.chartConfig.series[7].data[currentClickedX]);
                                 //ARGS value * conversion 
                                 $scope.sensorValues = {
                                         "s0": $scope.chartConfig.series[0].data[currentClickedX],
@@ -70,7 +67,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                                     [currentClickedX, $scope.minY],
                                     [currentClickedX, $scope.maxYRedLine]
                                 ]);
-                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable/800, 1, $scope.sensorValues]);
+                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable / 800, 1, $scope.sensorValues]);
                             }
                         }
                     }
@@ -116,8 +113,8 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
 
 
 
-        ], 
- 
+        ],
+
         //Title configuration (optional)
         title: {
             text: false
@@ -156,11 +153,20 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     //TODO make this watch a service
     $scope.$watch('csv.content', function() {
         $scope.MaxValueSet = false;
-        csvService.csvHander($scope.csv.content,$scope.chartConfig);
+        csvService.csvHander($scope.csv.content, $scope.chartConfig);
 
     }); //End watch
 
     //Animated line thing
+    $scope.$on('graphPointMoved', function(event, args) {
+        $scope.moveLine();
+    });
+    $scope.$on('graphPointStop', function(event, args) {
+        $scope.stopLine();
+    }); 
+    $scope.$on('graphPointReset', function(event, args) {
+        $scope.stopLine();
+    });
     $scope.moveLine = function() {
 
         $scope.skipRate = 400;
@@ -170,7 +176,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
             x = 0;
         } else {
             x = $scope.xValueAtNextPoint;
-            $scope.timeSyncVariable = x/$scope.skipRate;
+            $scope.timeSyncVariable = x / $scope.skipRate;
 
             sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
 
@@ -193,9 +199,9 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                 "s6": $scope.chartConfig.series[6].data[x],
                 "s7": $scope.chartConfig.series[7].data[x],
                 "yMax": $scope.yMax
-            } 
+            }
 
-            $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
+            // $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
         }
         $scope.chartObj.series[8].setData([
             [x, $scope.minY],
@@ -203,7 +209,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
         ]);
         $scope.timeOutId = $timeout($scope.moveLine, 1000);
     }
-   
+
     $scope.stopLine = function() {
         $timeout.cancel($scope.timeOutId);
     }
@@ -220,7 +226,6 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
             "s7": 0,
             "yMax": $scope.yMax
         }
-        $rootScope.$broadcast('graphPointMoved', [0, 1, $scope.sensorValues]);
         $scope.chartObj.series[8].setData([
             [0, $scope.minY],
             [0, $scope.maxYRedLine]
@@ -228,4 +233,3 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     }
 
 }]);
-

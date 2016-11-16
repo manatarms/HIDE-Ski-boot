@@ -96,7 +96,7 @@ nav a:hover {
     MOBILE: Main
    ============== */
 .main {
-  padding: 30px 0; }
+  padding: 15px 0; }
 
 .main article h1 {
   font-size: 2em; }
@@ -137,14 +137,6 @@ nav a:hover {
     margin: 0 0.7%; } }
 
 @media only screen and (min-width: 768px) {
-  /* ====================
-    WIDE: CSS3 Effects
-   ==================== */
-  .header-container,
-  .main aside {
-    -webkit-box-shadow: 0 5px 10px #aaa;
-    -moz-box-shadow: 0 5px 10px #aaa;
-    box-shadow: 0 5px 10px #aaa; }
   /* ============
     WIDE: Menu
    ============ */
@@ -255,7 +247,8 @@ nav a:hover {
     page-break-after: avoid; } }
 
 /*Overrides*/
-.row.banner, .fullwidth {
+.row.banner,
+.fullwidth {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -271,22 +264,65 @@ nav a:hover {
   display: inline-block;
   margin: 0 -2px; }
 
-.button-group > li:first-child button, .button-group > li:first-child .button {
+.button-group > li:first-child button,
+.button-group > li:first-child .button {
   border-left: 0; }
 
-.button-group > li > button, .button-group > li .button {
+.button-group > li > button,
+.button-group > li .button {
   border-left: 1px solid;
   border-color: rgba(255, 255, 255, 0.5); }
+
+span.prefix, label.prefix {
+  background: #f2f2f2;
+  border-right: none;
+  color: #333333;
+  border-color: #cccccc; }
+
+.prefix, .postfix {
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.77778rem;
+  height: 2.4375rem;
+  line-height: 2.05556rem;
+  overflow: visible;
+  padding-bottom: 0;
+  padding-top: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 2; }
 
 /*Make this dynamic*/
 .videogular-container {
   height: 400px !important; }
 
 #footChart {
-  background: url(../img/footoutline.png) no-repeat 80% 0%;
-  background-size: 580px auto; }
+  background: url(../img/footoutline.png) no-repeat 50% 0%;
+  background-size: 580px auto;
+  border-left: 1px solid #ccc; }
 
-/*VIDEO SLIDER STYLES*/
+/*Floating import box to end*/
+.end-import {
+  float: right !important; }
+
+/*Adding separators*/
+.video-row {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc; }
+
+#forceChartRight {
+  border-left: 1px solid #ccc; }
+
+.graph-row.row {
+  padding-top: 15px; }
+
+.run-details {
+  border-bottom: 1px #ccc solid;
+  margin-bottom: 15px; }
+
+/*VIDEO TIME SLIDER STYLES*/
 .rzslider {
   position: relative;
   display: inline-block;

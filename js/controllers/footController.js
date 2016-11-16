@@ -1,7 +1,6 @@
-
-skiApp.controller('footController', ['$scope', 'colorRangeService', function($scope,colorRangeService) {
+skiApp.controller('footController', ['$scope', 'colorRangeService', function($scope, colorRangeService) {
     $scope.sensorSize = 0;
-    $scope.s0ReferenceX = 100;
+    $scope.s0ReferenceX = 83.5;
     $scope.s0ReferenceY = 100;
     $scope.MaxValueSet = false;
 
@@ -33,13 +32,15 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', function($sc
                         events: {
                             click: function(event) {
                                 //Do we need to do anything with a click
-                                // $scope.timeSyncVariable = this.category;
-                                // sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                                // $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 0.001]);
                             }
                         }
+                    },
+                    // Disable turning off individuals bubbles
+                    events: {
+                        legendItemClick: function(event) {
+                            return false;
+                        }
                     }
-
                 }
             }
         },
@@ -188,4 +189,3 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', function($sc
     });
 
 }]);
-

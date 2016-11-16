@@ -63,11 +63,11 @@ skiApp.service('colorRangeService', function() {
 
 //CSV handling service
 skiApp.service('csvService', function() {
-    function csvHander(content,chartConfig) {
+    function csvHander(content, chartConfig) {
         if (content !== null) {
             //$scope.toggleLoading();
             //Reset max values for new plot
-            
+
             var lines = content.split('\n');
             //Optimize with local variable and push entire series array
             var series = [
@@ -138,8 +138,8 @@ skiApp.service('csvService', function() {
 
 
     return {
-        csvHander: function(content,chartConfig) {
-            return csvHander(content,chartConfig);
+        csvHander: function(content, chartConfig) {
+            return csvHander(content, chartConfig);
         }
     };
 });

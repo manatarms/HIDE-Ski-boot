@@ -1,12 +1,33 @@
 <div class="row fullwidth run-details">
     <div class="large-4 columns">
-        <h4>Name: {{name}} </h4>
+        <div class="row collapse prefix-radius">
+            <div class="small-3 columns">
+                <span class="prefix">Name</span>
+            </div>
+            <div class="small-9 columns">
+                <input type="text" placeholder="Name" ng-model="name">
+            </div>
+        </div>
     </div>
     <div class="large-4 columns">
-        <h4>Date: {{date}}, {{time}} </h4>
+        <div class="row collapse postfix-radius">
+            <div class="small-3 columns">
+                <span class="prefix">Date</span>
+            </div>
+            <div class="small-9 columns">
+                <input type="text" placeholder="Date" ng-model="date">
+            </div>
+        </div>
     </div>
     <div class="large-4 columns">
-        <h4>Run #: {{runNo}} </h4>
+        <div class="row collapse postfix-radius">
+            <div class="small-3 columns">
+                <span class="prefix">Run No. #</span>
+            </div>
+            <div class="small-9 columns">
+                <input type="text" placeholder="Run No" ng-model="runNo">
+            </div>
+        </div>
     </div>
 </div>
 <div class="row fullwidth body-row">
@@ -31,8 +52,10 @@
                     <vg-fullscreen-button></vg-fullscreen-button>
                 </vg-controls>
             </videogular>
-            <div>
-                <rzslider rz-slider-model="videoSlider.value" rz-slider-options="videoSlider.options"></rzslider>
+            <div class="row">
+                <div class="large-12 columns">
+                    <rzslider rz-slider-model="videoSlider.value" rz-slider-options="videoSlider.options"></rzslider>
+                </div>
             </div>
         </div>
         <!--End video container-->
@@ -47,9 +70,9 @@
     <div class="row graph-row">
         <div ng-controller="graphControllerLeft" class="graph-row">
             <div class="small-12 medium-6 large-6 columns">
-                <highchart id="forceChart" config="chartConfig"></highchart>
+                <highchart id="forceChartLeft" config="chartConfig"></highchart>
                 <div class="row">
-                    <div class="columns large-3">
+                    <div class="columns large-8">
                         <ul class="button-group">
                             <li>
                                 <button ng-click="moveLine()" class="button">Play</button>
@@ -61,6 +84,8 @@
                                 <button ng-click="resetLine()" class="button">Reset</button>
                             </li>
                         </ul>
+                    </div>
+                    <div class="columns large-4 end-import">
                         <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
                         </ng-csv-import>
                     </div>
@@ -70,20 +95,9 @@
         <!-- Right foot-->
         <div ng-controller="graphControllerRight" class="graph-row">
             <div class="small-12 medium-6 large-6 columns">
-                <highchart id="forceChart" config="chartConfig"></highchart>
+                <highchart id="forceChartRight" config="chartConfig"></highchart>
                 <div class="row">
-                    <div class="columns large-3">
-                        <ul class="button-group">
-                            <li>
-                                <button ng-click="moveLine()" class="button">Play</button>
-                            </li>
-                            <li>
-                                <button ng-click="stopLine()" class="button">Pause</button>
-                            </li>
-                            <li>
-                                <button ng-click="resetLine()" class="button">Reset</button>
-                            </li>
-                        </ul>
+                    <div class="columns large-4 end-import">
                         <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
                         </ng-csv-import>
                     </div>
