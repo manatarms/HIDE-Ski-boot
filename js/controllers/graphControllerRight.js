@@ -9,7 +9,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
         result: null,
         encoding: 'ISO-8859-1',
         encodingVisible: false,
-        uploadButtonLabel: "upload a csv file"
+        uploadButtonLabel: "Upload Right foot CSV"
     };
 
     $scope.toggleLoading = function() {
@@ -52,15 +52,15 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                                 sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
                                 //ARGS value * conversion 
                                 $scope.sensorValues = {
-                                        "s0": $scope.chartConfig.series[0].data[currentClickedX],
-                                        "s1": $scope.chartConfig.series[1].data[currentClickedX],
-                                        "s2": $scope.chartConfig.series[2].data[currentClickedX],
-                                        "s3": $scope.chartConfig.series[3].data[currentClickedX],
-                                        "s4": $scope.chartConfig.series[4].data[currentClickedX],
-                                        "s5": $scope.chartConfig.series[5].data[currentClickedX],
-                                        "s6": $scope.chartConfig.series[6].data[currentClickedX],
-                                        "s7": $scope.chartConfig.series[7].data[currentClickedX],
-                                        "yMax": $scope.yMax
+                                        "s0R": $scope.chartConfig.series[0].data[currentClickedX],
+                                        "s1R": $scope.chartConfig.series[1].data[currentClickedX],
+                                        "s2R": $scope.chartConfig.series[2].data[currentClickedX],
+                                        "s3R": $scope.chartConfig.series[3].data[currentClickedX],
+                                        "s4R": $scope.chartConfig.series[4].data[currentClickedX],
+                                        "s5R": $scope.chartConfig.series[5].data[currentClickedX],
+                                        "s6R": $scope.chartConfig.series[6].data[currentClickedX],
+                                        "s7R": $scope.chartConfig.series[7].data[currentClickedX],
+                                        "yMaxR": $scope.yMax
                                     }
                                     //Set the red line to clicked value
                                 $scope.chartObj.series[8].setData([
@@ -78,29 +78,29 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
 
         //Series object (optional) - a list of series using normal Highcharts series options.
         series: [{
-                name: 's0',
+                name: 's0R',
                 data: []
 
             }, {
-                name: 's1',
+                name: 's1R',
                 data: []
             }, {
-                name: 's2',
+                name: 's2R',
                 data: []
             }, {
-                name: 's3',
+                name: 's3R',
                 data: []
             }, {
-                name: 's4',
+                name: 's4R',
                 data: []
             }, {
-                name: 's5',
+                name: 's5R',
                 data: []
             }, {
-                name: 's6',
+                name: 's6R',
                 data: []
             }, {
-                name: 's7',
+                name: 's7R',
                 data: []
             }, {
                 //Animation line
@@ -159,15 +159,15 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
 
     //Animated line thing
     $scope.$on('graphPointMoved', function(event, args) {
-        $scope.moveLine();
+        $scope.moveLineRight();
     });
     $scope.$on('graphPointStop', function(event, args) {
-        $scope.stopLine();
+        $scope.stopLineRight();
     }); 
     $scope.$on('graphPointReset', function(event, args) {
-        $scope.stopLine();
+        $scope.resetLineRight();
     });
-    $scope.moveLine = function() {
+    $scope.moveLineRight = function() {
 
         $scope.skipRate = 400;
         $scope.xValueAtNextPoint = $scope.chartObj.series[8].data[0].x + $scope.skipRate;
@@ -190,40 +190,43 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                 $scope.MaxValueSet = true;
             }
             $scope.sensorValues = {
-                "s0": $scope.chartConfig.series[0].data[x],
-                "s1": $scope.chartConfig.series[1].data[x],
-                "s2": $scope.chartConfig.series[2].data[x],
-                "s3": $scope.chartConfig.series[3].data[x],
-                "s4": $scope.chartConfig.series[4].data[x],
-                "s5": $scope.chartConfig.series[5].data[x],
-                "s6": $scope.chartConfig.series[6].data[x],
-                "s7": $scope.chartConfig.series[7].data[x],
-                "yMax": $scope.yMax
+                "s0R": $scope.chartConfig.series[0].data[x],
+                "s1R": $scope.chartConfig.series[1].data[x],
+                "s2R": $scope.chartConfig.series[2].data[x],
+                "s3R": $scope.chartConfig.series[3].data[x],
+                "s4R": $scope.chartConfig.series[4].data[x],
+                "s5R": $scope.chartConfig.series[5].data[x],
+                "s6R": $scope.chartConfig.series[6].data[x],
+                "s7R": $scope.chartConfig.series[7].data[x],
+                "yMaxR": $scope.yMax
             }
 
-            // $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
+           //Get the left sensor values, append right values and save it back to shared properties for foot controller  
+           //sharedGraphDataProperties.setSensorValues(angular.extend($scope.sensorValues,sharedGraphDataProperties.getSensorValues()));
+            $scope.extendedSensorValues = angular.extend($scope.sensorValues,sharedGraphDataProperties.getSensorValues());
+            sharedGraphDataProperties.setSensorValues($scope.extendedSensorValues);
+            $rootScope.$broadcast('doneWithAllDataSave', [$scope.timeSyncVariable, 1, $scope.extendedSensorValues]);
         }
         $scope.chartObj.series[8].setData([
             [x, $scope.minY],
             [x, $scope.maxYRedLine]
         ]);
-        $scope.timeOutId = $timeout($scope.moveLine, 1000);
     }
 
-    $scope.stopLine = function() {
+    $scope.stopLineRight = function() {
         $timeout.cancel($scope.timeOutId);
     }
-    $scope.resetLine = function() {
-        $scope.stopLine();
+    $scope.resetLineRight = function() {
+        $scope.stopLineRight();
         $scope.sensorValues = {
-            "s0": 0,
-            "s1": 0,
-            "s2": 0,
-            "s3": 0,
-            "s4": 0,
-            "s5": 0,
-            "s6": 0,
-            "s7": 0,
+            "s0R": 0,
+            "s1R": 0,
+            "s2R": 0,
+            "s3R": 0,
+            "s4R": 0,
+            "s5R": 0,
+            "s6R": 0,
+            "s7R": 0,
             "yMax": $scope.yMax
         }
         $scope.chartObj.series[8].setData([

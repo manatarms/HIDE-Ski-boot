@@ -2,14 +2,21 @@
 
 //Sharing variables
 skiApp.service('sharedGraphDataProperties', function() {
-    var property = '';
-
+    var timeSyncVariable = '';
+    var sensorValues = '';
+    var self = this;
     return {
         getTimeSyncVariable: function() {
-            return TimeSyncVariable;
+            return timeSyncVariable;
         },
-        setTimeSyncVariable: function(value) {
-            TimeSyncVariable = value;
+        setTimeSyncVariable: function(timeSyncVariable) {
+            this.timeSyncVariable = timeSyncVariable;
+        },
+        setSensorValues : function(sensorValues){
+            this.sensorValues = sensorValues;
+        },
+        getSensorValues:function(){
+            return this.sensorValues;
         }
     };
 });
