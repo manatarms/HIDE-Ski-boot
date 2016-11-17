@@ -1,5 +1,5 @@
 
-skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties','csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties,csvService) {
+skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties','csvService','papaParse', function($rootScope, $scope, $timeout, sharedGraphDataProperties,csvService,papaParse) {
     //CSV imports
     $scope.csv = {
         content: null,
@@ -17,7 +17,25 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
         this.chartConfig.loading = !this.chartConfig.loading
     }
 
-
+    var csvConfig = {
+        delimiter: "",  // auto-detect
+        newline: "",    // auto-detect
+        header: false,
+        dynamicTyping: false,
+        preview: 0,
+        encoding: "",
+        worker: false,
+        comments: false,
+        step: undefined,
+        complete: undefined,
+        error: undefined,
+        download: false,
+        skipEmptyLines: false,
+        chunk: undefined,
+        fastMode: undefined,
+        beforeFirstChunk: undefined,
+        withCredentials: undefined
+    };
 
     //CHART VARIABLES
     $scope.minY = 0;
@@ -159,6 +177,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
         }
     };
 
+    
 
 
     //TODO make this watch a service
