@@ -70,7 +70,7 @@ skiApp.service('colorRangeService', function() {
 
 //CSV handling service
 skiApp.service('csvService', function() {
-    function csvHander(content, chartConfig) {
+    function csvHandler(content, chartConfig) {
         if (content !== null) {
             //$scope.toggleLoading();
             //Reset max values for new plot
@@ -150,10 +150,10 @@ skiApp.service('csvService', function() {
     function getCsvContent(){
         return this.savedCsv;
     }
-
+    
     return {
-        csvHander: function(content, chartConfig) {
-            return csvHander(content, chartConfig);
+        csvHandler: function(content, chartConfig) {
+            return csvHandler(content, chartConfig);
         },
         setCsvContent: function(content){
             return setCsvContent(content);

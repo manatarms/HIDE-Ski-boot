@@ -183,7 +183,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
     //TODO make this watch a service
     $scope.$watch('csv.content', function() {
         $scope.MaxValueSet = false;
-        csvService.csvHander($scope.csv.content,$scope.chartConfig);
+        csvService.csvHandler($scope.csv.content,$scope.chartConfig);
     
     }); //End watch
 

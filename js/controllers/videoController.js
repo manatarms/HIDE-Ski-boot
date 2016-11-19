@@ -15,7 +15,7 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         }
 
     }
-
+ 
     $scope.videoConfig = {
         preload: "none",
 
