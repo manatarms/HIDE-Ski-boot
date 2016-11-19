@@ -1,13 +1,16 @@
 Video frame rate player!!!
-//DONE Reset x to 0 on graph end playback
-Dynamic sizing for footgraph 
-//DONE turn off zoom for footplot
-//DONE let video sync slider have negative values. 
-//add second foot functionality
 Maintain states across router pages
-//Clear button to reset all graphs
+Clear button to reset all graphs
 Video upload
+Possibly upload two files at once, merge and download merged file
 
 Longer term:
 animations/plotly
 Adding comments to CSV file for later recall
+
+DONE:
+//add second foot functionality
+//let video sync slider have negative values.
+//turn off zoom for footplot
+//Dynamic sizing for footgraph
+//Reset x to 0 on graph end playback
