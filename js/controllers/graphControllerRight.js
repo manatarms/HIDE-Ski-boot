@@ -177,7 +177,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     });
     $scope.moveLineRight = function() {
 
-        $scope.skipRate = 400;
+        $scope.skipRate = 40;
         $scope.xValueAtNextPoint = $scope.chartObj.series[8].data[0].x + $scope.skipRate;
         //Check if value at that X point exits in graph
         if (!$scope.chartObj.xAxis[0].categories[$scope.xValueAtNextPoint]) {
@@ -213,7 +213,8 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
            //sharedGraphDataProperties.setSensorValues(angular.extend($scope.sensorValues,sharedGraphDataProperties.getSensorValues()));
             $scope.extendedSensorValues = angular.extend($scope.sensorValues,sharedGraphDataProperties.getSensorValues());
             sharedGraphDataProperties.setSensorValues($scope.extendedSensorValues);
-            $rootScope.$broadcast('doneWithAllDataSave', [$scope.timeSyncVariable, 1, $scope.extendedSensorValues]);
+            $rootScope.$broadcast('doneWithAllDataSave', [$scope.timeSyncVariable/800, 1, $scope.extendedSensorValues]);
+            
         }
         $scope.chartObj.series[8].setData([
             [x, $scope.minY],

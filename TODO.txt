@@ -1,4 +1,5 @@
 Video frame rate player!!!
+Add loading icon to chart
 Maintain states across router pages
 Clear button to reset all graphs
 Video upload

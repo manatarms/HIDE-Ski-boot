@@ -12,10 +12,10 @@ skiApp.service('sharedGraphDataProperties', function() {
         setTimeSyncVariable: function(timeSyncVariable) {
             this.timeSyncVariable = timeSyncVariable;
         },
-        setSensorValues : function(sensorValues){
+        setSensorValues: function(sensorValues) {
             this.sensorValues = sensorValues;
         },
-        getSensorValues:function(){
+        getSensorValues: function() {
             return this.sensorValues;
         }
     };
@@ -68,12 +68,15 @@ skiApp.service('colorRangeService', function() {
 });
 
 
+
+
 //CSV handling service
-skiApp.service('csvService', function() {
+skiApp.service('csvService', ['$q', function($q) {
     function csvHander(content, chartConfig) {
         if (content !== null) {
             //$scope.toggleLoading();
             //Reset max values for new plot
+            chartConfig.loading = true;
 
             var lines = content.split('\n');
             //Optimize with local variable and push entire series array
@@ -134,20 +137,24 @@ skiApp.service('csvService', function() {
                     // TODO Push a giant array and optimize later
                     //$scope.chartConfig.series[0].data.push(series);
                     //$scope.toggleLoading();
-                }//End else
+                } //End else
 
 
 
             }); //End forEach
-        }
+            chartConfig.loading = false;
+        } //End Null check 
+        return $q(function(resolve, reject) {
+            resolve();
+        });
 
     }
 
-    function setCsvContent(content){
+    function setCsvContent(content) {
         this.savedCsv = content;
     }
 
-    function getCsvContent(){
+    function getCsvContent() {
         return this.savedCsv;
     }
 
@@ -155,11 +162,18 @@ skiApp.service('csvService', function() {
         csvHander: function(content, chartConfig) {
             return csvHander(content, chartConfig);
         },
-        setCsvContent: function(content){
+        setCsvContent: function(content) {
             return setCsvContent(content);
         },
-        getCsvContent: function(content){
+        getCsvContent: function(content) {
             return getCsvContent(content);
         }
     };
+}]);
+
+
+//Add chart config builder later
+skiApp.service('chartConfigBuilder', function() {
+    
+     
 });
