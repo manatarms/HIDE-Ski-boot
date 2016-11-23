@@ -51,8 +51,13 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
                                     var currentClickedX = this.x;
                                     $scope.timeSyncVariable = this.category;
                                     sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-                                    // console.log($scope.chartConfig.series[7].data[currentClickedX]);
+
                                     //ARGS value * conversion 
+                                    if (!$scope.MaxValueSet) {
+                                        //Set all max values for graph points
+                                        $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+                                        $scope.MaxValueSet = true;
+                                    }
                                     $scope.sensorValues = {
                                             "s0L": $scope.chartConfig.series[0].data[currentClickedX],
                                             "s1L": $scope.chartConfig.series[1].data[currentClickedX],
@@ -69,7 +74,9 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
                                         [currentClickedX, $scope.minY],
                                         [currentClickedX, $scope.maxYRedLine]
                                     ]);
-                                    $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable / 800, 1, $scope.sensorValues]);
+                                    // $rootScope.$broadcast('graphLeftPointClicked', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
+
+                                    $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                                 }
                             }
                         }
@@ -186,7 +193,6 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
             $scope.timeSyncVariable = x / $scope.skipRate;
 
             sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
-
             //ARGS value * conversion, Object that contains values
             if (!$scope.MaxValueSet) {
                 //Set all max values for graph points
@@ -208,8 +214,6 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
                 "yMax": $scope.yMax
             }
             sharedGraphDataProperties.setSensorValues($scope.sensorValues);
-
-
             $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
         }
         $scope.chartObj.series[8].setData([
@@ -221,7 +225,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
 
     $scope.stopLineLeft = function() {
         $timeout.cancel($scope.timeOutId);
-        $rootScope.$broadcast('graphPointReset', [0, 1, $scope.sensorValues]);
+        $rootScope.$broadcast('graphPointStop', [0, 1, $scope.sensorValues]);
     }
     $scope.resetLineLeft = function() {
         $scope.stopLineLeft();
@@ -236,7 +240,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
             "s7L": 0,
             "yMax": $scope.yMax
         }
-        $rootScope.$broadcast('graphPointStop', [0, 1, $scope.sensorValues]);
+        $rootScope.$broadcast('graphPointReset', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
         $scope.chartObj.series[8].setData([
             [0, $scope.minY],
             [0, $scope.maxYRedLine]

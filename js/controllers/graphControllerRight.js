@@ -67,7 +67,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                                     [currentClickedX, $scope.minY],
                                     [currentClickedX, $scope.maxYRedLine]
                                 ]);
-                                $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable / 800, 1, $scope.sensorValues]);
+                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                             }
                         }
                     }
@@ -169,11 +169,12 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     $scope.$on('graphPointMoved', function(event, args) {
         $scope.moveLineRight();
     });
-    $scope.$on('graphPointStop', function(event, args) {
-        $scope.stopLineRight();
-    }); 
+    // $scope.$on('graphPointStop', function(event, args) {
+    //     $scope.stopLineRight();
+    // }); 
     $scope.$on('graphPointReset', function(event, args) {
         $scope.resetLineRight();
+
     });
     $scope.moveLineRight = function() {
 
@@ -213,8 +214,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
            //sharedGraphDataProperties.setSensorValues(angular.extend($scope.sensorValues,sharedGraphDataProperties.getSensorValues()));
             $scope.extendedSensorValues = angular.extend($scope.sensorValues,sharedGraphDataProperties.getSensorValues());
             sharedGraphDataProperties.setSensorValues($scope.extendedSensorValues);
-            $rootScope.$broadcast('doneWithAllDataSave', [$scope.timeSyncVariable/800, 1, $scope.extendedSensorValues]);
-            
+            $rootScope.$broadcast('doneWithAllDataSave', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
         }
         $scope.chartObj.series[8].setData([
             [x, $scope.minY],
@@ -223,11 +223,19 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     }
 
     $scope.stopLineRight = function() {
-        $timeout.cancel($scope.timeOutId);
+        // $timeout.cancel($scope.timeOutId);
     }
     $scope.resetLineRight = function() {
         $scope.stopLineRight();
         $scope.sensorValues = {
+            "s0L": 0,
+            "s1L": 0,
+            "s2L": 0,
+            "s3L": 0,
+            "s4L": 0,
+            "s5L": 0,
+            "s6L": 0,
+            "s7L": 0,
             "s0R": 0,
             "s1R": 0,
             "s2R": 0,
@@ -242,6 +250,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
             [0, $scope.minY],
             [0, $scope.maxYRedLine]
         ]);
+         $rootScope.$broadcast('doneWithAllDataSave', [0, 1, $scope.sensorValues]);
     }
 
 }]);

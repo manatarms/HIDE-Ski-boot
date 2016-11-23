@@ -259,4 +259,26 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
 
     });
 
+    $scope.$on('graphLeftPointClicked', function(event, args) {
+        if (!$scope.MaxValueSet) {
+            $scope.yMax = args[2].yMax;
+            $scope.MaxValueSet = true;
+        }
+        colorMultiplier = 100/ $scope.yMax;
+        for (i = 0; i < 8; i++) {
+            //keeps these variables local
+            sValueL = 's' + i + 'L';
+            currentValueL = args[2][sValueL];
+
+            //FIX THIS
+            $scope.footChartConfig.series[i].data[0].z = currentValueL;
+            $scope.footChartConfig.series[i].color = colorRangeService.convertValueToRgb(Math.round(currentValueL * colorMultiplier));
+
+            $scope.footChartConfig.series[i+8].data[0].z = 0;
+            $scope.footChartConfig.series[i+8].color = colorRangeService.convertValueToRgb(0);
+
+        }
+
+    });
+
 }]);
