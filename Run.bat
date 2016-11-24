@@ -8,12 +8,12 @@ IF     ERRORLEVEL 1 goto :FAILURE
 :SUCCESS
 ECHO Updating to latest version
 git pull
-gulp build
-goto RUN
+gulp build-and-server
+goto END
 
 :FAILURE
 ECHO Using last know version
-goto RUN
-
-:RUN
 gulp server-build
+goto END
+
+:END

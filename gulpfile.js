@@ -66,7 +66,7 @@ gulp.task('server', function(done) {
   }, done);
 });
 
-// start webserver from _build folder to check how it will look in production
+// start webserver from dist folder to check how it will look in production
 gulp.task('server-build', function(done) {
   return browserSync({
     server: {
@@ -183,5 +183,18 @@ gulp.task('build', function(callback) {
     'minify-html',
     'copy',
     'build:size',
+    callback);
+});
+
+gulp.task('build-and-server', function(callback) {
+  runSequence(
+    'clean:build',
+    'sass',
+    'css:build',
+    'images',
+    'minify-js',
+    'minify-html',
+    'copy',
+    'server-build',
     callback);
 });

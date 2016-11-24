@@ -5,6 +5,11 @@ Clear button to reset all graphs
 Video upload
 Possibly upload two files at once, merge and download merged file
 
+
+FIXES:
+Fix foot syncing issue on reset,
+Graph click issues
+
 Longer term:
 animations/plotly
 Adding comments to CSV file for later recall
