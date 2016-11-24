@@ -260,6 +260,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
     });
 
     $scope.$on('graphLeftPointClicked', function(event, args) {
+        // console.log(args);
         if (!$scope.MaxValueSet) {
             $scope.yMax = args[2].yMax;
             $scope.MaxValueSet = true;

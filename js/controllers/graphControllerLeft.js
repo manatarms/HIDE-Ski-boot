@@ -1,5 +1,6 @@
 skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService','chartConfigBuilder',function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService,chartConfigBuilder) {
     //CSV imports
+    $scope.skipRate = 40;
     $scope.csv = {
         content: null,
         header: false,
@@ -74,9 +75,10 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
                                         [currentClickedX, $scope.minY],
                                         [currentClickedX, $scope.maxYRedLine]
                                     ]);
-                                    // $rootScope.$broadcast('graphLeftPointClicked', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
+                                     //Divide by skip rate because we have actual values in timeSyncVariable
+                                    $rootScope.$broadcast('graphLeftPointClicked', [$scope.timeSyncVariable/$scope.skipRate, 1, $scope.sensorValues]);
 
-                                    $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
+                                    // $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                                 }
                             }
                         }
@@ -183,7 +185,6 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
 
     //Animated line thing
     $scope.moveLineLeft = function() {
-        $scope.skipRate = 40;
         $scope.xValueAtNextPoint = $scope.chartObj.series[8].data[0].x + $scope.skipRate;
         //Check if value at that X point exits in graph
         if (!$scope.chartObj.xAxis[0].categories[$scope.xValueAtNextPoint]) {

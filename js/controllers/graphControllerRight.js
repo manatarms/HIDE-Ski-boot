@@ -1,4 +1,6 @@
 skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService) {
+    
+    $scope.skipRate = 40;
     //CSV imports
     $scope.csv = {
         content: null,
@@ -67,6 +69,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                                     [currentClickedX, $scope.minY],
                                     [currentClickedX, $scope.maxYRedLine]
                                 ]);
+
                                 $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                             }
                         }
@@ -178,7 +181,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     });
     $scope.moveLineRight = function() {
 
-        $scope.skipRate = 40;
+        
         $scope.xValueAtNextPoint = $scope.chartObj.series[8].data[0].x + $scope.skipRate;
         //Check if value at that X point exits in graph
         if (!$scope.chartObj.xAxis[0].categories[$scope.xValueAtNextPoint]) {

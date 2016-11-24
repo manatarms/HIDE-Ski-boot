@@ -7,7 +7,6 @@ Possibly upload two files at once, merge and download merged file
 
 
 FIXES:
-Fix foot syncing issue on reset,
 Graph click issues
 
 Longer term:
