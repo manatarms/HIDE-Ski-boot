@@ -49,8 +49,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
                                 click: function(event) {
                                     //alert('Category: '+ this.category +', value: '+ this.y);
                                     //local variable for current
-                                    var currentClickedX = this.x;
-                                    $scope.timeSyncVariable = this.category;
+                                    var currentClickedX = $scope.timeSyncVariable = this.x;
                                     sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
 
                                     //ARGS value * conversion 
@@ -76,7 +75,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
                                         [currentClickedX, $scope.maxYRedLine]
                                     ]);
                                      //Divide by skip rate because we have actual values in timeSyncVariable
-                                    $rootScope.$broadcast('graphLeftPointClicked', [$scope.timeSyncVariable/$scope.skipRate, 1, $scope.sensorValues]);
+                                    $rootScope.$broadcast('graphLeftPointClicked', [$scope.timeSyncVariable, 1,$scope.skipRate, $scope.sensorValues]);
 
                                     // $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                                 }
