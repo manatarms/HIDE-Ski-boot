@@ -38,12 +38,12 @@
                 </vg-media>
                 <vg-controls vg-autohide="videoConfig.plugins.controls.autoHide" vg-autohide-time="videoConfig.plugins.controls.autoHideTime">
                     <vg-play-pause-button></vg-play-pause-button>
-                    <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-time-display>{{ currentTime | date:'mm:ss:sss':'+0000' }}</vg-time-display>
                     <vg-scrub-bar>
                         <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
                     </vg-scrub-bar>
-                    <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
-                    <vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-time-display>{{ timeLeft | date:'mm:ss:sss':'+0000' }}</vg-time-display>
+                    <vg-time-display>{{ totalTime | date:'mm:ss:sss':'+0000' }}</vg-time-display>
                     <vg-volume>
                         <vg-mute-button></vg-mute-button>
                         <vg-volume-bar></vg-volume-bar>

@@ -69,8 +69,8 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                                     [currentClickedX, $scope.minY],
                                     [currentClickedX, $scope.maxYRedLine]
                                 ]);
+                                $rootScope.$broadcast('graphRightPointClicked', [$scope.timeSyncVariable, 1,$scope.skipRate, $scope.sensorValues]);
 
-                                $rootScope.$broadcast('graphPointClicked', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                             }
                         }
                     }

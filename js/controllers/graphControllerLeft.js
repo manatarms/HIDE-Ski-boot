@@ -247,4 +247,17 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
         ]);
     }
 
+    $scope.$on('graphRightPointClicked', function(event, args) {
+        // $scope.API.seekTime(((args[0] * args[1])/args[2]) + $scope.videoSlider.value, false);
+        var xValue = args[0];
+        var sensorValues = args[3];
+        var yMax = args[3].yMax;
+
+        $scope.chartObj.series[8].data[0].x = xValue;
+        $scope.chartObj.series[8].setData([
+            [xValue, 0],
+            [xValue, yMax]
+        ]);
+    });
+
 }]);
