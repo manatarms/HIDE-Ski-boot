@@ -57,6 +57,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                                     $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
                                     $scope.MaxValueSet = true;
                                 }
+
                                 //ARGS value * conversion 
                                 $scope.sensorValues = {
                                         "s0R": $scope.chartConfig.series[0].data[currentClickedX],
@@ -166,11 +167,28 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
 
 
 
-    //TODO make this watch a service
-    $scope.$watch('csv.content', function() {
-        $scope.MaxValueSet = false;
-        csvService.csvHander($scope.csv.content, $scope.chartConfig);
+    // //TODO make this watch a service
+    // $scope.$watch('csv.content', function() {
+    //     $scope.MaxValueSet = false;
+    //     csvService.csvHander($scope.csv.content, $scope.chartConfig);
+    //     if (!$scope.MaxValueSet) {
+    //         //Set all max values for graph points
+    //         $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+    //         $scope.MaxValueSet = true;
+    //     }
+        
+    // }); //End watch
 
+    $scope.$watch('csv.content', function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+            // $scope.toggleLoading();
+            // $scope.chartObj.showLoading();
+            $scope.MaxValueSet = false;
+            var csvServicePromise = csvService.csvHander($scope.csv.content, $scope.chartConfig);
+            csvServicePromise.then(function() {
+                // $scope.chartObj.hideLoading();
+            });
+        }
     }); //End watch
 
     //Animated line thing
@@ -264,15 +282,38 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
 
     $scope.$on('graphLeftPointClicked', function(event, args) {
         // $scope.API.seekTime(((args[0] * args[1])/args[2]) + $scope.videoSlider.value, false);
+        if (!$scope.MaxValueSet) {
+            //Set all max values for graph points
+            $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+            $scope.MaxValueSet = true;
+        }
         var xValue = args[0];
         var sensorValues = args[3];
         var yMax = args[3].yMax;
-
+        $scope.timeSyncVariable = ((xValue * args[1])/args[2]);
         $scope.chartObj.series[8].data[0].x = xValue;
+        $scope.sensorValues = {
+            "s0R": $scope.chartConfig.series[0].data[xValue],
+            "s1R": $scope.chartConfig.series[1].data[xValue],
+            "s2R": $scope.chartConfig.series[2].data[xValue],
+            "s3R": $scope.chartConfig.series[3].data[xValue],
+            "s4R": $scope.chartConfig.series[4].data[xValue],
+            "s5R": $scope.chartConfig.series[5].data[xValue],
+            "s6R": $scope.chartConfig.series[6].data[xValue],
+            "s7R": $scope.chartConfig.series[7].data[xValue],
+            "yMaxR": $scope.yMax
+        }
+
         $scope.chartObj.series[8].setData([
             [xValue, 0],
-            [xValue, yMax]
+            [xValue, $scope.yMax]
         ]);
+        //(Time Value * conversion) / skipRate
+
+        $scope.extendedSensorValues = angular.extend(sensorValues,$scope.sensorValues);
+        sharedGraphDataProperties.setSensorValues($scope.extendedSensorValues);
+        $rootScope.$broadcast('doneWithAllDataSave', [$scope.timeSyncVariable, 1, $scope.extendedSensorValues]);
+        
     });
 
 }]);

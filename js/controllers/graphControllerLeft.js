@@ -1,4 +1,4 @@
-skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService','chartConfigBuilder',function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService,chartConfigBuilder) {
+skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', 'chartConfigBuilder', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService, chartConfigBuilder) {
     //CSV imports
     $scope.skipRate = 40;
     $scope.csv = {
@@ -24,147 +24,147 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
     $scope.maxYRedLine = 0;
     $scope.maxXEntireGraph = 20000;
     $scope.MaxValueSet = false;
-    $scope.chartConfig =  {
+    $scope.chartConfig = {
 
-            options: {
-                //This is the Main Highcharts chart config. Any Highchart options are valid here.
-                //will be overriden by values specified below.
-                chart: {
-                    type: 'line',
-                    zoomType: 'x'
+        options: {
+            //This is the Main Highcharts chart config. Any Highchart options are valid here.
+            //will be overriden by values specified below.
+            chart: {
+                type: 'line',
+                zoomType: 'x'
 
-                },
-                tooltip: {
-                    crosshairs: true,
-                    shared: true,
-                    valueSuffix: ' units'
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true,
+                valueSuffix: ' units'
 
-                },
-                plotOptions: {
-                    series: {
-                        cursor: 'pointer',
+            },
+            plotOptions: {
+                series: {
+                    cursor: 'pointer',
 
-                        point: {
-                            events: {
-                                click: function(event) {
-                                    //alert('Category: '+ this.category +', value: '+ this.y);
-                                    //local variable for current
-                                    var currentClickedX = $scope.timeSyncVariable = this.x;
-                                    sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
+                    point: {
+                        events: {
+                            click: function(event) {
+                                //alert('Category: '+ this.category +', value: '+ this.y);
+                                //local variable for current
+                                var currentClickedX = $scope.timeSyncVariable = this.x;
+                                sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
 
-                                    //ARGS value * conversion 
-                                    if (!$scope.MaxValueSet) {
-                                        //Set all max values for graph points
-                                        $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
-                                        $scope.MaxValueSet = true;
-                                    }
-                                    $scope.sensorValues = {
-                                            "s0L": $scope.chartConfig.series[0].data[currentClickedX],
-                                            "s1L": $scope.chartConfig.series[1].data[currentClickedX],
-                                            "s2L": $scope.chartConfig.series[2].data[currentClickedX],
-                                            "s3L": $scope.chartConfig.series[3].data[currentClickedX],
-                                            "s4L": $scope.chartConfig.series[4].data[currentClickedX],
-                                            "s5L": $scope.chartConfig.series[5].data[currentClickedX],
-                                            "s6L": $scope.chartConfig.series[6].data[currentClickedX],
-                                            "s7L": $scope.chartConfig.series[7].data[currentClickedX],
-                                            "yMax": $scope.yMax
-                                        }
-                                        //Set the red line to clicked value
-                                    $scope.chartObj.series[8].setData([
-                                        [currentClickedX, $scope.minY],
-                                        [currentClickedX, $scope.maxYRedLine]
-                                    ]);
-                                     //Divide by skip rate because we have actual values in timeSyncVariable
-                                    $rootScope.$broadcast('graphLeftPointClicked', [$scope.timeSyncVariable, 1,$scope.skipRate, $scope.sensorValues]);
-
-                                    // $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
+                                //ARGS value * conversion 
+                                if (!$scope.MaxValueSet) {
+                                    //Set all max values for graph points
+                                    $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+                                    $scope.MaxValueSet = true;
                                 }
+                                $scope.sensorValues = {
+                                        "s0L": $scope.chartConfig.series[0].data[currentClickedX],
+                                        "s1L": $scope.chartConfig.series[1].data[currentClickedX],
+                                        "s2L": $scope.chartConfig.series[2].data[currentClickedX],
+                                        "s3L": $scope.chartConfig.series[3].data[currentClickedX],
+                                        "s4L": $scope.chartConfig.series[4].data[currentClickedX],
+                                        "s5L": $scope.chartConfig.series[5].data[currentClickedX],
+                                        "s6L": $scope.chartConfig.series[6].data[currentClickedX],
+                                        "s7L": $scope.chartConfig.series[7].data[currentClickedX],
+                                        "yMax": $scope.yMax
+                                    }
+                                    //Set the red line to clicked value
+                                $scope.chartObj.series[8].setData([
+                                    [currentClickedX, $scope.minY],
+                                    [currentClickedX, $scope.maxYRedLine]
+                                ]);
+                                //Divide by skip rate because we have actual values in timeSyncVariable
+                                $rootScope.$broadcast('graphLeftPointClicked', [$scope.timeSyncVariable, 1, $scope.skipRate, $scope.sensorValues]);
+
+                                // $rootScope.$broadcast('graphPointMoved', [$scope.timeSyncVariable, 1, $scope.sensorValues]);
                             }
                         }
-
                     }
+
                 }
-            },
-
-            //Series object (optional) - a list of series using normal Highcharts series options.
-            series: [{
-                    name: 's0L',
-                    data: [],
-                    visible: true
-
-                }, {
-                    name: 's1L',
-                    data: [],
-                    visible: true
-                }, {
-                    name: 's2L',
-                    data: [],
-                    visible: true
-                }, {
-                    name: 's3L',
-                    data: [],
-                    visible: true
-                }, {
-                    name: 's4L',
-                    data: [],
-                    visible: true
-                }, {
-                    name: 's5L',
-                    data: [],
-                    visible: true
-                }, {
-                    name: 's6L',
-                    data: [],
-                    visible: true
-                }, {
-                    name: 's7L',
-                    data: [],
-                    visible: true
-                }, {
-                    //Animation line
-                    name: 'Current',
-                    data: [
-                        [0, $scope.minY],
-                        [0, $scope.maxYRedLine]
-                    ]
-                }
-
-
-
-            ],
-
-            //Title configuration (optional)
-            title: {
-                text: false
-            },
-            //Boolean to control showing loading status on chart (optional)
-            //Could be a string if you want to show specific loading text.
-            loading: false,
-            //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
-            //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
-            xAxis: {
-                categories: [],
-                title: { text: 'Time (ms)' }
-            },
-            yAxis: {
-                title: { text: 'Force (N)' }
-            },
-
-            //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.
-            useHighStocks: false,
-            //size (optional) if left out the chart will default to size of the div or something sensible.
-            size: {
-                //width: 400,
-                //height: 300
-            },
-
-            //function (optional)
-            func: function(chart) {
-                //setup some logic for the chart
-                //get a local reference for chart
-                $scope.chartObj = chart;
             }
-        };
+        },
+
+        //Series object (optional) - a list of series using normal Highcharts series options.
+        series: [{
+                name: 's0L',
+                data: [],
+                visible: true
+
+            }, {
+                name: 's1L',
+                data: [],
+                visible: true
+            }, {
+                name: 's2L',
+                data: [],
+                visible: true
+            }, {
+                name: 's3L',
+                data: [],
+                visible: true
+            }, {
+                name: 's4L',
+                data: [],
+                visible: true
+            }, {
+                name: 's5L',
+                data: [],
+                visible: true
+            }, {
+                name: 's6L',
+                data: [],
+                visible: true
+            }, {
+                name: 's7L',
+                data: [],
+                visible: true
+            }, {
+                //Animation line
+                name: 'Current',
+                data: [
+                    [0, $scope.minY],
+                    [0, $scope.maxYRedLine]
+                ]
+            }
+
+
+
+        ],
+
+        //Title configuration (optional)
+        title: {
+            text: false
+        },
+        //Boolean to control showing loading status on chart (optional)
+        //Could be a string if you want to show specific loading text.
+        loading: false,
+        //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
+        //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
+        xAxis: {
+            categories: [],
+            title: { text: 'Time (ms)' }
+        },
+        yAxis: {
+            title: { text: 'Force (N)' }
+        },
+
+        //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.
+        useHighStocks: false,
+        //size (optional) if left out the chart will default to size of the div or something sensible.
+        size: {
+            //width: 400,
+            //height: 300
+        },
+
+        //function (optional)
+        func: function(chart) {
+            //setup some logic for the chart
+            //get a local reference for chart
+            $scope.chartObj = chart;
+        }
+    };
 
 
     // console.log(chartConfigBuilder.getChartConfig());
@@ -248,14 +248,42 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
     }
 
     $scope.$on('graphRightPointClicked', function(event, args) {
+        if (!$scope.MaxValueSet) {
+            //Set all max values for graph points
+            $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+            $scope.MaxValueSet = true;
+        }
         var xValue = args[0];
         var sensorValues = args[3];
-        var yMax = args[3].yMaxR;
+        var yMax = args[3].yMax;
+        var sensorValues = args[3];
+        var yMax = args[3].yMax;
+        $scope.timeSyncVariable = ((xValue * args[1]) / args[2]);
         $scope.chartObj.series[8].data[0].x = xValue;
+        $scope.sensorValues = {
+            "s0L": $scope.chartConfig.series[0].data[xValue],
+            "s1L": $scope.chartConfig.series[1].data[xValue],
+            "s2L": $scope.chartConfig.series[2].data[xValue],
+            "s3L": $scope.chartConfig.series[3].data[xValue],
+            "s4L": $scope.chartConfig.series[4].data[xValue],
+            "s5L": $scope.chartConfig.series[5].data[xValue],
+            "s6L": $scope.chartConfig.series[6].data[xValue],
+            "s7L": $scope.chartConfig.series[7].data[xValue],
+            "yMax": $scope.yMax
+        }
+
         $scope.chartObj.series[8].setData([
             [xValue, 0],
-            [xValue, yMax]
+            [xValue, $scope.yMax]
         ]);
+        //(Time Value * conversion) / skipRate
+
+        $scope.extendedSensorValues = angular.extend(sensorValues, $scope.sensorValues);
+        sharedGraphDataProperties.setSensorValues($scope.extendedSensorValues);
+        $rootScope.$broadcast('doneWithAllDataSave', [$scope.timeSyncVariable, 1, $scope.extendedSensorValues]);
+
+
+
     });
 
 }]);
