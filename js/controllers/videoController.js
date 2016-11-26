@@ -62,4 +62,9 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         $scope.API.seekTime(((args[0] * args[1])/args[2]) + $scope.videoSlider.value, false);
     });
 
+    $scope.$on('graphRightPointClicked', function(event, args) {
+        //(Time Value * conversion) / skipRate
+        $scope.API.seekTime(((args[0] * args[1])/args[2]) + $scope.videoSlider.value, false);
+    });
+
 }]);

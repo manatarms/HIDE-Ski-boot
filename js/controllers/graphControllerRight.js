@@ -49,9 +49,14 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
                         events: {
                             click: function(event) {
                                 //local variable for current
-                                var currentClickedX = this.x;
-                                $scope.timeSyncVariable = this.category;
+                                var currentClickedX = $scope.timeSyncVariable = this.x;
                                 sharedGraphDataProperties.setTimeSyncVariable($scope.timeSyncVariable);
+                                //ARGS value * conversion 
+                                if (!$scope.MaxValueSet) {
+                                    //Set all max values for graph points
+                                    $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
+                                    $scope.MaxValueSet = true;
+                                }
                                 //ARGS value * conversion 
                                 $scope.sensorValues = {
                                         "s0R": $scope.chartConfig.series[0].data[currentClickedX],
