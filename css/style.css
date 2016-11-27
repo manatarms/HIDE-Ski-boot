@@ -3,7 +3,8 @@
 html {
   color: #222;
   font-size: 1em;
-  line-height: 1.4; }
+  line-height: 1.4;
+  overflow-x: hidden; }
 
 ::-moz-selection {
   background: #b3d4fc;
@@ -273,13 +274,15 @@ nav a:hover {
   border-left: 1px solid;
   border-color: rgba(255, 255, 255, 0.5); }
 
-span.prefix, label.prefix {
+span.prefix,
+label.prefix {
   background: #f2f2f2;
   border-right: none;
   color: #333333;
   border-color: #cccccc; }
 
-.prefix, .postfix {
+.prefix,
+.postfix {
   border-style: solid;
   border-width: 1px;
   display: block;
@@ -323,9 +326,23 @@ span.prefix, label.prefix {
   margin-bottom: 15px; }
 
 .menu-separator {
-  margin: 3px 0 10px 0;
+  margin: 3px 15px 10px;
   margin-bottom: 0;
   float: left; }
+
+/*Upload button styles*/
+#video-upload-label {
+  pointer: cursor;
+  position: relative;
+  top: -18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  z-index: 10; }
+
+#video-upload {
+  opacity: 0;
+  position: absolute;
+  z-index: -1; }
 
 /*VIDEO TIME SLIDER STYLES*/
 .rzslider {
@@ -377,7 +394,7 @@ span.prefix, label.prefix {
   z-index: 1;
   width: 100%;
   height: 32px;
-  padding-top: 16px;
+  padding-top: 5px;
   margin-top: -16px;
   box-sizing: border-box; }
 
@@ -402,7 +419,7 @@ span.prefix, label.prefix {
   border-radius: 2px; }
 
 .rzslider .rz-pointer {
-  top: -14px;
+  top: -17px;
   z-index: 3;
   width: 32px;
   height: 32px;
@@ -556,3 +573,15 @@ span.prefix, label.prefix {
   right: 24px;
   bottom: initial;
   left: initial; }
+
+.rzslider .rz-pointer {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px; }
+
+.rzslider .rz-pointer:after {
+  top: 6px;
+  left: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 2px; }
