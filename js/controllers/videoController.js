@@ -48,6 +48,8 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         options: {
             floor: -450,
             ceil: 450,
+            step: 0.1,
+            precision: 1,
             onChange: $scope.videoSliderChanged,
             translate: function(value) {
                   return value +' s';
