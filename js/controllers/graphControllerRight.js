@@ -166,27 +166,13 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     };
 
 
-
-    // //TODO make this watch a service
-    // $scope.$watch('csv.content', function() {
-    //     $scope.MaxValueSet = false;
-    //     csvService.csvHander($scope.csv.content, $scope.chartConfig);
-    //     if (!$scope.MaxValueSet) {
-    //         //Set all max values for graph points
-    //         $scope.maxYRedLine = $scope.yMax = $scope.chartObj.yAxis[0].dataMax;
-    //         $scope.MaxValueSet = true;
-    //     }
-        
-    // }); //End watch
-
     $scope.$watch('csv.content', function(newValue, oldValue) {
         if (newValue !== oldValue) {
-            // $scope.toggleLoading();
-            // $scope.chartObj.showLoading();
-            $scope.MaxValueSet = false;
+            $scope.MaxValueSet = false; 
+            
             var csvServicePromise = csvService.csvHander($scope.csv.content, $scope.chartConfig);
             csvServicePromise.then(function() {
-                // $scope.chartObj.hideLoading();
+                $scope.chartObj.hideLoading();
             });
         }
     }); //End watch

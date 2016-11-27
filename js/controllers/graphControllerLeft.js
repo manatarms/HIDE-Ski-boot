@@ -14,7 +14,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
     };
 
     $scope.toggleLoading = function() {
-        this.chartConfig.loading = !this.chartConfig.loading
+        $scope.chartConfig.loading = !$scope.chartConfig.loading
     }
 
 
@@ -173,14 +173,23 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
     $scope.$watch('csv.content', function(newValue, oldValue) {
         if (newValue !== oldValue) {
             // $scope.toggleLoading();
-            // $scope.chartObj.showLoading();
-            $scope.MaxValueSet = false;
-            var csvServicePromise = csvService.csvHander($scope.csv.content, $scope.chartConfig);
-            csvServicePromise.then(function() {
-                // $scope.chartObj.hideLoading();
-            });
+            // var showgraphload = $scope.chartObj.showLoading;
+            $timeout($scope.toggleLoading).then(
+                function() {
+                    $scope.MaxValueSet = false;
+                    var csvServicePromise = csvService.csvHander($scope.csv.content, $scope.chartConfig);
+                    csvServicePromise.then(function() {
+                        $scope.toggleLoading;
+                    });
+                }
+            );
+
+
         }
-    }); //End watch
+    }); //End watch for csv content
+
+   
+
 
     //Animated line thing
     $scope.moveLineLeft = function() {

@@ -1,6 +1,7 @@
 skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperties', function($scope, $sce, sharedGraphDataProperties) {
     //VIDEO variables
     var controller = this;
+    var URL = window.URL || window.webkitURL;
     $scope.API = null;
     $scope.sliderSet = false;
     controller.onPlayerReady = function(API) {
@@ -20,7 +21,7 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         preload: "none",
 
         sources: [
-            { src: $sce.trustAsResourceUrl("../assets/jump.mp4"), type: "video/mp4" }
+            // { src: $sce.trustAsResourceUrl("../assets/jump.mp4"), type: "video/mp4" }
         ],
         theme: {
             url: "../css/vendor/videogular.css"
@@ -34,7 +35,7 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     };
 
     $scope.videoSliderChanged = function() {
-        if (!$scope.sliderSet) {
+        if (!$scope.sliderSet && $scope.API.totalTime!==0) {
             $scope.setSliderValue();
             $scope.sliderSet = true;
         }
@@ -47,10 +48,18 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         options: {
             floor: -450,
             ceil: 450,
-            onChange: $scope.videoSliderChanged
+            onChange: $scope.videoSliderChanged,
+            translate: function(value) {
+                  return value +' s';
+            }
         }
     };
 
+    $scope.uploadFile = function(event) {
+        var file = event.target.files[0];
+        var fileURL = URL.createObjectURL(file);
+        $scope.videoConfig.sources = [{src: $sce.trustAsResourceUrl(fileURL), type: 'video/mp4'}]
+    };
 
     $scope.$on('doneWithAllDataSave', function(event, args) {
         //Time Value * conversion
