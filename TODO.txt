@@ -1,19 +1,17 @@
-Video frame rate player!!!
+Error checking for video and csv upload
 Add loading icon to chart
 Maintain states across router pages
 Clear button to reset all graphs
-Video upload
 Possibly upload two files at once, merge and download merged file
-
-
-FIXES:
-Graph click issues
 
 Longer term:
 animations/plotly
 Adding comments to CSV file for later recall
 
 DONE:
+//Video upload
+//Video frame rate player!!!
+//Graph click issues
 //add second foot functionality
 //let video sync slider have negative values.
 //turn off zoom for footplot
