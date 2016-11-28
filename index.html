@@ -56,20 +56,20 @@
             </footer>
         </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/vendor/jquery.min.js"></script>
     <!-- TBD copy conditional jquery file separately in gulp build -->
     <!-- <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script> -->
     <!-- load angular via CDN -->
-    <script src="https://code.angularjs.org/1.3.0-rc.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.3.0-rc.2/angular-route.min.js"></script>
-    <script src="https://code.angularjs.org/1.3.0-rc.2/angular-resource.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://rawgit.com/larsac07/Motion-Highcharts-Plugin/master/motion.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.min.js"></script>
-    <script src="http://static.videogular.com/scripts/videogular/latest/videogular.js"></script>
-    <script src="http://static.videogular.com/scripts/controls/latest/vg-controls.js"></script>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-route.min.js"></script>
+    <script src="js/vendor/angular-resource.min.js"></script>
+    <script src="js/vendor/highcharts.src.js"></script>
+    <script src="js/vendor/highcharts-more.js"></script>
+    <script src="js/vendor/exporting.js"></script>
+    <script src="js/vendor/motion.js"></script>
+    <script src="js/vendor/angular-sanitize.min.js"></script>
+    <script src="js/vendor/videogular.js"></script>
+    <script src="js/vendor/vg-controls.js"></script>
     <!-- build:js-->
     <script src="js/vendor/highcharts-ng.js"></script>
     <script src="js/vendor/highcharts-boost.js"></script>
@@ -102,7 +102,7 @@
         b[l].l = +new Date;
         e = o.createElement(i);
         r = o.getElementsByTagName(i)[0];
-        e.src = '//www.google-analytics.com/analytics.js';
+        e.src = 'js/vendor/analytics.js';
         r.parentNode.insertBefore(e, r)
     }(window, document, 'script', 'ga'));
     ga('create', 'UA-XXXXX-X', 'auto');
