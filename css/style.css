@@ -165,6 +165,48 @@ nav a:hover {
     margin: 0 auto;
     width: 100%; } }
 
+@media only screen {
+  #footChart {
+    background: url(../img/footoutline.png) no-repeat 50% 25%;
+    background-size: 380px auto;
+    border-left: 1px solid #ccc; } }
+
+/* Define mobile styles */
+@media only screen and (max-width: 40em) {
+  #footChart {
+    background: url(../img/footoutline.png) no-repeat 50% 25%;
+    background-size: 380px auto;
+    border-left: 1px solid #ccc; } }
+
+/* max-width 640px, mobile-only styles, use when QAing mobile issues */
+@media only screen and (min-width: 40.063em) {
+  #footChart {
+    background: url(../img/footoutline.png) no-repeat 50% 20%;
+    background-size: 350px auto;
+    border-left: 1px solid #ccc; } }
+
+/* min-width 641px, medium screens */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  #footChart {
+    background: url(../img/footoutline.png) no-repeat 50% 20%;
+    background-size: 350px auto;
+    border-left: 1px solid #ccc; } }
+
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+@media only screen and (min-width: 64.063em) {
+  #footChart {
+    background: url(../img/footoutline.png) no-repeat 50% 20%;
+    background-size: 450px auto;
+    border-left: 1px solid #ccc; } }
+
+/* min-width 1025px, large screens */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+  #footChart {
+    background: url(../img/footoutline.png) no-repeat 50% 20%;
+    background-size: 450px auto;
+    border-left: 1px solid #ccc; } }
+
+/* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -298,11 +340,11 @@ span.prefix, label.prefix {
 .videogular-container {
   height: 400px !important; }
 
-#footChart {
-  background: url(../img/footoutline.png) no-repeat 50% 0%;
-  background-size: 580px auto;
-  border-left: 1px solid #ccc; }
-
+/*#footChart {
+    background: url(../img/footoutline.png) no-repeat 50% 0%;
+    background-size: 580px auto;
+    border-left: 1px solid #ccc;
+}*/
 /*Floating import box to end*/
 .end-import {
   float: right !important; }
