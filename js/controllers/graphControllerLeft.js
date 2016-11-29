@@ -1,6 +1,6 @@
 skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', 'chartConfigBuilder', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService, chartConfigBuilder) {
     //CSV imports
-    $scope.skipRate = 40;
+    $scope.skipRate = 4;
     $scope.csv = {
         content: null,
         header: false,
