@@ -477,13 +477,17 @@ label.prefix {
 
 /*Upload button styles*/
 
-#video-upload-label,#left-upload-label,#right-upload-label {
+#video-upload-label {
     pointer: cursor;
     position: relative;
     top: -18px;
     padding-top: 5px;
     padding-bottom: 5px;
     z-index: 10;
+}
+
+#right-upload-label,#left-upload-label{
+    float: right;
 }
 
 #video-upload,#left-csv-upload,#right-csv-upload {
