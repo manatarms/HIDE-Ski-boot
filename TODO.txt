@@ -8,6 +8,10 @@ Longer term:
 animations/plotly
 Adding comments to CSV file for later recall
 
+BUGS:
+Possible error or consecutive video uploads
+Possible compatibility issues for Rub.bat
+
 DONE:
 //Video upload
 //Video frame rate player!!!

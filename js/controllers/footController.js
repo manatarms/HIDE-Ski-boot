@@ -1,4 +1,4 @@
-skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraphDataProperties', function($scope, colorRangeService,sharedGraphDataProperties) {
+skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraphDataProperties', function($scope, colorRangeService, sharedGraphDataProperties) {
     $scope.sensorSize = 0;
     $scope.s0LReferenceX = 50;
     $scope.s0LReferenceY = 100;
@@ -7,7 +7,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
     $scope.s0RReferenceY = 100;
     $scope.MaxValueSet = false;
 
-    var sValueL,sValueR,currentValueL,currentValueR,colorRange,colorMultiplier;
+    var sValueL, sValueR, currentValueL, currentValueR, colorRange, colorMultiplier;
 
     $scope.footChartConfig = {
 
@@ -18,8 +18,11 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
                 type: 'bubble',
                 plotBorderWidth: 1,
                 backgroundColor: 'rgba(0,0,0,0)'
-
-
+            },
+            legend: {
+                width: 510,
+                align: 'center',
+                itemWidth: 60
             },
             tooltip: {
                 crosshairs: true,
@@ -49,6 +52,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
                 }
             }
         },
+
 
         //Series object (optional) - a list of series using normal Highcharts series options.
 
@@ -117,7 +121,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
                 z: $scope.sensorSize
             }],
             color: "transparent"
-        },{
+        }, {
             name: 's0R',
             data: [{
                 x: $scope.s0RReferenceX,
@@ -241,19 +245,19 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             $scope.yMax = args[2].yMax;
             $scope.MaxValueSet = true;
         }
-        colorMultiplier = 100/ $scope.yMax;
+        colorMultiplier = 100 / $scope.yMax;
         for (i = 0; i < 8; i++) {
             //keeps these variables local
             sValueL = 's' + i + 'L';
             sValueR = 's' + i + 'R';
             currentValueL = args[2][sValueL];
             currentValueR = args[2][sValueR];
-    
+
             $scope.footChartConfig.series[i].data[0].z = currentValueL;
             $scope.footChartConfig.series[i].color = colorRangeService.convertValueToRgb(Math.round(currentValueL * colorMultiplier));
-            
-            $scope.footChartConfig.series[i+8].data[0].z = currentValueR;
-            $scope.footChartConfig.series[i+8].color = colorRangeService.convertValueToRgb(Math.round(currentValueR * colorMultiplier));
+
+            $scope.footChartConfig.series[i + 8].data[0].z = currentValueR;
+            $scope.footChartConfig.series[i + 8].color = colorRangeService.convertValueToRgb(Math.round(currentValueR * colorMultiplier));
 
         }
 
