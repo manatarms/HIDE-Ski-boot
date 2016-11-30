@@ -88,8 +88,8 @@
                         </ul>
                     </div>
                     <div class="columns large-4 end-import">
-                        <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
-                        </ng-csv-import>
+                        <label class="button" id="left-upload-label" for="left-csv-upload">Upload Left CSV</label>
+                        <input type="file" custom-on-change="uploadLeftCsvFile" id="left-csv-upload" accept=".csv">
                     </div>
                 </div>
             </div>
@@ -100,8 +100,8 @@
                 <highchart id="forceChartRight" config="chartConfig"></highchart>
                 <div class="row">
                     <div class="columns large-4 end-import">
-                        <ng-csv-import class="import button" content="csv.content" header="csv.header" header-visible="csv.headerVisible" separator="csv.separator" separator-visible="csv.separatorVisible" result="csv.result" encoding-visible="csv.encodingVisible" upload-button-label="csv.uploadButtonLabel">
-                        </ng-csv-import>
+                        <label class="button" id="right-upload-label" for="right-csv-upload">Upload Right CSV</label>
+                        <input type="file" custom-on-change="uploadRightCsvFile" id="right-csv-upload" accept=".csv">
                     </div>
                 </div>
             </div>

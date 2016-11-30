@@ -357,7 +357,7 @@ label.prefix {
   float: left; }
 
 /*Upload button styles*/
-#video-upload-label {
+#video-upload-label, #left-upload-label, #right-upload-label {
   pointer: cursor;
   position: relative;
   top: -18px;
@@ -365,7 +365,7 @@ label.prefix {
   padding-bottom: 5px;
   z-index: 10; }
 
-#video-upload {
+#video-upload, #left-csv-upload, #right-csv-upload {
   opacity: 0;
   position: absolute;
   z-index: -1; }
