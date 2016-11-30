@@ -219,6 +219,39 @@ nav a:hover {
     }
 }
 
+// Small screens
+@media only screen { 
+
+    #footChart {
+        background: url(../img/footoutline.png) no-repeat 50% 25%;
+        background-size: 380px auto;
+        border-left: 1px solid #ccc;
+    }
+
+}
+
+// Medium screens
+@media only screen and (min-width: 40.063em) { 
+
+    #footChart {
+        background: url(../img/footoutline.png) no-repeat 50% 20%;
+        background-size: 350px auto;
+        border-left: 1px solid #ccc;
+    }
+
+} /* min-width 641px, medium screens */
+
+// Large screens
+@media only screen and (min-width: 64.063em) { 
+
+    #footChart {
+        background: url(../img/footoutline.png) no-repeat 50% 20%;
+        background-size: 450px auto;
+        border-left: 1px solid #ccc;
+    }
+
+} /* min-width 1025px, large screens */
+
 
 /* ==========================================================================
    Helper classes
@@ -391,11 +424,11 @@ label.prefix {
     height: 400px!important;
 }
 
-#footChart {
+/*#footChart {
     background: url(../img/footoutline.png) no-repeat 50% 0%;
     background-size: 580px auto;
     border-left: 1px solid #ccc;
-}
+}*/
 
 
 /*Floating import box to end*/
