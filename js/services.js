@@ -71,78 +71,78 @@ skiApp.service('colorRangeService', function() {
 
 
 //CSV handling service
-skiApp.service('csvService', ['$q', function($q) {
+skiApp.service('csvService', ['$timeout', '$q', function($timeout, $q) {
+
+
+
     function csvHander(content, chartConfig) {
+        
         if (content !== null) {
-            //$scope.toggleLoading();
-            //Reset max values for new plot
-            chartConfig.loading = true;
-
-            var lines = content.split('\n');
             //Optimize with local variable and push entire series array
-            var series = [
+            // var series = [
 
-            ];
+            // ];
+            processLargeArrayAsync(content);
+            function processLargeArrayAsync(array, maxTimePerChunk) {
+                maxTimePerChunk = maxTimePerChunk || 200;
+                var index = 1;//Start from 1 to skip headings
+                var rowLenght = array.length;
+                function now() {
+                    return new Date().getTime();
+                }
 
-            $.each(lines, function(lineNo, line) {
-                var items = line.split(',');
-                // console.log(items);
-                // header line containes categories
+                function doChunk() {
+                    var startTime = now();
+                    while (index < rowLenght && (now() - startTime) <= maxTimePerChunk) {
+                        // callback called with args (value, index, array)
+                        // console.log(content[index][2].length);
+                        for(i=0;i<11;i++){
+                            switch (i) {
+                                case 0:
+                                    chartConfig.xAxis.categories.push(parseFloat(content[index][i]));
+                                    break;
+                                case 1:
+                                    chartConfig.series[0].data.push(parseFloat(content[index][i]));
+                                    break;
+                                case 2:
+                                    chartConfig.series[1].data.push(parseFloat(content[index][i]));
+                                    break;
+                                case 3:
+                                    chartConfig.series[2].data.push(parseFloat(content[index][i]));
+                                    break;
+                                case 4:
+                                    chartConfig.series[3].data.push(parseFloat(content[index][i]));
+                                    break;
+                                case 5:
+                                    chartConfig.series[4].data.push(parseFloat(content[index][i]));
+                                    break;
+                                case 6:
+                                    chartConfig.series[5].data.push(parseFloat(content[index][i]));
+                                    break;
+                                case 7:
+                                    chartConfig.series[6].data.push(parseFloat(content[index][i]));
+                                    break;
+                                case 8:
+                                    chartConfig.series[7].data.push(parseFloat(content[index][i]));
+                                    break;
+                                default:
+                                    break;
 
-                // console.log(JSON.stringify($scope.chartConfig.series));
-                if (lineNo == 0) {
-                    $.each(items, function(itemNo, item) {
-                        if (itemNo > 0) {
-                            //Incase we use titles and main time value
-                            //$scope.chartConfig.xAxis.categories.push(item);
+                            }
+
                         }
-                    });
-                } else {
+                        ++index;
+                    }
+                    if (index < rowLenght) {
+                        // set Timeout for async iteration
+                        $timeout(doChunk, 1);
+                    }
+                }    
+                doChunk();    
+            }
+            
 
-                    $.each(items, function(itemNo, item) {
-                        switch (itemNo) {
-                            case 0:
-                                chartConfig.xAxis.categories.push(parseFloat(item));
-                                break;
-                            case 1:
-                                chartConfig.series[0].data.push(parseFloat(item));
-                                break;
-                            case 2:
-                                chartConfig.series[1].data.push(parseFloat(item));
-                                break;
-                            case 3:
-                                chartConfig.series[2].data.push(parseFloat(item));
-                                break;
-                            case 4:
-                                chartConfig.series[3].data.push(parseFloat(item));
-                                break;
-                            case 5:
-                                chartConfig.series[4].data.push(parseFloat(item));
-                                break;
-                            case 6:
-                                chartConfig.series[5].data.push(parseFloat(item));
-                                break;
-                            case 7:
-                                chartConfig.series[6].data.push(parseFloat(item));
-                                break;
-                            case 8:
-                                chartConfig.series[7].data.push(parseFloat(item));
-                                break;
-                            default:
-                                break;
-
-                        }
-                    });
-
-                    // TODO Push a giant array and optimize later
-                    //$scope.chartConfig.series[0].data.push(series);
-                    //$scope.toggleLoading();
-                } //End else
-
-
-
-            }); //End forEach
-            chartConfig.loading = false;
+            
         } //End Null check 
         return $q(function(resolve, reject) {
             resolve();
@@ -174,6 +174,6 @@ skiApp.service('csvService', ['$q', function($q) {
 
 //Add chart config builder later
 skiApp.service('chartConfigBuilder', function() {
-    
-     
+
+
 });

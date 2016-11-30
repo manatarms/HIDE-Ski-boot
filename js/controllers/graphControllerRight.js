@@ -1,23 +1,28 @@
-skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService) {
-    
+skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', 'chartConfigBuilder','papaParse', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService, chartConfigBuilder, papaParse) {
     $scope.skipRate = 4;
     //CSV imports
-    $scope.csv = {
-        content: null,
-        header: false,
-        headerVisible: true,
-        separator: ',',
-        separatorVisible: false,
-        result: null,
-        encoding: 'ISO-8859-1',
-        encodingVisible: false,
-        uploadButtonLabel: "Upload Right foot CSV"
-    };
-
+   var csvConfig = {
+              delimiter: "",  // auto-detect
+              newline: "",    // auto-detect
+              header: false,
+              dynamicTyping: false,
+              preview: 0,
+              encoding: "",
+              worker: false,
+              comments: false,
+              step: undefined,
+              complete: processCsv,
+              error: undefined,
+              download: false,
+              skipEmptyLines: true,
+              chunk: undefined,
+              fastMode: true,
+              beforeFirstChunk: undefined,
+              withCredentials: undefined
+      };
     $scope.toggleLoading = function() {
         this.chartConfig.loading = !this.chartConfig.loading
     }
-
 
 
     //CHART VARIABLES
@@ -44,7 +49,7 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
             plotOptions: {
                 series: {
                     cursor: 'pointer',
-
+                    turboThreshold: 0,
                     point: {
                         events: {
                             click: function(event) {
@@ -166,17 +171,21 @@ skiApp.controller('graphControllerRight', ['$rootScope', '$scope', '$timeout', '
     };
 
 
-    $scope.$watch('csv.content', function(newValue, oldValue) {
-        if (newValue !== oldValue) {
-            $scope.MaxValueSet = false; 
-            
-            var csvServicePromise = csvService.csvHander($scope.csv.content, $scope.chartConfig);
-            csvServicePromise.then(function() {
-                $scope.chartObj.hideLoading();
-            });
-        }
-    }); //End watch
+    $scope.uploadRightCsvFile = function(event) {
+        var file = event.target.files[0];
+        var fileURL = URL.createObjectURL(file);
+        $scope.toggleLoading();
+        papaParse.parse(file, csvConfig);
 
+    };
+
+    function processCsv(results, file){
+        var csvServicePromise = csvService.csvHander(results.data, $scope.chartConfig);
+            csvServicePromise.then(function() {
+                $scope.toggleLoading();
+            });
+    }
+    
     //Animated line thing
     $scope.$on('graphPointMoved', function(event, args) {
         $scope.moveLineRight();

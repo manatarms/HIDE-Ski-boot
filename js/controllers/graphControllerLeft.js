@@ -1,16 +1,25 @@
-skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', 'chartConfigBuilder', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService, chartConfigBuilder) {
+skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 'sharedGraphDataProperties', 'csvService', 'chartConfigBuilder','papaParse', function($rootScope, $scope, $timeout, sharedGraphDataProperties, csvService, chartConfigBuilder, papaParse) {
     //CSV imports
     $scope.skipRate = 4;
-    $scope.csv = {
-        content: null,
-        header: false,
-        headerVisible: true,
-        separator: ',',
-        separatorVisible: false,
-        result: null,
-        encoding: 'ISO-8859-1',
-        encodingVisible: false,
-        uploadButtonLabel: "Upload Left foot CSV"
+  
+     var csvConfig = {
+            delimiter: "",  // auto-detect
+            newline: "",    // auto-detect
+            header: false,
+            dynamicTyping: false,
+            preview: 0,
+            encoding: "",
+            worker: false,
+            comments: false,
+            step: undefined,
+            complete: processCsv,
+            error: undefined,
+            download: false,
+            skipEmptyLines: true,
+            chunk: undefined,
+            fastMode: true,
+            beforeFirstChunk: undefined,
+            withCredentials: undefined
     };
 
     $scope.toggleLoading = function() {
@@ -43,7 +52,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
             plotOptions: {
                 series: {
                     cursor: 'pointer',
-
+                    turboThreshold: 0,
                     point: {
                         events: {
                             click: function(event) {
@@ -169,26 +178,22 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
 
     // console.log(chartConfigBuilder.getChartConfig());
 
-    //TODO make this watch a service
-    $scope.$watch('csv.content', function(newValue, oldValue) {
-        if (newValue !== oldValue) {
-            // $scope.toggleLoading();
-            // var showgraphload = $scope.chartObj.showLoading;
-            $timeout($scope.toggleLoading).then(
-                function() {
-                    $scope.MaxValueSet = false;
-                    var csvServicePromise = csvService.csvHander($scope.csv.content, $scope.chartConfig);
-                    csvServicePromise.then(function() {
-                        $scope.toggleLoading;
-                    });
-                }
-            );
+    $scope.uploadLeftCsvFile = function(event) {
+        var file = event.target.files[0];
+        var fileURL = URL.createObjectURL(file);
+        $scope.toggleLoading();
+        papaParse.parse(file, csvConfig);
 
+    };
 
-        }
-    }); //End watch for csv content
-
-   
+    function processCsv(results, file){
+        var csvServicePromise = csvService.csvHander(results.data, $scope.chartConfig);
+            csvServicePromise.then(function() {
+                $scope.toggleLoading();
+            });
+    }
+    
+    
 
 
     //Animated line thing
