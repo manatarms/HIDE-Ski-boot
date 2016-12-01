@@ -7,7 +7,7 @@ skiApp.service('sharedGraphDataProperties', function() {
     var self = this;
     return {
         getTimeSyncVariable: function() {
-            return timeSyncVariable;
+            return this.timeSyncVariable;
         },
         setTimeSyncVariable: function(timeSyncVariable) {
             this.timeSyncVariable = timeSyncVariable;
@@ -96,6 +96,7 @@ skiApp.service('csvService', ['$timeout', '$q', function($timeout, $q) {
                     while (index < rowLenght && (now() - startTime) <= maxTimePerChunk) {
                         // callback called with args (value, index, array)
                         // console.log(content[index][2].length);
+                        //TODO CHANGE THIS HARDCODED VALUE
                         for(i=0;i<11;i++){
                             switch (i) {
                                 case 0:
