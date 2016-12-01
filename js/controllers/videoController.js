@@ -42,9 +42,6 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
         }
         if(sharedGraphDataProperties.getTimeSyncVariable()){
             currentXValue = sharedGraphDataProperties.getTimeSyncVariable();
-            console.log('Current Value :'+currentXValue);
-            console.log('Current Value/4 :'+currentXValue/4);
-            console.log('Current Value + Video Slider :'+($scope.videoSlider.value + currentXValue));
         }
         $scope.API.seekTime($scope.videoSlider.value + (currentXValue/4), false);
 

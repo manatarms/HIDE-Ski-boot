@@ -1,4 +1,3 @@
-TODO CHANGE THE HARDCODED CSV LENGTH VALUE in SERVICE.js 
 Error checking for video and csv upload
 Add loading icon to chart
 Maintain states across router pages

@@ -78,10 +78,10 @@ skiApp.service('csvService', ['$timeout', '$q', function($timeout, $q) {
     function csvHander(content, chartConfig) {
         
         if (content !== null) {
-            //Optimize with local variable and push entire series array
             // var series = [
 
             // ];
+            //Left the call in case we want to break out this function later
             processLargeArrayAsync(content);
             function processLargeArrayAsync(array, maxTimePerChunk) {
                 maxTimePerChunk = maxTimePerChunk || 200;
@@ -94,10 +94,7 @@ skiApp.service('csvService', ['$timeout', '$q', function($timeout, $q) {
                 function doChunk() {
                     var startTime = now();
                     while (index < rowLenght && (now() - startTime) <= maxTimePerChunk) {
-                        // callback called with args (value, index, array)
-                        // console.log(content[index][2].length);
-                        //TODO CHANGE THIS HARDCODED VALUE
-                        for(i=0;i<11;i++){
+                        for(i=0;i<content[index].length;i++){
                             switch (i) {
                                 case 0:
                                     chartConfig.xAxis.categories.push(parseFloat(content[index][i]));
