@@ -91,12 +91,7 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
         },
 
         //Series object (optional) - a list of series using normal Highcharts series options.
-        series: [{
-                name: 's0R',
-                data: [],
-                visible: true
-
-            }, {
+        series: [ {
                 name: 's1R',
                 data: [],
                 visible: true
@@ -124,6 +119,11 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
                 name: 's7R',
                 data: [],
                 visible: true
+            }, {
+                name: 's8R',
+                data: [],
+                visible: true
+
             }, {
                 //Animation line
                 name: 'Current',
