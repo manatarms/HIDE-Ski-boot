@@ -173,7 +173,6 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
 
     $scope.uploadRightCsvFile = function(event) {
         var file = event.target.files[0];
-        var fileURL = URL.createObjectURL(file);
         $scope.toggleLoading();
         papaParse.parse(file, csvConfig);
 

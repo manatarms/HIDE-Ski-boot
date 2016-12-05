@@ -180,13 +180,13 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
 
     $scope.uploadLeftCsvFile = function(event) {
         var file = event.target.files[0];
-        var fileURL = URL.createObjectURL(file);
-        $scope.toggleLoading();
+        // $scope.toggleLoading();
         papaParse.parse(file, csvConfig);
 
     };
 
     function processCsv(results, file){
+        $scope.toggleLoading();
         var csvServicePromise = csvService.csvHander(results.data, $scope.chartConfig);
             csvServicePromise.then(function() {
                 $scope.toggleLoading();

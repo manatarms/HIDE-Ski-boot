@@ -35,11 +35,15 @@ skiApp.controller('videoController', ['$scope', '$sce', 'sharedGraphDataProperti
     };
 
     $scope.videoSliderChanged = function() {
-        if (!$scope.sliderSet && $scope.API.totalTime!==0) {
+        var currentXValue = 0;
+        if (!$scope.sliderSet && $scope.API.totalTime!==0 ) {
             $scope.setSliderValue();
             $scope.sliderSet = true;
         }
-        $scope.API.seekTime($scope.videoSlider.value, false);
+        if(sharedGraphDataProperties.getTimeSyncVariable()){
+            currentXValue = sharedGraphDataProperties.getTimeSyncVariable();
+        }
+        $scope.API.seekTime($scope.videoSlider.value + (currentXValue/4), false);
 
     }
 
