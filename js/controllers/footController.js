@@ -57,7 +57,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
         //Series object (optional) - a list of series using normal Highcharts series options.
 
         series: [{
-            name: 's0L',
+            name: 's1L',
             data: [{
                 x: $scope.s0LReferenceX,
                 y: $scope.s0LReferenceY,
@@ -66,7 +66,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             color: "transparent"
 
         }, {
-            name: 's1L',
+            name: 's2L',
             data: [{
                 x: $scope.s0LReferenceX - 12,
                 y: $scope.s0LReferenceY - 25,
@@ -74,7 +74,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's2L',
+            name: 's3L',
             data: [{
                 x: $scope.s0LReferenceX - 1,
                 y: $scope.s0LReferenceY - 150,
@@ -82,7 +82,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's3L',
+            name: 's4L',
             data: [{
                 x: $scope.s0LReferenceX - 12,
                 y: $scope.s0LReferenceY - 180,
@@ -90,7 +90,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's4L',
+            name: 's5L',
             data: [{
                 x: $scope.s0LReferenceX - 2.5,
                 y: $scope.s0LReferenceY - 275,
@@ -98,7 +98,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's5L',
+            name: 's6L',
             data: [{
                 x: $scope.s0LReferenceX - 12,
                 y: $scope.s0LReferenceY - 330,
@@ -106,7 +106,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's6L',
+            name: 's7L',
             data: [{
                 x: $scope.s0LReferenceX - 6,
                 y: $scope.s0LReferenceY - 500,
@@ -114,7 +114,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's7L',
+            name: 's8L',
             data: [{
                 x: $scope.s0LReferenceX - 6,
                 y: $scope.s0LReferenceY - 670,
@@ -122,7 +122,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's0R',
+            name: 's1R',
             data: [{
                 x: $scope.s0RReferenceX,
                 y: $scope.s0RReferenceY,
@@ -131,7 +131,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             color: "transparent"
 
         }, {
-            name: 's1R',
+            name: 's2R',
             data: [{
                 x: $scope.s0RReferenceX + 12,
                 y: $scope.s0RReferenceY - 25,
@@ -139,7 +139,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's2R',
+            name: 's3R',
             data: [{
                 x: $scope.s0RReferenceX + 1,
                 y: $scope.s0RReferenceY - 150,
@@ -147,7 +147,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's3R',
+            name: 's4R',
             data: [{
                 x: $scope.s0RReferenceX + 12,
                 y: $scope.s0RReferenceY - 180,
@@ -155,7 +155,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's4R',
+            name: 's5R',
             data: [{
                 x: $scope.s0RReferenceX + 2.5,
                 y: $scope.s0RReferenceY - 275,
@@ -163,7 +163,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's5R',
+            name: 's6R',
             data: [{
                 x: $scope.s0RReferenceX + 12,
                 y: $scope.s0RReferenceY - 330,
@@ -171,7 +171,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's6R',
+            name: 's7R',
             data: [{
                 x: $scope.s0RReferenceX + 6,
                 y: $scope.s0RReferenceY - 500,
@@ -179,7 +179,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             }],
             color: "transparent"
         }, {
-            name: 's7R',
+            name: 's8R',
             data: [{
                 x: $scope.s0RReferenceX + 6,
                 y: $scope.s0RReferenceY - 670,
