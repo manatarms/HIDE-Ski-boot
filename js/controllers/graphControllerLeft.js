@@ -191,6 +191,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
             csvServicePromise.then(function() {
                 $scope.toggleLoading();
             });
+        $rootScope.$broadcast('leftCsvUploaded', [results]); 
     }
     
     

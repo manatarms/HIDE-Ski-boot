@@ -1,13 +1,25 @@
 // CONTROLLERS
-skiApp.controller('homeController', ['$scope', '$sce', function($scope) {
+skiApp.controller('homeController', ['$scope', 'csvService', function($scope,csvService) {
 
     //Details
-    $scope.name = "John Doe";
-    $scope.date = "1/2/2003";
-    $scope.time = "01.02.03";
-    $scope.runNo = "1";
-
-
+    $scope.name = "";
+    $scope.date = "";
+    $scope.time = "";
+    $scope.runNo = "";
+    $scope.$on('leftCsvUploaded', function(event, args) {
+        console.log(args[0].data[0]);
+    
+    if (args[0].data[0].length > 11 ) {
+        
+        $scope.name = args[0].data[0][11];
+        $scope.date = args[0].data[0][12];
+        $scope.runNo = args[0].data[0][13];
+        
+    }
+        
+    });
+    
+    
 
 }]);
 
