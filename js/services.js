@@ -75,7 +75,7 @@ skiApp.service('csvService', ['$timeout', '$q', function($timeout, $q) {
 
 
 
-    function csvHander(content, chartConfig) {
+    function csvHandler(content, chartConfig) {
         
         if (content !== null) {
             // var series = [
@@ -157,8 +157,8 @@ skiApp.service('csvService', ['$timeout', '$q', function($timeout, $q) {
     }
 
     return {
-        csvHander: function(content, chartConfig) {
-            return csvHander(content, chartConfig);
+        csvHandler: function(content, chartConfig) {
+            return csvHandler(content, chartConfig);
         },
         setCsvContent: function(content) {
             return setCsvContent(content);

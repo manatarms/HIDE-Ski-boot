@@ -187,16 +187,14 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
 
     function processCsv(results, file){
         $scope.toggleLoading();
-        var csvServicePromise = csvService.csvHander(results.data, $scope.chartConfig);
+        var csvServicePromise = csvService.csvHandler(results.data, $scope.chartConfig);
             csvServicePromise.then(function() {
                 $scope.toggleLoading();
             });
         $rootScope.$broadcast('leftCsvUploaded', [results]); 
     }
     
-    
-
-
+  
     //Animated line thing
     $scope.moveLineLeft = function() {
         $scope.xValueAtNextPoint = $scope.chartObj.series[8].data[0].x + $scope.skipRate;
