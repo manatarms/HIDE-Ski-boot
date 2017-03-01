@@ -1,5 +1,5 @@
 // CONTROLLERS
-skiApp.controller('homeController', ['$scope', 'csvService', function($scope,csvService) {
+skiApp.controller('homeController', ['$scope', 'csvService', function($scope,csvService,csv) {
 
     //Details
     $scope.name = "";
@@ -16,6 +16,9 @@ skiApp.controller('homeController', ['$scope', 'csvService', function($scope,csv
         $scope.runNo = args[0].data[0][13];
         
     }
+     
+    
+    
         
     });
     
