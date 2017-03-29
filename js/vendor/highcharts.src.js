@@ -16044,7 +16044,7 @@
             //cursor: 'default',
             //dashStyle: null,
             //linecap: 'round',
-            lineWidth: 2,
+            lineWidth: 10,
             //shadow: false,
 
             allowPointSelect: false,

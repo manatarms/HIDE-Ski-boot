@@ -27,8 +27,8 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
             tooltip: {
                 crosshairs: true,
                 shared: true,
-                valueSuffix: ' units'
-
+                valueSuffix: ' units',
+                enabled: false
             },
             plotOptions: {
                 series: {

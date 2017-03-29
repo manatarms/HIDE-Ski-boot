@@ -43,7 +43,8 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
             tooltip: {
                 crosshairs: true,
                 shared: true,
-                valueSuffix: ' units'
+                valueSuffix: ' units',
+                enabled: false
 
             },
             plotOptions: {
@@ -94,35 +95,43 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
         series: [ {
                 name: 's1R',
                 data: [],
-                visible: true
+                color: '#7cb5ec',
+                visible: false
             }, {
                 name: 's2R',
                 data: [],
-                visible: true
+                color: '#434348',
+                visible: false
             }, {
                 name: 's3R',
                 data: [],
-                visible: true
+                color: '#90ed7d',
+                visible: false
             }, {
                 name: 's4R',
                 data: [],
-                visible: true
+                color: '#f7a35c',
+                visible: false
             }, {
                 name: 's5R',
                 data: [],
-                visible: true
+                color: '#8089e5',
+                visible: false
             }, {
                 name: 's6R',
                 data: [],
-                visible: true
+                color: '#f15c80',
+                visible: false
             }, {
                 name: 's7R',
                 data: [],
-                visible: true
+                color: '#e4d354',
+                visible: false
             }, {
                 name: 's8R',
                 data: [],
-                visible: true
+                color: '#2b908f',
+                visible: false
 
             }, {
                 //Animation line
@@ -130,7 +139,13 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
                 data: [
                     [0, $scope.minY],
                     [0, $scope.maxYRedLine]
-                ]
+                ],
+                color: '#ff0000',
+            }, {
+                name: 'avg',
+                data: [],
+                color: '#da35ff',
+                visible: true
             }
 
 
@@ -227,7 +242,8 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
                 "s5R": $scope.chartConfig.series[5].data[x],
                 "s6R": $scope.chartConfig.series[6].data[x],
                 "s7R": $scope.chartConfig.series[7].data[x],
-                "yMaxR": $scope.yMax
+                "yMaxR": $scope.yMax,
+                "avg": ("s0R" + "s1R" + "s2R" + "s3R" + "s4R" + "s5R" + "s6R" + "s7R") / 8
             }
 
            //Get the left sensor values, append right values and save it back to shared properties for foot controller  
@@ -264,7 +280,8 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
             "s5R": 0,
             "s6R": 0,
             "s7R": 0,
-            "yMax": $scope.yMax
+            "yMax": $scope.yMax,
+            "avg": 0
         }
         $scope.chartObj.series[8].setData([
             [0, $scope.minY],
@@ -295,7 +312,8 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
             "s5R": $scope.chartConfig.series[5].data[xValue],
             "s6R": $scope.chartConfig.series[6].data[xValue],
             "s7R": $scope.chartConfig.series[7].data[xValue],
-            "yMaxR": $scope.yMax
+            "yMaxR": $scope.yMax,
+            "avg": ("s0R" + "s1R" + "s2R" + "s3R" + "s4R" + "s5R" + "s6R" + "s7R") / 8
         }
 
         $scope.chartObj.series[8].setData([
