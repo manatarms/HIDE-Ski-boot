@@ -100,7 +100,10 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
         series: [{
                 name: 's1L',
                 data: [],
+<<<<<<< Updated upstream
                 color: '#7cb5ec',
+=======
+>>>>>>> Stashed changes
                 visible: false
             }, {
                 name: 's2L',
@@ -172,7 +175,7 @@ skiApp.controller('graphControllerLeft', ['$rootScope', '$scope', '$timeout', 's
             title: { text: 'Time (ms)' }
         },
         yAxis: {
-            title: { text: 'Force (N)' }
+            title: { text: 'Force (Lbs)' }
         },
 
         //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.

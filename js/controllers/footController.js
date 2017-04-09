@@ -212,7 +212,7 @@ skiApp.controller('footController', ['$scope', 'colorRangeService', 'sharedGraph
         yAxis: {
             gridLineWidth: 0,
             minorGridLineWidth: 0,
-            title: { text: 'Force (N)' },
+            title: { text: 'Force (Lbs)' },
             labels: {
                 //TURN THIS OFF WHEN NOT DEBUGGING
                 enabled: false

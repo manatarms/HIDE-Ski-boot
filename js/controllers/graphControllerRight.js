@@ -166,7 +166,7 @@ skiApp.controller('graphControllerRight',['$rootScope', '$scope', '$timeout', 's
             title: { text: 'Time (ms)' }
         },
         yAxis: {
-            title: { text: 'Force (N)' }
+            title: { text: 'Force (Lbs)' }
         },
 
         //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.
