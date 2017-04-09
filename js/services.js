@@ -9,6 +9,7 @@ skiApp.service('sharedGraphDataProperties', function() {
         getTimeSyncVariable: function() {
             return this.timeSyncVariable;
         },
+        
         setTimeSyncVariable: function(timeSyncVariable) {
             this.timeSyncVariable = timeSyncVariable;
         },

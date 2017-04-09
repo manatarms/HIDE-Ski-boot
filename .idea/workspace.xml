@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6096cedc-54af-4eee-9765-f12226c53fbf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services.js" afterPath="$PROJECT_DIR$/js/services.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,7 +55,7 @@
             <state relative-caret-position="255">
               <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
               <folding>
-                <marker date="1491769829000" expanded="true" signature="1168:1564" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1168:1564" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -67,79 +67,79 @@
             <state relative-caret-position="3750">
               <caret line="251" column="36" lean-forward="false" selection-start-line="251" selection-start-column="36" selection-end-line="251" selection-end-column="36" />
               <folding>
-                <marker date="1491769829000" expanded="true" signature="466:7338" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="486:1833" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="943:1092" ph="{&quot;valueSuffix&quot;: ' units'...}" />
-                <marker date="1491769829000" expanded="true" signature="1119:1823" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="1145:1809" ph="{&quot;cursor&quot;: 'pointer'...}" />
-                <marker date="1491769829000" expanded="true" signature="1218:1280" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="1309:1548" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="1343:1526" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="1396:1500" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="1641:1791" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="1700:1769" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="1948:5730" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="1949:2175" ph="{&quot;name&quot;: 's1L'...}" />
-                <marker date="1491769829000" expanded="true" signature="1994:2130" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="1995:2129" ph="{&quot;x&quot;: $scope.s0LReferenceX...}" />
-                <marker date="1491769829000" expanded="true" signature="2177:2412" ph="{&quot;name&quot;: 's2L'...}" />
-                <marker date="1491769829000" expanded="true" signature="2222:2368" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="2223:2367" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="2414:2649" ph="{&quot;name&quot;: 's3L'...}" />
-                <marker date="1491769829000" expanded="true" signature="2459:2605" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="2460:2604" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="2651:2887" ph="{&quot;name&quot;: 's4L'...}" />
-                <marker date="1491769829000" expanded="true" signature="2696:2843" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="2697:2842" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="2889:3126" ph="{&quot;name&quot;: 's5L'...}" />
-                <marker date="1491769829000" expanded="true" signature="2934:3082" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="2935:3081" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="3128:3364" ph="{&quot;name&quot;: 's6L'...}" />
-                <marker date="1491769829000" expanded="true" signature="3173:3320" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="3174:3319" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="3366:3601" ph="{&quot;name&quot;: 's7L'...}" />
-                <marker date="1491769829000" expanded="true" signature="3411:3557" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="3412:3556" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="3603:3838" ph="{&quot;name&quot;: 's8L'...}" />
-                <marker date="1491769829000" expanded="true" signature="3648:3794" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="3649:3793" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="3840:4066" ph="{&quot;name&quot;: 's1R'...}" />
-                <marker date="1491769829000" expanded="true" signature="3885:4021" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="3886:4020" ph="{&quot;x&quot;: $scope.s0RReferenceX...}" />
-                <marker date="1491769829000" expanded="true" signature="4068:4303" ph="{&quot;name&quot;: 's2R'...}" />
-                <marker date="1491769829000" expanded="true" signature="4113:4259" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="4114:4258" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="4305:4540" ph="{&quot;name&quot;: 's3R'...}" />
-                <marker date="1491769829000" expanded="true" signature="4350:4496" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="4351:4495" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="4542:4778" ph="{&quot;name&quot;: 's4R'...}" />
-                <marker date="1491769829000" expanded="true" signature="4587:4734" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="4588:4733" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="4780:5017" ph="{&quot;name&quot;: 's5R'...}" />
-                <marker date="1491769829000" expanded="true" signature="4825:4973" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="4826:4972" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="5019:5255" ph="{&quot;name&quot;: 's6R'...}" />
-                <marker date="1491769829000" expanded="true" signature="5064:5211" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="5065:5210" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="5257:5492" ph="{&quot;name&quot;: 's7R'...}" />
-                <marker date="1491769829000" expanded="true" signature="5302:5448" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="5303:5447" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="5494:5729" ph="{&quot;name&quot;: 's8R'...}" />
-                <marker date="1491769829000" expanded="true" signature="5539:5685" ph="[...]" />
-                <marker date="1491769829000" expanded="true" signature="5540:5684" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-                <marker date="1491769829000" expanded="true" signature="5788:5823" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="5833:5967" ph="//..." />
-                <marker date="1491769829000" expanded="true" signature="6000:6203" ph="//..." />
-                <marker date="1491769829000" expanded="true" signature="6219:6491" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="6311:6408" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="6508:6823" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="6639:6736" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="7062:7125" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="7188:7332" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="7202:7280" ph="//..." />
-                <marker date="1491769829000" expanded="true" signature="7401:8255" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="7436:7526" ph="{...}" />
-                <marker date="1491769829000" expanded="true" signature="7604:8248" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="466:7338" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="486:1833" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="943:1092" ph="{&quot;valueSuffix&quot;: ' units'...}" />
+                <marker date="1491770664000" expanded="true" signature="1119:1823" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1145:1809" ph="{&quot;cursor&quot;: 'pointer'...}" />
+                <marker date="1491770664000" expanded="true" signature="1218:1280" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1309:1548" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1343:1526" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1396:1500" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1641:1791" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1700:1769" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="1948:5730" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="1949:2175" ph="{&quot;name&quot;: 's1L'...}" />
+                <marker date="1491770664000" expanded="true" signature="1994:2130" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="1995:2129" ph="{&quot;x&quot;: $scope.s0LReferenceX...}" />
+                <marker date="1491770664000" expanded="true" signature="2177:2412" ph="{&quot;name&quot;: 's2L'...}" />
+                <marker date="1491770664000" expanded="true" signature="2222:2368" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="2223:2367" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="2414:2649" ph="{&quot;name&quot;: 's3L'...}" />
+                <marker date="1491770664000" expanded="true" signature="2459:2605" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="2460:2604" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="2651:2887" ph="{&quot;name&quot;: 's4L'...}" />
+                <marker date="1491770664000" expanded="true" signature="2696:2843" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="2697:2842" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="2889:3126" ph="{&quot;name&quot;: 's5L'...}" />
+                <marker date="1491770664000" expanded="true" signature="2934:3082" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="2935:3081" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="3128:3364" ph="{&quot;name&quot;: 's6L'...}" />
+                <marker date="1491770664000" expanded="true" signature="3173:3320" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="3174:3319" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="3366:3601" ph="{&quot;name&quot;: 's7L'...}" />
+                <marker date="1491770664000" expanded="true" signature="3411:3557" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="3412:3556" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="3603:3838" ph="{&quot;name&quot;: 's8L'...}" />
+                <marker date="1491770664000" expanded="true" signature="3648:3794" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="3649:3793" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="3840:4066" ph="{&quot;name&quot;: 's1R'...}" />
+                <marker date="1491770664000" expanded="true" signature="3885:4021" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="3886:4020" ph="{&quot;x&quot;: $scope.s0RReferenceX...}" />
+                <marker date="1491770664000" expanded="true" signature="4068:4303" ph="{&quot;name&quot;: 's2R'...}" />
+                <marker date="1491770664000" expanded="true" signature="4113:4259" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="4114:4258" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="4305:4540" ph="{&quot;name&quot;: 's3R'...}" />
+                <marker date="1491770664000" expanded="true" signature="4350:4496" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="4351:4495" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="4542:4778" ph="{&quot;name&quot;: 's4R'...}" />
+                <marker date="1491770664000" expanded="true" signature="4587:4734" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="4588:4733" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="4780:5017" ph="{&quot;name&quot;: 's5R'...}" />
+                <marker date="1491770664000" expanded="true" signature="4825:4973" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="4826:4972" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="5019:5255" ph="{&quot;name&quot;: 's6R'...}" />
+                <marker date="1491770664000" expanded="true" signature="5064:5211" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="5065:5210" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="5257:5492" ph="{&quot;name&quot;: 's7R'...}" />
+                <marker date="1491770664000" expanded="true" signature="5302:5448" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="5303:5447" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="5494:5729" ph="{&quot;name&quot;: 's8R'...}" />
+                <marker date="1491770664000" expanded="true" signature="5539:5685" ph="[...]" />
+                <marker date="1491770664000" expanded="true" signature="5540:5684" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+                <marker date="1491770664000" expanded="true" signature="5788:5823" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="5833:5967" ph="//..." />
+                <marker date="1491770664000" expanded="true" signature="6000:6203" ph="//..." />
+                <marker date="1491770664000" expanded="true" signature="6219:6491" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="6311:6408" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="6508:6823" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="6639:6736" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="7062:7125" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="7188:7332" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="7202:7280" ph="//..." />
+                <marker date="1491770664000" expanded="true" signature="7401:8255" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="7436:7526" ph="{...}" />
+                <marker date="1491770664000" expanded="true" signature="7604:8248" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -163,12 +163,12 @@
             <state relative-caret-position="62160">
               <caret line="4144" column="97" lean-forward="false" selection-start-line="4144" selection-start-column="97" selection-end-line="4144" selection-end-column="97" />
               <folding>
-                <marker date="1491769829000" expanded="true" signature="161809:161825" ph="..." />
-                <marker date="1491769829000" expanded="true" signature="161894:161911" ph="..." />
-                <marker date="1491769829000" expanded="true" signature="296813:296828" ph="..." />
-                <marker date="1491769829000" expanded="true" signature="296899:296918" ph="..." />
-                <marker date="1491769829000" expanded="true" signature="805069:805088" ph="..." />
-                <marker date="1491769829000" expanded="true" signature="805117:805134" ph="..." />
+                <marker date="1491770664000" expanded="true" signature="161809:161825" ph="..." />
+                <marker date="1491770664000" expanded="true" signature="161894:161911" ph="..." />
+                <marker date="1491770664000" expanded="true" signature="296813:296828" ph="..." />
+                <marker date="1491770664000" expanded="true" signature="296899:296918" ph="..." />
+                <marker date="1491770664000" expanded="true" signature="805069:805088" ph="..." />
+                <marker date="1491770664000" expanded="true" signature="805117:805134" ph="..." />
               </folding>
             </state>
           </provider>
@@ -187,8 +187,8 @@
       <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+            <state relative-caret-position="165">
+              <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -233,6 +233,7 @@
         <option value="$PROJECT_DIR$/js/controllers/graphControllerRight.js" />
         <option value="$PROJECT_DIR$/js/controllers/graphControllerLeft.js" />
         <option value="$PROJECT_DIR$/js/vendor/highcharts.src.js" />
+        <option value="$PROJECT_DIR$/js/services.js" />
       </list>
     </option>
   </component>
@@ -706,12 +707,12 @@
       <workItem from="1489515290972" duration="2233000" />
       <workItem from="1489615992377" duration="2940000" />
       <workItem from="1489687539277" duration="2020000" />
-      <workItem from="1491767325166" duration="244000" />
+      <workItem from="1491767325166" duration="254000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11560000" />
+    <option name="totallyTimeSpent" value="11570000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -724,7 +725,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1400" height="772" extended-state="1" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -742,7 +743,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -789,12 +790,12 @@
         <state relative-caret-position="41985">
           <caret line="2799" column="15" lean-forward="true" selection-start-line="2782" selection-start-column="20" selection-end-line="2782" selection-end-column="27" />
           <folding>
-            <marker date="1491769829000" expanded="true" signature="161809:161825" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="161894:161911" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="296813:296828" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="296899:296918" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="805069:805088" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="805117:805134" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="161809:161825" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="161894:161911" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="296813:296828" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="296899:296918" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="805069:805088" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="805117:805134" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1104,7 +1105,7 @@
         <state relative-caret-position="255">
           <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
           <folding>
-            <marker date="1491769829000" expanded="true" signature="1168:1564" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1168:1564" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1114,79 +1115,79 @@
         <state relative-caret-position="3750">
           <caret line="251" column="36" lean-forward="false" selection-start-line="251" selection-start-column="36" selection-end-line="251" selection-end-column="36" />
           <folding>
-            <marker date="1491769829000" expanded="true" signature="466:7338" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="486:1833" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="943:1092" ph="{&quot;valueSuffix&quot;: ' units'...}" />
-            <marker date="1491769829000" expanded="true" signature="1119:1823" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="1145:1809" ph="{&quot;cursor&quot;: 'pointer'...}" />
-            <marker date="1491769829000" expanded="true" signature="1218:1280" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="1309:1548" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="1343:1526" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="1396:1500" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="1641:1791" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="1700:1769" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="1948:5730" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="1949:2175" ph="{&quot;name&quot;: 's1L'...}" />
-            <marker date="1491769829000" expanded="true" signature="1994:2130" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="1995:2129" ph="{&quot;x&quot;: $scope.s0LReferenceX...}" />
-            <marker date="1491769829000" expanded="true" signature="2177:2412" ph="{&quot;name&quot;: 's2L'...}" />
-            <marker date="1491769829000" expanded="true" signature="2222:2368" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="2223:2367" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="2414:2649" ph="{&quot;name&quot;: 's3L'...}" />
-            <marker date="1491769829000" expanded="true" signature="2459:2605" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="2460:2604" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="2651:2887" ph="{&quot;name&quot;: 's4L'...}" />
-            <marker date="1491769829000" expanded="true" signature="2696:2843" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="2697:2842" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="2889:3126" ph="{&quot;name&quot;: 's5L'...}" />
-            <marker date="1491769829000" expanded="true" signature="2934:3082" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="2935:3081" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="3128:3364" ph="{&quot;name&quot;: 's6L'...}" />
-            <marker date="1491769829000" expanded="true" signature="3173:3320" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="3174:3319" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="3366:3601" ph="{&quot;name&quot;: 's7L'...}" />
-            <marker date="1491769829000" expanded="true" signature="3411:3557" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="3412:3556" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="3603:3838" ph="{&quot;name&quot;: 's8L'...}" />
-            <marker date="1491769829000" expanded="true" signature="3648:3794" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="3649:3793" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="3840:4066" ph="{&quot;name&quot;: 's1R'...}" />
-            <marker date="1491769829000" expanded="true" signature="3885:4021" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="3886:4020" ph="{&quot;x&quot;: $scope.s0RReferenceX...}" />
-            <marker date="1491769829000" expanded="true" signature="4068:4303" ph="{&quot;name&quot;: 's2R'...}" />
-            <marker date="1491769829000" expanded="true" signature="4113:4259" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="4114:4258" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="4305:4540" ph="{&quot;name&quot;: 's3R'...}" />
-            <marker date="1491769829000" expanded="true" signature="4350:4496" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="4351:4495" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="4542:4778" ph="{&quot;name&quot;: 's4R'...}" />
-            <marker date="1491769829000" expanded="true" signature="4587:4734" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="4588:4733" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="4780:5017" ph="{&quot;name&quot;: 's5R'...}" />
-            <marker date="1491769829000" expanded="true" signature="4825:4973" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="4826:4972" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="5019:5255" ph="{&quot;name&quot;: 's6R'...}" />
-            <marker date="1491769829000" expanded="true" signature="5064:5211" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="5065:5210" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="5257:5492" ph="{&quot;name&quot;: 's7R'...}" />
-            <marker date="1491769829000" expanded="true" signature="5302:5448" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="5303:5447" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="5494:5729" ph="{&quot;name&quot;: 's8R'...}" />
-            <marker date="1491769829000" expanded="true" signature="5539:5685" ph="[...]" />
-            <marker date="1491769829000" expanded="true" signature="5540:5684" ph="{&quot;z&quot;: $scope.sensorSize...}" />
-            <marker date="1491769829000" expanded="true" signature="5788:5823" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="5833:5967" ph="//..." />
-            <marker date="1491769829000" expanded="true" signature="6000:6203" ph="//..." />
-            <marker date="1491769829000" expanded="true" signature="6219:6491" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="6311:6408" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="6508:6823" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="6639:6736" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="7062:7125" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="7188:7332" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="7202:7280" ph="//..." />
-            <marker date="1491769829000" expanded="true" signature="7401:8255" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="7436:7526" ph="{...}" />
-            <marker date="1491769829000" expanded="true" signature="7604:8248" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="466:7338" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="486:1833" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="943:1092" ph="{&quot;valueSuffix&quot;: ' units'...}" />
+            <marker date="1491770664000" expanded="true" signature="1119:1823" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1145:1809" ph="{&quot;cursor&quot;: 'pointer'...}" />
+            <marker date="1491770664000" expanded="true" signature="1218:1280" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1309:1548" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1343:1526" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1396:1500" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1641:1791" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1700:1769" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="1948:5730" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="1949:2175" ph="{&quot;name&quot;: 's1L'...}" />
+            <marker date="1491770664000" expanded="true" signature="1994:2130" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="1995:2129" ph="{&quot;x&quot;: $scope.s0LReferenceX...}" />
+            <marker date="1491770664000" expanded="true" signature="2177:2412" ph="{&quot;name&quot;: 's2L'...}" />
+            <marker date="1491770664000" expanded="true" signature="2222:2368" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="2223:2367" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="2414:2649" ph="{&quot;name&quot;: 's3L'...}" />
+            <marker date="1491770664000" expanded="true" signature="2459:2605" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="2460:2604" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="2651:2887" ph="{&quot;name&quot;: 's4L'...}" />
+            <marker date="1491770664000" expanded="true" signature="2696:2843" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="2697:2842" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="2889:3126" ph="{&quot;name&quot;: 's5L'...}" />
+            <marker date="1491770664000" expanded="true" signature="2934:3082" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="2935:3081" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="3128:3364" ph="{&quot;name&quot;: 's6L'...}" />
+            <marker date="1491770664000" expanded="true" signature="3173:3320" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="3174:3319" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="3366:3601" ph="{&quot;name&quot;: 's7L'...}" />
+            <marker date="1491770664000" expanded="true" signature="3411:3557" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="3412:3556" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="3603:3838" ph="{&quot;name&quot;: 's8L'...}" />
+            <marker date="1491770664000" expanded="true" signature="3648:3794" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="3649:3793" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="3840:4066" ph="{&quot;name&quot;: 's1R'...}" />
+            <marker date="1491770664000" expanded="true" signature="3885:4021" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="3886:4020" ph="{&quot;x&quot;: $scope.s0RReferenceX...}" />
+            <marker date="1491770664000" expanded="true" signature="4068:4303" ph="{&quot;name&quot;: 's2R'...}" />
+            <marker date="1491770664000" expanded="true" signature="4113:4259" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="4114:4258" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="4305:4540" ph="{&quot;name&quot;: 's3R'...}" />
+            <marker date="1491770664000" expanded="true" signature="4350:4496" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="4351:4495" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="4542:4778" ph="{&quot;name&quot;: 's4R'...}" />
+            <marker date="1491770664000" expanded="true" signature="4587:4734" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="4588:4733" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="4780:5017" ph="{&quot;name&quot;: 's5R'...}" />
+            <marker date="1491770664000" expanded="true" signature="4825:4973" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="4826:4972" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="5019:5255" ph="{&quot;name&quot;: 's6R'...}" />
+            <marker date="1491770664000" expanded="true" signature="5064:5211" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="5065:5210" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="5257:5492" ph="{&quot;name&quot;: 's7R'...}" />
+            <marker date="1491770664000" expanded="true" signature="5302:5448" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="5303:5447" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="5494:5729" ph="{&quot;name&quot;: 's8R'...}" />
+            <marker date="1491770664000" expanded="true" signature="5539:5685" ph="[...]" />
+            <marker date="1491770664000" expanded="true" signature="5540:5684" ph="{&quot;z&quot;: $scope.sensorSize...}" />
+            <marker date="1491770664000" expanded="true" signature="5788:5823" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="5833:5967" ph="//..." />
+            <marker date="1491770664000" expanded="true" signature="6000:6203" ph="//..." />
+            <marker date="1491770664000" expanded="true" signature="6219:6491" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="6311:6408" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="6508:6823" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="6639:6736" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="7062:7125" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="7188:7332" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="7202:7280" ph="//..." />
+            <marker date="1491770664000" expanded="true" signature="7401:8255" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="7436:7526" ph="{...}" />
+            <marker date="1491770664000" expanded="true" signature="7604:8248" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1206,12 +1207,12 @@
         <state relative-caret-position="62160">
           <caret line="4144" column="97" lean-forward="false" selection-start-line="4144" selection-start-column="97" selection-end-line="4144" selection-end-column="97" />
           <folding>
-            <marker date="1491769829000" expanded="true" signature="161809:161825" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="161894:161911" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="296813:296828" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="296899:296918" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="805069:805088" ph="..." />
-            <marker date="1491769829000" expanded="true" signature="805117:805134" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="161809:161825" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="161894:161911" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="296813:296828" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="296899:296918" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="805069:805088" ph="..." />
+            <marker date="1491770664000" expanded="true" signature="805117:805134" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1226,8 +1227,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        <state relative-caret-position="165">
+          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
           <folding />
         </state>
       </provider>
